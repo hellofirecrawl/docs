@@ -1,6 +1,5 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "openapi": ["/openapi.json"],
   "name": "Firecrawl Docs",
   "logo": {
     "dark": "/logo/dark.svg",
