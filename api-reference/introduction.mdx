@@ -3,31 +3,43 @@ title: 'Introduction'
 description: 'Example section for showcasing API endpoints'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Base URL
 
-## Welcome
+All requests contain the following base URL:
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+```bash
+https://api.firecrawl.dev 
+```
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+For authentication, it's required to include an Authorization header. The header should contain `Bearer fc_123456789`, where `fc_123456789` represents your API Key.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```bash
+Authorization: Bearer fc_123456789
 ```
+​
+
+## Response codes
+Firecrawl employs conventional HTTP status codes to signify the outcome of your requests.
+
+Typically, 2xx HTTP status codes denote success, 4xx codes represent failures related to the user, and 5xx codes signal infrastructure problems.
+
+Status | Description
+--- | ---
+200 | Request was successful.
+400 | Verify the correctness of the parameters.
+401 | The API key was not provided.
+402 | Payment required
+404 | The requested resource could not be located.
+429 | The rate limit has been surpassed.
+5xx | Signifies a server error with Firecrawl.
+
+Refer to the Error Codes section for a detailed explanation of all potential API errors.
+
+​
+## Rate limit
+The Firecrawl API has a rate limit to ensure the stability and reliability of the service. The rate limit is applied to all endpoints and is based on the number of requests made within a specific time frame.
+
+When you exceed the rate limit, you will receive a 429 response code.

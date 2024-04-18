@@ -1,195 +1,294 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "title": "Firecrawl API",
+    "version": "1.0.0",
+    "description": "API for interacting with Firecrawl services to perform web scraping and crawling tasks.",
+    "contact": {
+      "name": "Firecrawl Support",
+      "url": "https://firecrawl.dev/support",
+      "email": "support@firecrawl.dev"
+    }
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
+      "url": "https://api.firecrawl.dev/v0"
     }
   ],
   "paths": {
-    "/plants": {
+    "/scrape": {
+      "post": {
+        "summary": "Scrape a single URL",
+        "operationId": "scrapeSingleUrl",
+        "tags": ["Scraping"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The URL to scrape"
+                  }
+                },
+                "required": ["url"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScrapeResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/crawl": {
+      "post": {
+        "summary": "Crawl multiple URLs based on options",
+        "operationId": "crawlUrls",
+        "tags": ["Crawling"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The base URL to start crawling from"
+                  },
+                  "crawlerOptions": {
+                    "type": "object",
+                    "properties": {
+                      "includes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "URL patterns to include"
+                      },
+                      "excludes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "URL patterns to exclude"
+                      },
+                      "generateImgAltText": {
+                        "type": "boolean",
+                        "description": "Generate alt text for images using LLMs (must have a paid plan)",
+                        "default": false
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "description": "Maximum number of pages to crawl"
+                      }
+                    }
+                  },
+                  "pageOptions": {
+                    "type": "object",
+                    "properties": {
+                      "onlyMainContent": {
+                        "type": "boolean",
+                        "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                        "default": false
+                      }
+                    }
+                  }
+                },
+                "required": ["url"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrawlResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/crawl/status/{jobId}": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "tags": ["Crawl"],
+        "summary": "Get the status of a crawl job",
+        "operationId": "getCrawlStatus",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
+            "name": "jobId",
+            "in": "path",
+            "description": "ID of the crawl job",
+            "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the job (completed, active, failed, paused)"
+                    },
+                    "current": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "current_url": {
+                      "type": "string",
+                      "description": "Current URL being scraped"
+                    },
+                    "current_step": {
+                      "type": "string",
+                      "description": "Current step in the process"
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of pages"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ScrapeResponse"
+                      },
+                      "description": "Data returned from the job (null when it is in progress)"
+                    }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
+          "402": {
+            "description": "Payment required"
           },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
+          "429": {
+            "description": "Too many requests"
           },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+          "500": {
+            "description": "Server error"
           }
         }
       }
     }
   },
   "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer"
       }
+    },
+    "schemas": {
+      "ScrapeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string"
+              },
+              "markdown": {
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "language": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "sourceURL": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "CrawlResponse": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string"
+          }
+        }
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }
