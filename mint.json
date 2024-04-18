@@ -51,24 +51,15 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction"
-      ]
+      "pages": ["introduction"]
     },
     {
       "group": "SDKs",
-      "pages": [
-        "sdk/python",
-        "sdk/node",
-        "sdk/langchain",
-        "sdk/llamaindex"
-      ]
+      "pages": ["sdk/python", "sdk/node", "sdk/langchain", "sdk/llamaindex"]
     },
     {
       "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
+      "pages": ["api-reference/introduction"]
     },
     {
       "group": "Endpoints",

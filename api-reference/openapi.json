@@ -109,7 +109,8 @@
                       "generateImgAltText": {
                         "type": "boolean",
                         "description": "Generate alt text for images using LLMs (must have a paid plan)",
-                        "default": false
+                        "default": false,
+                        "optional": true
                       },
                       "limit": {
                         "type": "integer",
