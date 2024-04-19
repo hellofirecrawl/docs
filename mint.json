@@ -59,6 +59,10 @@
       "pages": ["sdk/python", "sdk/node", "sdk/langchain", "sdk/llamaindex"]
     },
     {
+      "group": "Learn",
+      "pages": ["learn/rag-llama3"]
+    },
+    {
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
     },
