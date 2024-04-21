@@ -63,6 +63,10 @@
       "pages": ["learn/rag-llama3"]
     },
     {
+      "group": "Contributing",
+      "pages": ["contributing/guide"]
+    },
+    {
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
     },
