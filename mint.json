@@ -60,7 +60,7 @@
     },
     {
       "group": "Learn",
-      "pages": ["learn/rag-llama3"]
+      "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3"]
     },
     {
       "group": "Contributing",
