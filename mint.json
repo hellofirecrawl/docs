@@ -6,6 +6,9 @@
     "light": "/logo/light.svg",
     "href": "https://firecrawl.dev"
   },
+  "metadata": {
+    "og:image": "/images/hero.png"
+},
   "favicon": "/favicon.svg",
   "colors": {
     "primary": "#000",
