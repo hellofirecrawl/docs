@@ -1,6 +1,7 @@
 ---
 title: "Extract website data using LLMs"
 description: "Learn how to use Firecrawl and Groq to extract structured data from a web page in a few lines of code."
+'og:image': "/images/hero.png"
 ---
 
 ## Setup
@@ -81,7 +82,7 @@ completion = client.chat.completions.create(
 
 
 # Pretty print the JSON response
-dataExtracted = json.dumps(str(completion.choices[0].message.content), indent=4))
+dataExtracted = json.dumps(str(completion.choices[0].message.content), indent=4)
 
 print(dataExtracted)
 ```
