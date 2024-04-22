@@ -7,8 +7,12 @@
     "href": "https://firecrawl.dev"
   },
   "metadata": {
-    "og:image": "https://www.firecrawl.dev/og.png",
-    "twitter:image": "https://www.firecrawl.dev/og.png"
+    "og:title": "Firecrawl Docs",
+    "og:description": "Firecrawl allows you turn websites to LLM-ready data in seconds.",
+    "og:url": "https://docs.firecrawl.dev",
+    "og:image": "/images/og.png",
+    "twitter:title": "Firecrawl Docs",
+    "twitter:image": "/images/og.png"
 },
   "favicon": "/favicon.svg",
   "colors": {
