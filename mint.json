@@ -7,8 +7,8 @@
     "href": "https://firecrawl.dev"
   },
   "metadata": {
-    "og:image": "/images/og.png",
-    "twitter:image": "/images/og.png"
+    "og:image": "https://www.firecrawl.dev/og.png",
+    "twitter:image": "https://www.firecrawl.dev/og.png"
 },
   "favicon": "/favicon.svg",
   "colors": {
