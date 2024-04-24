@@ -121,6 +121,11 @@
                         "description": "Generate alt text for images using LLMs (must have a paid plan)",
                         "default": false
                       },
+                      "returnOnlyUrls": {
+                        "type": "boolean",
+                        "description": "If true, returns only the URLs as a list on the crawl status. Attention: the return response will be a list of URLs inside the data, not a list of documents.",
+                        "default": false
+                      },
                       "limit": {
                         "type": "integer",
                         "description": "Maximum number of pages to crawl"
