@@ -142,6 +142,30 @@ async function checkStatusExample(jobId) {
 checkStatusExample('your_job_id_here');
 ```
 
+### Search for a query
+
+With the `search` method, you can search for a query in a search engine and get the top results along with the page content for each result. The method takes the query as a parameter and returns the search results.
+
+```js
+  async function searchExample() {
+    try {
+      const query = 'what is mendable?';
+      const searchResults = await app.search(query, {
+        pageOptions: {
+          fetchPageContent: true // Fetch the page content for each search result
+        }
+      });
+
+    } catch (error) {
+      console.error(
+        'Error occurred while scraping:',
+        error.message
+      );
+    }
+  }
+  searchExample();
+```
+
 
 ## Error Handling
 
