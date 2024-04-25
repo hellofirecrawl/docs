@@ -71,6 +71,10 @@
       "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3"]
     },
     {
+      "group": "Articles",
+      "pages": ["articles/search-announcement"]
+    },
+    {
       "group": "Contributing",
       "pages": ["contributing/guide"]
     },
