@@ -4,7 +4,7 @@ description: ""
 ---
 
 
-We are thrilled to announce the beta release of FireSearch, a search + extraction api. With `/search` endpoint, you give Firecrawl a query, it searches the web for the top results, scrape the top pages, and gives you clean markdown for each so you can feed directly to your LLM.
+We are thrilled to announce the beta release of FireSearch, a search + extraction API. With `/search` endpoint, you give Firecrawl a query, it searches the web for the top results, scrape the top pages, and gives you clean markdown for each so you can feed directly to your LLM.
 
 
 <img
@@ -12,9 +12,6 @@ We are thrilled to announce the beta release of FireSearch, a search + extractio
   src="/images/articles/search-announcement/Frame 777FireCrawl.png"
   alt="Search announcement image that shows the search."
 />
-
-
-
 
 
 ### Quick Start Guide
@@ -70,7 +67,7 @@ The FireSearch API will return search results in markdown format, which you can 
 }
 ```
 
-If `"fetchPageContent": false`, data returns:
+If `"fetchPageContent": false`, data returns faster but without the full page markdown content.
 ```json
 [
   {
@@ -87,4 +84,4 @@ We look forward to seeing how FireSearch can power up your projects!
 
 FireSearch is currently in beta, and we are diligently working to refine and improve its capabilities.
 
-Integration support for playgrounds, Python/TypeScript SDK, and @LangChainAI is on the horizon.
+Integration support for playgrounds and @LangChainAI is on the horizon.
