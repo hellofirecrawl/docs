@@ -87,7 +87,8 @@
       "pages": [
         "api-reference/endpoint/crawl",
         "api-reference/endpoint/scrape",
-        "api-reference/endpoint/status"
+        "api-reference/endpoint/status",
+        "api-reference/endpoint/search"
       ]
     }
   ],
