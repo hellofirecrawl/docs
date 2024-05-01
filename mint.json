@@ -63,8 +63,8 @@
       "pages": ["introduction"]
     },
     {
-      "capabilities": "Capabilities",
-      "pages": ["capabilities/search", "capabilities/scrape",  "capabilities/crawl", "capabilities/extract"]
+      "group": "Features",
+      "pages": [ "features/scrape", "features/crawl", "features/search", "features/extract"]
     },
     {
       "group": "SDKs",
