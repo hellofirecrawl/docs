@@ -1,15 +1,26 @@
+---
+title: "Introducing FireSearch: From SERP to LLM-Ready Data in Seconds"
+description: ""
+---
 
-# Introducing FireSearch: From SERP to LLM-Ready Data in Seconds
 
-![main hero image](images/articles/search-announcement/Frame 777FireCrawl.png)
-We are thrilled to announce the beta release of FireSearch, a search + extraction api. With /search endpoint, you give Firecrawl a query, it searches the web for the top results, scrape the top pages, and gives you clean markdown for each so you can feed directly to your LLM.
+We are thrilled to announce the beta release of FireSearch, a search + extraction API. With `/search` endpoint, you give Firecrawl a query, it searches the web for the top results, scrape the top pages, and gives you clean markdown for each so you can feed directly to your LLM.
+
+
+<img
+  className="block"
+  src="/images/articles/search-announcement/Frame 777FireCrawl.png"
+  alt="Search announcement image that shows the search."
+/>
 
 
 ### Quick Start Guide
 
-Here's how you can get started with FireSearch to fetch web content for your LLM:
+Here's how you can get started with FireSearch to fetch web content for your LLM.
 
-Step 1: Crafting Your Search Request
+If you'd like to use our SDKs, you can find the Python SDK [here](https://docs.firecrawl.dev/sdk/python) and the Node SDK [here](https://docs.firecrawl.dev/sdk/node).
+
+#### Step 1: Crafting Your Search Request
 To execute a search query and receive markdown-formatted content:
 
 ```bash
@@ -17,10 +28,10 @@ curl -X POST https://api.firecrawl.dev/v0/search \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer fc-YOUR_API_KEY' \
 -d '{
-"query": "your_search_term",
-"pageOptions": {
-"fetchPageContent": true
-}
+  "query": "your_search_term",
+  "pageOptions": {
+    "fetchPageContent": true
+  }
 }'
 ```
 Replace `fc-YOUR_API_KEY` with your actual API key and `your_search_term` with the term you wish to search for.
@@ -28,7 +39,35 @@ Replace `fc-YOUR_API_KEY` with your actual API key and `your_search_term` with t
 #### Step 2: Handling the Response
 The FireSearch API will return search results in markdown format, which you can then readily supply to your LLM for further processing or integration into your system.
 
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "url": "https://www.mendable.ai/",
+      "markdown": "# Markdown Content of the page",
+      "metadata": {
+          "title": "Mendable | AI for CX and Sales",
+          "description": "AI for CX and Sales",
+          "language": null,
+          "sourceURL": "https://www.mendable.ai/"
+      }
+    },
+    {
+      "url": "https://github.com/mendableai",
+      "markdown": "# Markdown Content of the page",
+      "metadata": {
+          "title": "Mendable | AI for CX and Sales",
+          "description": "AI for CX and Sales",
+          "language": null,
+          "sourceURL": "https://www.mendable.ai/"
+      }
+    },
+  ]
+}
+```
 
+If `"fetchPageContent": false`, data returns faster but without the full page markdown content.
 ```json
 [
   {
@@ -45,4 +84,4 @@ We look forward to seeing how FireSearch can power up your projects!
 
 FireSearch is currently in beta, and we are diligently working to refine and improve its capabilities.
 
-Integration support for playgrounds, Python/TypeScript SDK, and @LangChainAI is on the horizon.
+Integration support for playgrounds and @LangChainAI is on the horizon.

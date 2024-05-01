@@ -71,6 +71,10 @@
       "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3"]
     },
     {
+      "group": "Articles",
+      "pages": ["articles/search-announcement"]
+    },
+    {
       "group": "Contributing",
       "pages": ["contributing/guide"]
     },
@@ -83,7 +87,8 @@
       "pages": [
         "api-reference/endpoint/crawl",
         "api-reference/endpoint/scrape",
-        "api-reference/endpoint/status"
+        "api-reference/endpoint/status",
+        "api-reference/endpoint/search"
       ]
     }
   ],
