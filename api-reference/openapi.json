@@ -18,9 +18,11 @@
   "paths": {
     "/scrape": {
       "post": {
-        "summary": "Scrape a single URL",
-        "operationId": "scrapeSingleUrl",
-        "tags": ["Scraping"],
+        "summary": "Scrape a single URL and optionally extract information using an LLM",
+        "operationId": "scrapeAndExtractFromUrl",
+        "tags": [
+          "Scraping"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -47,9 +49,50 @@
                         "default": false
                       }
                     }
+                  },
+                  "extractorOptions": {
+                    "type": "object",
+                    "description": "Options for LLM-based extraction of structured information from the page content",
+                    "properties": {
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "llm-extraction"
+                        ],
+                        "description": "The extraction mode to use, currently supports 'llm-extraction'"
+                      },
+                      "extractionPrompt": {
+                        "type": "string",
+                        "description": "A prompt describing what information to extract from the page"
+                      },
+                      "extractionSchema": {
+                        "type": "object",
+                        "properties": {
+                          "company_mission": {
+                            "type": "string",
+                            "description": "Extracted mission of the company"
+                          },
+                          "supports_sso": {
+                            "type": "boolean",
+                            "description": "Indicates whether the company supports Single Sign-On (SSO)"
+                          },
+                          "is_open_source": {
+                            "type": "boolean",
+                            "description": "Indicates whether the company's product is open source"
+                          }
+                        },
+                        "required": [
+                          "company_mission",
+                          "supports_sso",
+                          "is_open_source"
+                        ]
+                      }
+                    }
                   }
                 },
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               }
             }
           }
@@ -81,7 +124,9 @@
       "post": {
         "summary": "Crawl multiple URLs based on options",
         "operationId": "crawlUrls",
-        "tags": ["Crawling"],
+        "tags": [
+          "Crawling"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -143,7 +188,9 @@
                     }
                   }
                 },
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               }
             }
           }
@@ -175,7 +222,9 @@
       "post": {
         "summary": "Search for a keyword in Google, returns top page results with markdown content for each page",
         "operationId": "searchGoogle",
-        "tags": ["Search"],
+        "tags": [
+          "Search"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -218,7 +267,9 @@
                     }
                   }
                 },
-                "required": ["query"]
+                "required": [
+                  "query"
+                ]
               }
             }
           }
@@ -248,7 +299,9 @@
     },
     "/crawl/status/{jobId}": {
       "get": {
-        "tags": ["Crawl"],
+        "tags": [
+          "Crawl"
+        ],
         "summary": "Get the status of a crawl job",
         "operationId": "getCrawlStatus",
         "security": [

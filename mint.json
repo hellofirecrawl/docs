@@ -63,6 +63,10 @@
       "pages": ["introduction"]
     },
     {
+      "capabilities": "Capabilities",
+      "pages": ["capabilities/search", "capabilities/scrape",  "capabilities/crawl", "capabilities/extract"]
+    },
+    {
       "group": "SDKs",
       "pages": ["sdk/python", "sdk/node", "sdk/langchain", "sdk/llamaindex"]
     },
