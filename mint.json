@@ -72,7 +72,7 @@
     },
     {
       "group": "Learn",
-      "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3", "learn/contradiction-agent"]
+      "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3", "learn/contradiction-agent", "learn/lead-gen-business-insights-make-firecrawl"]
     },
     {
       "group": "Articles",
