@@ -326,6 +326,13 @@
                         "$ref": "#/components/schemas/ScrapeResponse"
                       },
                       "description": "Data returned from the job (null when it is in progress)"
+                    },
+                    "partial_data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ScrapeResponse"
+                      },
+                      "description": "Partial documents returned as it is being crawls (streaming). When a page is ready it will append to the parial_data array - so no need to wait for all the website to be crawled."
                     }
                   }
                 }
