@@ -89,10 +89,11 @@
     {
       "group": "Endpoints",
       "pages": [
-        "api-reference/endpoint/crawl",
         "api-reference/endpoint/scrape",
+        "api-reference/endpoint/search",
+        "api-reference/endpoint/crawl",
         "api-reference/endpoint/status",
-        "api-reference/endpoint/search"
+        "api-reference/endpoint/crawl-cancel"
       ]
     }
   ],

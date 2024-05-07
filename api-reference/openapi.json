@@ -45,6 +45,11 @@
                         "type": "boolean",
                         "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
                         "default": false
+                      },
+                      "includeHTML": {
+                        "type": "boolean",
+                        "description": "Include the raw HTML content of the page. Will output a html key in the response.",
+                        "default": false
                       }
                     }
                   },
@@ -151,6 +156,10 @@
                         "description": "If true, returns only the URLs as a list on the crawl status. Attention: the return response will be a list of URLs inside the data, not a list of documents.",
                         "default": false
                       },
+                      "maxDepth": {
+                        "type": "integer",
+                        "description": "Maximum depth to crawl. Depth 1 is the base URL, depth 2 is the base URL and its direct children, and so on."
+                      },
                       "limit": {
                         "type": "integer",
                         "description": "Maximum number of pages to crawl"
@@ -163,6 +172,11 @@
                       "onlyMainContent": {
                         "type": "boolean",
                         "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                        "default": false
+                      },
+                      "includeHTML": {
+                        "type": "boolean",
+                        "description": "Include the raw HTML content of the page. Will output a html key in the response.",
                         "default": false
                       }
                     }
@@ -230,6 +244,11 @@
                         "type": "boolean",
                         "description": "Fetch the content of each page. If false, defaults to a basic fast serp API.",
                         "default": true
+                      },
+                      "includeHTML": {
+                        "type": "boolean",
+                        "description": "Include the raw HTML content of the page. Will output a html key in the response.",
+                        "default": false
                       }
                     }
                   },
@@ -350,6 +369,56 @@
           }
         }
       }
+    },
+    "/crawl/cancel/{jobId}": {
+      "delete": {
+        "tags": ["Crawl"],
+        "summary": "Cancel a crawl job",
+        "operationId": "cancelCrawlJob",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "ID of the crawl job",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Returns cancelled."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -374,6 +443,11 @@
               },
               "content": {
                 "type": "string"
+              },
+              "html": {
+                "type": "string",
+                "nullable": true,
+                "description": "Raw HTML content of the page if `includeHTML` is true"
               },
               "metadata": {
                 "type": "object",
