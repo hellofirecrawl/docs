@@ -142,6 +142,40 @@ async function checkStatusExample(jobId) {
 checkStatusExample('your_job_id_here');
 ```
 
+### Extracting structured data from a URL
+
+With LLM extraction, you can easily extract structured data from any URL. We support zod schema to make it easier for you too. Here is how you to use it:
+ 
+```js
+import FirecrawlApp from "@mendable/firecrawl-js";
+import { z } from "zod";
+
+const app = new FirecrawlApp({
+  apiKey: "fc-YOUR_API_KEY",
+});
+
+// Define schema to extract contents into
+const schema = z.object({
+  top: z
+    .array(
+      z.object({
+        title: z.string(),
+        points: z.number(),
+        by: z.string(),
+        commentsURL: z.string(),
+      })
+    )
+    .length(5)
+    .describe("Top 5 stories on Hacker News"),
+});
+
+const scrapeResult = await app.scrapeUrl("https://firecrawl.dev", {
+  extractorOptions: { extractionSchema: schema },
+});
+
+console.log(scrapeResult.data["llm_extraction"]);
+```
+
 ### Search for a query
 
 With the `search` method, you can search for a query in a search engine and get the top results along with the page content for each result. The method takes the query as a parameter and returns the search results.

@@ -49,6 +49,32 @@ url = 'https://example.com'
 scraped_data = app.scrape_url(url)
 ```
 
+### Extracting structured data from a URL
+
+With LLM extraction, you can easily extract structured data from any URL. We support pydanti schemas to make it easier for you too. Here is how you to use it:
+
+```python
+class ArticleSchema(BaseModel):
+    title: str
+    points: int 
+    by: str
+    commentsURL: str
+
+class TopArticlesSchema(BaseModel):
+    top: List[ArticleSchema] = Field(..., max_items=5, description="Top 5 stories")
+
+data = app.scrape_url('https://news.ycombinator.com', {
+    'extractorOptions': {
+        'extractionSchema': TopArticlesSchema.model_json_schema(),
+        'mode': 'llm-extraction'
+    },
+    'pageOptions':{
+        'onlyMainContent': True
+    }
+})
+print(data["llm_extraction"])
+```
+
 ### Crawling a Website
 
 To crawl a website, use the `crawl_url` method. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
