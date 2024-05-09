@@ -46,7 +46,7 @@
                         "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
                         "default": false
                       },
-                      "includeHTML": {
+                      "includeHtml": {
                         "type": "boolean",
                         "description": "Include the raw HTML content of the page. Will output a html key in the response.",
                         "default": false
@@ -174,7 +174,7 @@
                         "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
                         "default": false
                       },
-                      "includeHTML": {
+                      "includeHtml": {
                         "type": "boolean",
                         "description": "Include the raw HTML content of the page. Will output a html key in the response.",
                         "default": false
@@ -245,7 +245,7 @@
                         "description": "Fetch the content of each page. If false, defaults to a basic fast serp API.",
                         "default": true
                       },
-                      "includeHTML": {
+                      "includeHtml": {
                         "type": "boolean",
                         "description": "Include the raw HTML content of the page. Will output a html key in the response.",
                         "default": false
@@ -447,7 +447,7 @@
               "html": {
                 "type": "string",
                 "nullable": true,
-                "description": "Raw HTML content of the page if `includeHTML` is true"
+                "description": "Raw HTML content of the page if `includeHtml`  is true"
               },
               "metadata": {
                 "type": "object",
