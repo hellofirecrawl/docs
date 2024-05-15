@@ -165,6 +165,12 @@
                         "type": "integer",
                         "description": "Maximum depth to crawl. Depth 1 is the base URL, depth 2 is the base URL and its direct children, and so on."
                       },
+                      "mode": {
+                        "type": "string",
+                        "enum": ["default", "fast"],
+                        "description": "The crawling mode to use. Fast mode crawls 4x faster websites without sitemap, but may not be as accurate and shouldn't be used in heavy js-rendered websites.",
+                        "default": "default"
+                      },
                       "limit": {
                         "type": "integer",
                         "description": "Maximum number of pages to crawl",
