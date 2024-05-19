@@ -63,12 +63,12 @@
       "pages": ["introduction"]
     },
     {
-      "group": "Features",
-      "pages": [ "features/scrape", "features/crawl", "features/search", "features/extract"]
-    },
-    {
       "group": "SDKs",
       "pages": ["sdk/python", "sdk/node", "sdk/langchain", "sdk/llamaindex"]
+    },
+    {
+      "group": "Features",
+      "pages": [ "features/scrape", "features/crawl", "features/search", "features/extract"]
     },
     {
       "group": "Learn",
