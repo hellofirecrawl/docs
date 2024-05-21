@@ -5,7 +5,7 @@ description: "Learn how to use Firecrawl, Groq Llama 3, and Langchain to build a
 
 ## Setup
 
-Install our python dependencies, including langchain, groq, faiss, ollama, and firecrawl-py. 
+Install our python dependencies, including langchain, groq, faiss, ollama, and firecrawl-py.
 
 ```bash
 pip install --upgrade --quiet langchain langchain-community groq faiss-cpu ollama firecrawl-py
@@ -15,15 +15,15 @@ We will be using Ollama for the embeddings, you can download Ollama [here](https
 
 ## Load website with Firecrawl
 
-To be able to get all the data from a website and make sure it is in the cleanest format, we will use FireCrawl. Firecrawl integrates very easily with Langchain as a document loader.
+To be able to get all the data from a website and make sure it is in the cleanest format, we will use Firecrawl. Firecrawl integrates very easily with Langchain as a document loader.
 
-Here is how you can load a website with FireCrawl:
+Here is how you can load a website with Firecrawl:
 
 ```python
-from langchain_community.document_loaders import FireCrawlLoader  # Importing the FireCrawlLoader
+from langchain_community.document_loaders import FireCrawlLoader  # Importing the FirecrawlLoader
 
 url = "https://firecrawl.dev"
-loader = FireCrawlLoader(
+loader = FirecrawlLoader(
     api_key="fc-YOUR_API_KEY", # Note: Replace 'YOUR_API_KEY' with your actual FireCrawl API key
     url=url,  # Target URL to crawl
     mode="crawl"  # Mode set to 'crawl' to crawl all accessible subpages
@@ -35,7 +35,7 @@ docs = loader.load()
 
 Next, we will setup the vectorstore. The vectorstore is a data structure that allows us to store and query embeddings. We will use the Ollama embeddings and the FAISS vectorstore.
 We split the documents into chunks of 1000 characters each, with a 200 character overlap. This is to ensure that the chunks are not too small and not too big - and that it can fit into the LLM model when we query it.
- 
+
 ```python
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -48,8 +48,7 @@ vectorstore = FAISS.from_documents(documents=splits, embedding=OllamaEmbeddings(
 
 ## Retrieval and Generation
 
-Now that our documents  are loaded and the vectorstore is setup, we can, based on user's question, do a similarity search to retrieve the most relevant documents. That way we can use these documents to be fed to the LLM model.
-
+Now that our documents are loaded and the vectorstore is setup, we can, based on user's question, do a similarity search to retrieve the most relevant documents. That way we can use these documents to be fed to the LLM model.
 
 ```python
 question = "What is firecrawl?"
@@ -57,6 +56,7 @@ docs = vectorstore.similarity_search(query=question)
 ```
 
 ## Generation
+
 Last but not least, you can use the Groq to generate a response to a question based on the documents we have loaded.
 
 ```python

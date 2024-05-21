@@ -1,13 +1,13 @@
 ---
 title: "Extract website data using LLMs"
 description: "Learn how to use Firecrawl and Groq to extract structured data from a web page in a few lines of code."
-'og:image': "/images/og.png"
-'twitter:image': "/images/og.png"
+"og:image": "/images/og.png"
+"twitter:image": "/images/og.png"
 ---
 
 ## Setup
 
-Install our python dependencies, including groq and firecrawl-py. 
+Install our python dependencies, including groq and firecrawl-py.
 
 ```bash
 pip install groq firecrawl-py
@@ -15,11 +15,11 @@ pip install groq firecrawl-py
 
 ## Getting your Groq and Firecrawl API Keys
 
-To use Groq and Firecrawl, you will need to get your API keys. You can get your Groq API key from [here](https://groq.com) and your Firecrawl API key from [here](https://firecrawl.dev).   
+To use Groq and Firecrawl, you will need to get your API keys. You can get your Groq API key from [here](https://groq.com) and your Firecrawl API key from [here](https://firecrawl.dev).
 
 ## Load website with Firecrawl
 
-To be able to get all the data from a website page and make sure it is in the cleanest format, we will use [FireCrawl](https://firecrawl.dev). It handles by-passing JS-blocked websites, extracting the main content, and outputting in a LLM-readable format for increased accuracy.
+To be able to get all the data from a website page and make sure it is in the cleanest format, we will use [Firecrawl](https://firecrawl.dev). It handles by-passing JS-blocked websites, extracting the main content, and outputting in a LLM-readable format for increased accuracy.
 
 Here is how we will scrape a website url using Firecrawl. We will also set a `pageOptions` for only extracting the main content (`onlyMainContent: True`) of the website page - excluding the navs, footers, etc.
 
