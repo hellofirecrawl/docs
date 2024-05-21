@@ -1,13 +1,9 @@
 ---
 title: Quickstart
-description: 'Firecrawl allows you to turn entire websites into LLM-ready markdown'
+description: "Firecrawl allows you to turn entire websites into LLM-ready markdown"
 ---
 
-<img
-  className="block"
-  src="/images/hero.png"
-  alt="Hero Light"
-/>
+<img className="block" src="/images/hero.png" alt="Hero Light" />
 
 ## Welcome to Firecrawl
 
@@ -15,22 +11,22 @@ description: 'Firecrawl allows you to turn entire websites into LLM-ready markdo
 
 ## How to use it?
 
-We provide an easy to use API with our hosted version. You can find the playground and documentation [here](https://firecrawl.dev/playground). You can also self host the backend if you'd like. 
+We provide an easy to use API with our hosted version. You can find the playground and documentation [here](https://firecrawl.dev/playground). You can also self host the backend if you'd like.
 
 - [x] [API](https://docs.firecrawl.dev/api-reference/introduction)
 - [x] [Python SDK](https://docs.firecrawl.dev/sdk/python)
-- [X] [Node SDK](https://docs.firecrawl.dev/sdk/node)
+- [x] [Node SDK](https://docs.firecrawl.dev/sdk/node)
 - [x] [Langchain Integration 🦜🔗](https://docs.firecrawl.dev/sdk/langchain)
 - [x] [Llama Index Integration 🦙](https://docs.firecrawl.dev/sdk/llamaindex)
-- [ ] LangchainJS - Coming Soon
-
+- [x] [LangchainJS 🦜🔗](https://js.langchain.com/v0.1/docs/integrations/document_loaders/web_loaders/firecrawl/)
+- [x] [Zapier](https://zapier.com/apps/firecrawl/integrations)
 
 Self-host. To self-host refer to guide [here](https://github.com/mendableai/firecrawl/blob/main/SELF_HOST.md).
 
 ### API Key
 
 To use the API, you need to sign up on [Firecrawl](https://firecrawl.dev) and get an API key.
- 
+
 ### Crawling
 
 Used to crawl a URL and all accessible subpages. This submits a crawl job and returns a job ID to check the status of the crawl.
@@ -62,22 +58,22 @@ curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
 
 ```json
 {
-    "status": "completed",
-    "current": 22,
-    "total": 22,
-    "data": [
-        {
-        "content": "Raw Content ",
-        "markdown": "# Markdown Content",
-        "provider": "web-scraper",
-        "metadata": {
-            "title": "Mendable | AI for CX and Sales",
-            "description": "AI for CX and Sales",
-            "language": null,
-            "sourceURL": "https://www.mendable.ai/"
-        }
+  "status": "completed",
+  "current": 22,
+  "total": 22,
+  "data": [
+    {
+      "content": "Raw Content ",
+      "markdown": "# Markdown Content",
+      "provider": "web-scraper",
+      "metadata": {
+        "title": "Mendable | AI for CX and Sales",
+        "description": "AI for CX and Sales",
+        "language": null,
+        "sourceURL": "https://www.mendable.ai/"
       }
-    ]
+    }
+  ]
 }
 ```
 
@@ -116,7 +112,8 @@ scraped_data = app.scrape_url(url)
 
 We love contributions! Please read our [contributing guide](https://github.com/mendableai/firecrawl/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
-{/* <CardGroup cols={2}>
+{/\* <CardGroup cols={2}>
+
   <Card
     title="Edit Your Docs"
     icon="pen-to-square"
