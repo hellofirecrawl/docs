@@ -26,6 +26,10 @@
   },
   "topbarLinks": [
     {
+      "name": "Talk to us",
+      "url": "https://calendly.com/d/cj83-ngq-knk/meet-firecrawl"
+    },
+    {
       "name": "Support",
       "url": "mailto:help@firecrawl.dev"
     }
@@ -50,6 +54,11 @@
       "name": "Playground",
       "icon": "play",
       "url": "https://firecrawl.dev/playground"
+    },
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://firecrawl.dev/blog"
     },
     {
       "name": "Community",
