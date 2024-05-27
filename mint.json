@@ -26,8 +26,8 @@
   },
   "topbarLinks": [
     {
-      "name": "Talk to us",
-      "url": "https://calendly.com/d/cj83-ngq-knk/meet-firecrawl"
+      "name": "Status",
+      "url": "https://firecrawl.betteruptime.com"
     },
     {
       "name": "Support",
@@ -64,6 +64,11 @@
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/gSmWdAkdwd"
+    },
+    {
+      "name": "Talk to Us",
+      "icon": "comments",
+      "url": "https://calendly.com/d/cj83-ngq-knk/meet-firecrawl"
     }
   ],
   "navigation": [
