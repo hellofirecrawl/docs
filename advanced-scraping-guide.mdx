@@ -59,7 +59,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
 In this example, the scraper will:
 - Return only the main content of the page.
 - Include the raw HTML content in the response in the `html` key.
-- Wait for 5000 milliseconds (5 seconds) before fetching the content.
+- Wait for 5000 milliseconds (5 seconds) for the page to load before fetching the content.
 
 Here is the API Reference for it: [Scrape Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/scrape)
 
@@ -282,9 +282,9 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
 ```
 
 In this example, the crawler will:
-- Return only the main content of each page.
-- Include the raw HTML content in the response.
-- Wait for 5000 milliseconds before fetching content.
+- Return only the main content for each page.
+- Include the raw HTML content for each page.
+- Wait for 5000 milliseconds for each page to load before fetching its content.
 - Only crawl URLs that match the patterns `/blog/*` and `/products/*`.
 - Crawl up to a maximum depth of 3.
 - Use the fast crawling mode.
