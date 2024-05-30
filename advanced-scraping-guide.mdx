@@ -3,9 +3,7 @@ title: "Advanced Scraping Guide"
 description: "Learn how to improve your Firecrawl scraping with advanced options."
 ---
 
-
 This guide will walk you through the different endpoints of Firecrawl and how to use them fully with all its parameters.
-
 
 ## Basic scraping with Firecrawl (/scrape)
 
@@ -25,16 +23,25 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
 When using the `/scrape` endpoint, you can customize the scraping behavior with the `pageOptions` parameter. Here are the available options:
 
 ### Getting cleaner content with `onlyMainContent`
+
 - **Type**: `boolean`
 - **Description**: Only return the main content of the page, excluding headers, navigation bars, footers, etc.
 - **Default**: `false`
 
 ### Getting the raw HTML with `includeHtml`
+
 - **Type**: `boolean`
 - **Description**: Include the raw HTML content of the page. This will add an `html` key in the response.
 - **Default**: `false`
 
+### Getting a screenshot of the page with `screenshot`
+
+- **Type**: `boolean`
+- **Decription**: Include a screenshot of the top of the page that you are scraping.
+- **Default**: `false`
+
 ### Waiting for the page to load with `waitFor`
+
 - **Type**: `integer`
 - **Description**: To be used only as a last resort. Wait for a specified amount of milliseconds for the page to load before fetching content.
 - **Default**: `0`
@@ -51,38 +58,42 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
       "pageOptions": {
         "onlyMainContent": true,
         "includeHtml": true,
+        "screenshot": true,
         "waitFor": 5000
       }
     }'
 ```
 
 In this example, the scraper will:
+
 - Return only the main content of the page.
 - Include the raw HTML content in the response in the `html` key.
 - Wait for 5000 milliseconds (5 seconds) for the page to load before fetching the content.
 
 Here is the API Reference for it: [Scrape Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/scrape)
 
-
 ## Extractor Options
 
 When using the `/scrape` endpoint, you can specify options for **extracting structured information** from the page content using the `extractorOptions` parameter. Here are the available options:
 
 ### mode
+
 - **Type**: `string`
 - **Enum**: `["llm-extraction"]`
 - **Description**: The extraction mode to use. Currently, only 'llm-extraction' is supported.
 
 ### extractionPrompt
+
 - **Type**: `string`
 - **Description**: A prompt describing what information to extract from the page.
 
 ### extractionSchema
+
 - **Type**: `object`
 - **Description**: The schema for the data to be extracted. This defines the structure of the extracted data.
 
 ### Example Usage
-    
+
 ```bash
 curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \
@@ -119,33 +130,31 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     }'
 ```
 
-
 ```json
 {
-    "success": true,
-    "data": {
-      "content": "Raw Content",
-      "metadata": {
-        "title": "Mendable",
-        "description": "Mendable allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
-        "robots": "follow, index",
-        "ogTitle": "Mendable",
-        "ogDescription": "Mendable allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
-        "ogUrl": "https://mendable.ai/",
-        "ogImage": "https://mendable.ai/mendable_new_og1.png",
-        "ogLocaleAlternate": [],
-        "ogSiteName": "Mendable",
-        "sourceURL": "https://mendable.ai/"
-      },
-      "llm_extraction": {
-        "company_mission": "Train a secure AI on your technical resources that answers customer and employee questions so your team doesn't have to",
-        "supports_sso": true,
-        "is_open_source": false,
-        "is_in_yc": true
-      }
+  "success": true,
+  "data": {
+    "content": "Raw Content",
+    "metadata": {
+      "title": "Mendable",
+      "description": "Mendable allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
+      "robots": "follow, index",
+      "ogTitle": "Mendable",
+      "ogDescription": "Mendable allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
+      "ogUrl": "https://mendable.ai/",
+      "ogImage": "https://mendable.ai/mendable_new_og1.png",
+      "ogLocaleAlternate": [],
+      "ogSiteName": "Mendable",
+      "sourceURL": "https://mendable.ai/"
+    },
+    "llm_extraction": {
+      "company_mission": "Train a secure AI on your technical resources that answers customer and employee questions so your team doesn't have to",
+      "supports_sso": true,
+      "is_open_source": false,
+      "is_in_yc": true
     }
+  }
 }
-
 ```
 
 ## Adjusting Timeout
@@ -199,32 +208,38 @@ curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
 When using the `/crawl` endpoint, you can customize the crawling behavior with the `crawlerOptions` parameter. Here are the available options:
 
 #### `includes`
+
 - **Type**: `array`
 - **Description**: URL patterns to include in the crawl. Only URLs matching these patterns will be crawled.
 - **Example**: `["/blog/*", "/products/*"]`
 
 #### `excludes`
+
 - **Type**: `array`
 - **Description**: URL patterns to exclude from the crawl. URLs matching these patterns will be skipped.
 - **Example**: `["/admin/*", "/login/*"]`
 
 #### `returnOnlyUrls`
+
 - **Type**: `boolean`
 - **Description**: If set to `true`, the response will only include a list of URLs instead of the full document data.
 - **Default**: `false`
 
 #### `maxDepth`
+
 - **Type**: `integer`
 - **Description**: Maximum depth to crawl. Depth 1 is the base URL, depth 2 includes the base URL and its direct children, and so on.
 - **Example**: `3`
 
 #### `mode`
+
 - **Type**: `string`
 - **Enum**: `["default", "fast"]`
 - **Description**: The crawling mode to use. `fast` mode crawls websites without a sitemap 4x faster but may be less accurate and is not recommended for heavily JavaScript-rendered websites.
 - **Default**: `default`
 
 #### `limit`
+
 - **Type**: `integer`
 - **Description**: Maximum number of pages to crawl.
 - **Default**: `10000`
@@ -249,6 +264,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
 ```
 
 In this example, the crawler will:
+
 - Only crawl URLs that match the patterns `/blog/*` and `/products/*`.
 - Skip URLs that match the patterns `/admin/*` and `/login/*`.
 - Return the full document data for each page.
@@ -271,6 +287,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
       "pageOptions": {
         "onlyMainContent": true,
         "includeHtml": true,
+        "screenshot": true,
         "waitFor": 5000
       },
       "crawlerOptions": {
@@ -282,15 +299,13 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
 ```
 
 In this example, the crawler will:
+
 - Return only the main content for each page.
 - Include the raw HTML content for each page.
 - Wait for 5000 milliseconds for each page to load before fetching its content.
 - Only crawl URLs that match the patterns `/blog/*` and `/products/*`.
 - Crawl up to a maximum depth of 3.
 - Use the fast crawling mode.
-
-
-
 
 ## Extractor Options + Crawler Options
 
