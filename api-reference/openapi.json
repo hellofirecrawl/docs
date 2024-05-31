@@ -200,6 +200,11 @@
                         "type": "boolean",
                         "description": "Include the raw HTML content of the page. Will output a html key in the response.",
                         "default": false
+                      },
+                      "screenshot": {
+                        "type": "boolean",
+                        "description": "Include a screenshot of the top of the page that you are scraping.",
+                        "default": false
                       }
                     }
                   }
