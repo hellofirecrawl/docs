@@ -60,6 +60,10 @@
                         "type": "integer",
                         "description": "Wait x amount of milliseconds for the page to load to fetch content",
                         "default": 0
+                      },
+                      "headers": {
+                        "type": "object",
+                        "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
                       }
                     }
                   },
@@ -205,6 +209,10 @@
                         "type": "boolean",
                         "description": "Include a screenshot of the top of the page that you are scraping.",
                         "default": false
+                      },
+                      "headers": {
+                        "type": "object",
+                        "description": "Headers to send with the request when scraping. Can be used to send cookies, user-agent, etc."
                       }
                     }
                   }
