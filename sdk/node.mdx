@@ -81,13 +81,13 @@ const params = {
 };
 
 const waitUntilDone = true;
-const timeout = 5;
+const pollInterval = 5;
 
 const crawlResult = await app.crawlUrl(
   crawlUrl,
   params,
   waitUntilDone,
-  timeout
+  pollInterval
 );
 ```
 
