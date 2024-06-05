@@ -531,6 +531,10 @@
             "nullable": true,
             "description": "Raw HTML content of the page if `includeHtml`  is true"
           },
+          "index": {
+            "type": "integer",
+            "description": "The number of the page that was crawled. This is useful for `partial_data` so you know which page the data is from." 
+          },
           "metadata": {
             "type": "object",
             "properties": {
