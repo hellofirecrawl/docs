@@ -64,6 +64,11 @@
                       "headers": {
                         "type": "object",
                         "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
+                      },
+                      "replaceAllPathsWithAbsolutePaths": {
+                        "type": "boolean",
+                        "description": "Replace all relative paths with absolute paths for images and links",
+                        "default": false
                       }
                     }
                   },
