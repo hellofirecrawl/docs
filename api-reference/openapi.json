@@ -185,6 +185,11 @@
                         "description": "The crawling mode to use. Fast mode crawls 4x faster websites without sitemap, but may not be as accurate and shouldn't be used in heavy js-rendered websites.",
                         "default": "default"
                       },
+                      "ignoreSitemap": {
+                        "type": "boolean",
+                        "description": "Ignore the website sitemap when crawling",
+                        "default": false
+                      },
                       "limit": {
                         "type": "integer",
                         "description": "Maximum number of pages to crawl",
