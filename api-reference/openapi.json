@@ -189,7 +189,7 @@
                       },
                       "maxDepth": {
                         "type": "integer",
-                        "description": "Maximum depth to crawl. Depth 1 is the base URL, depth 2 is the base URL and its direct children, and so on."
+                        "description": "Maximum depth to crawl relative to the entered URL. A maxDepth of 0 scrapes only the entered URL. A maxDepth of 1 scrapes the entered URL and all pages one level deep. A maxDepth of 2 scrapes the entered URL and all pages up to two levels deep. Higher values follow the same pattern."
                       },
                       "mode": {
                         "type": "string",

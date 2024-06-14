@@ -234,8 +234,8 @@ When using the `/crawl` endpoint, you can customize the crawling behavior with t
 #### `maxDepth`
 
 - **Type**: `integer`
-- **Description**: Maximum depth to crawl. Depth 1 is the base URL, depth 2 includes the base URL and its direct children, and so on.
-- **Example**: `3`
+- **Description**: Maximum depth to crawl relative to the entered URL. A maxDepth of 0 scrapes only the entered URL. A maxDepth of 1 scrapes the entered URL and all pages one level deep. A maxDepth of 2 scrapes the entered URL and all pages up to two levels deep. Higher values follow the same pattern.
+- **Example**: `2`
 
 #### `mode`
 
@@ -262,7 +262,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
         "includes": ["/blog/*", "/products/*"],
         "excludes": ["/admin/*", "/login/*"],
         "returnOnlyUrls": false,
-        "maxDepth": 3,
+        "maxDepth": 2,
         "mode": "fast",
         "limit": 1000
       }
@@ -274,7 +274,7 @@ In this example, the crawler will:
 - Only crawl URLs that match the patterns `/blog/*` and `/products/*`.
 - Skip URLs that match the patterns `/admin/*` and `/login/*`.
 - Return the full document data for each page.
-- Crawl up to a maximum depth of 3.
+- Crawl up to a maximum depth of 2.
 - Use the fast crawling mode.
 - Crawl a maximum of 1000 pages.
 
@@ -298,7 +298,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
       },
       "crawlerOptions": {
         "includes": ["/blog/*", "/products/*"],
-        "maxDepth": 3,
+        "maxDepth": 2,
         "mode": "fast",
       }
     }'
@@ -310,7 +310,7 @@ In this example, the crawler will:
 - Include the raw HTML content for each page.
 - Wait for 5000 milliseconds for each page to load before fetching its content.
 - Only crawl URLs that match the patterns `/blog/*` and `/products/*`.
-- Crawl up to a maximum depth of 3.
+- Crawl up to a maximum depth of 2.
 - Use the fast crawling mode.
 
 ## Extractor Options + Crawler Options
