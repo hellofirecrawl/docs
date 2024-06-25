@@ -9,7 +9,8 @@ og:description: "Firecrawl integrates with LlamaIndex as a document reader."
 ## Installation
 
 ```bash
-pip install firecrawl-py
+pip install firecrawl-py llama_index llama-index llama-index-readers-web
+
 ```
 
 ## Usage
@@ -18,6 +19,9 @@ pip install firecrawl-py
 
 ```python
 from llama_index.readers.web import FireCrawlWebReader
+from llama_index.core import SummaryIndex
+import os
+
 
 # Initialize FireCrawlWebReader to crawl a website
 firecrawl_reader = FireCrawlWebReader(
@@ -25,6 +29,9 @@ firecrawl_reader = FireCrawlWebReader(
     mode="scrape",  # Choose between "crawl" and "scrape" for single page scraping
     params={"additional": "parameters"}  # Optional additional parameters
 )
+
+# Set the environment variable for the virtual key
+os.environ["OPENAI_API_KEY"] = "<OPENAI_API_KEY>"
 
 # Load documents from a single page URL
 documents = firecrawl_reader.load_data(url="http://paulgraham.com/")
