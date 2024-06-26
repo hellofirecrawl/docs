@@ -40,6 +40,10 @@
   },
   "tabs": [
     {
+      "name": "Learn",
+      "url": "learn"
+    },
+    {
       "name": "API Reference",
       "url": "api-reference"
     }
