@@ -541,7 +541,11 @@
                   "sourceURL": {
                     "type": "string",
                     "format": "uri"
+                  },
+                  "<any other metadata> ": {
+                    "type": "string"
                   }
+                  
                 }
               },
               "llm_extraction": {
