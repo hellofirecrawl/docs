@@ -68,6 +68,13 @@
                         },
                         "description": "Tags, classes and ids to remove from the page. Use comma separated values. Example: 'script, .ad, #footer'"
                       },
+                      "onlyIncludeTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Only include tags, classes and ids from the page in the final output. Use comma separated values. Example: 'script, .ad, #footer'"
+                      },
                       "headers": {
                         "type": "object",
                         "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
