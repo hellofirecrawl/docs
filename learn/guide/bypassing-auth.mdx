@@ -1,0 +1,70 @@
+---
+title: "Scraping behind authentication"
+description: "Learn how to bypass authentication on a website by forwading cookies."
+og:title: "Scraping behind authentication | Firecrawl"
+og:description: "Learn how to bypass authentication on a website by forwading cookies."
+---
+
+
+With Firecrawl, you can send cookies in headers to bypass authentication on a website. This can be useful when you need to scrape content from a website that requires you to be logged in.
+
+### Example
+
+To bypass authentication, you need to include the `headers` parameter in your request and set the `Cookies` header with the appropriate cookie values that you can grab from your browser's cookies. If you need help grabbing cookies, take a look at this article: [Grabbing cookies](https://cookie-script.com/documentation/how-to-check-cookies-on-chrome-and-firefox)
+
+<CodeGroup>
+
+```bash Python
+pip install firecrawl-py
+```
+
+```bash JavaScript
+npm install @mendable/firecrawl-js
+```
+
+</CodeGroup>
+
+### Usage
+ 
+<CodeGroup>
+
+```python Python
+from firecrawl import FirecrawlApp
+
+app = FirecrawlApp(api_key="YOUR_API_KEY")
+
+app.scrape_url("https://mendable.ai", {
+  pageOptions:{
+    headers:{
+      "Cookie": "cookie1=value1; cookie2=value2"
+    }
+  }
+})
+```
+
+```javascript JavaScript
+import { FirecrawlApp } from 'firecrawl-js';
+
+const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
+
+app.scrapeUrl('https://mendable.ai', {
+  pageOptions:{
+    headers:{
+      "Cookie": "cookie1=value1; cookie2=value2"
+    }
+  }
+});
+```
+
+```curl cURL
+curl -X POST https://api.firecrawl.dev/v0/scrape \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "url": "https://example.com",
+      "headers": {
+        "Cookie": "cookie1=value1; cookie2=value2"
+      }
+    }'
+```
+</CodeGroup>

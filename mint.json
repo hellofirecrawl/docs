@@ -89,6 +89,10 @@
       "pages": [ "features/scrape", "features/crawl", "features/search", "features/extract"]
     },
     {
+      "group": "Guide",
+      "pages": ["learn/guide/bypassing-auth"]
+    },
+    {
       "group": "Learn",
       "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3", "learn/contradiction-agent", "learn/lead-gen-business-insights-make-firecrawl", "learn/scrape-analyze-airbnb-data"]
     },
