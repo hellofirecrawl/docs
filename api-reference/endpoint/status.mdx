@@ -4,7 +4,7 @@ openapi: 'GET /crawl/status/{jobId}'
 ---
 
 
-Used to get the status of a crawl job. After a crawl job is completed, you can use this endpoint to get the status of the job.
+This endpoint retrieves the status of a crawl job. If the job is not completed, the response includes content within `partial_data`. Once the job is completed, the content is available under `data`.
 
 
 **We recommend keeping track of the crawl jobs yourself as the crawl status results can expire after 24 hours.**
