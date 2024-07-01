@@ -67,7 +67,11 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
         "onlyMainContent": true,
         "includeHtml": true,
         "screenshot": true,
-        "waitFor": 5000
+        "waitFor": 5000,
+        "headers": {
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+          "Cookies": "cookie1=value1; cookie2=value2"
+        }
       }
     }'
 ```
