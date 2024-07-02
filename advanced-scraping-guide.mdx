@@ -98,10 +98,11 @@ When using the `/scrape` endpoint, you can specify options for **extracting stru
 ### mode
 
 - **Type**: `string`
-- **Enum**: `["llm-extraction"]`
-- **Description**: The extraction mode to use. Currently, only 'llm-extraction' is supported.
+- **Enum**: `["llm-extraction", "llm-extraction-from-raw-html"]`
+- **Description**: The extraction mode to use.
 
-### extractionPrompt
+  - `llm-extraction`: Extracts information from the cleaned and parsed content.
+  - `llm-extraction-from-raw-html`: Extracts information directly from the raw HTML.
 
 - **Type**: `string`
 - **Description**: A prompt describing what information to extract from the page.
