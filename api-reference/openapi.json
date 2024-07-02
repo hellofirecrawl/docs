@@ -48,7 +48,12 @@
                       },
                       "includeHtml": {
                         "type": "boolean",
-                        "description": "Include the raw HTML content of the page. Will output a html key in the response.",
+                        "description": "Include the HTML version of the content on page. Will output a html key in the response.",
+                        "default": false
+                      },
+                      "includeRawHtml": {
+                        "type": "boolean",
+                        "description": "Include the raw HTML content of the page. Will output a rawHtml key in the response.",
                         "default": false
                       },
                       "screenshot": {
@@ -231,7 +236,12 @@
                       },
                       "includeHtml": {
                         "type": "boolean",
-                        "description": "Include the raw HTML content of the page. Will output a html key in the response.",
+                        "description": "Include the HTML version of the content on page. Will output a html key in the response.",
+                        "default": false
+                      },
+                      "includeRawHtml": {
+                        "type": "boolean",
+                        "description": "Include the raw HTML content of the page. Will output a rawHtml key in the response.",
                         "default": false
                       },
                       "screenshot": {
@@ -323,7 +333,12 @@
                       },
                       "includeHtml": {
                         "type": "boolean",
-                        "description": "Include the raw HTML content of the page. Will output a html key in the response.",
+                        "description": "Include the HTML version of the content on page. Will output a html key in the response.",
+                        "default": false
+                      },
+                      "includeRawHtml": {
+                        "type": "boolean",
+                        "description": "Include the raw HTML content of the page. Will output a rawHtml key in the response.",
                         "default": false
                       }
                     }
@@ -523,7 +538,12 @@
               "html": {
                 "type": "string",
                 "nullable": true,
-                "description": "Raw HTML content of the page if `includeHtml`  is true"
+                "description": "HTML version of the content on page if `includeHtml`  is true"
+              },
+              "rawHtml": {
+                "type": "string",
+                "nullable": true,
+                "description": "Raw HTML content of the page if `includeRawHtml`  is true"
               },
               "metadata": {
                 "type": "object",
@@ -583,7 +603,12 @@
           "html": {
             "type": "string",
             "nullable": true,
-            "description": "Raw HTML content of the page if `includeHtml`  is true"
+            "description": "HTML version of the content on page if `includeHtml`  is true"
+          },
+          "rawHtml": {
+            "type": "string",
+            "nullable": true,
+            "description": "Raw HTML content of the page if `includeRawHtml`  is true"
           },
           "index": {
             "type": "integer",
