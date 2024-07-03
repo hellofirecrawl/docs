@@ -30,10 +30,16 @@ When using the `/scrape` endpoint, you can customize the scraping behavior with 
 - **Description**: Only return the main content of the page, excluding headers, navigation bars, footers, etc.
 - **Default**: `false`
 
-### Getting the raw HTML with `includeHtml`
+### Getting the HTML with `includeHtml`
 
 - **Type**: `boolean`
-- **Description**: Include the raw HTML content of the page. This will add an `html` key in the response.
+- **Description**: Include the HTML version content of the page. This will add an `html` key in the response.
+- **Default**: `false`
+
+### Getting the raw HTML with `includeRawHtml`
+
+- **Type**: `boolean`
+- **Description**: Include the raw HTML content of the page. This will add an `rawHtml` key in the response.
 - **Default**: `false`
 
 ### Getting a screenshot of the page with `screenshot`
@@ -66,6 +72,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
       "pageOptions": {
         "onlyMainContent": true,
         "includeHtml": true,
+        "includeRawHtml":true,
         "screenshot": true,
         "waitFor": 5000,
         "headers": {
@@ -91,10 +98,11 @@ When using the `/scrape` endpoint, you can specify options for **extracting stru
 ### mode
 
 - **Type**: `string`
-- **Enum**: `["llm-extraction"]`
-- **Description**: The extraction mode to use. Currently, only 'llm-extraction' is supported.
+- **Enum**: `["llm-extraction", "llm-extraction-from-raw-html"]`
+- **Description**: The extraction mode to use.
 
-### extractionPrompt
+  - `llm-extraction`: Extracts information from the cleaned and parsed content.
+  - `llm-extraction-from-raw-html`: Extracts information directly from the raw HTML.
 
 - **Type**: `string`
 - **Description**: A prompt describing what information to extract from the page.
@@ -299,6 +307,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
       "pageOptions": {
         "onlyMainContent": true,
         "includeHtml": true,
+        "includeRawHtml": true,
         "screenshot": true,
         "waitFor": 5000
       },
