@@ -78,7 +78,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "advanced-scraping-guide", "rate-limits"]
+      "pages": ["introduction", "advanced-scraping-guide", "rate-limits","integrations"]
     },
     {
       "group": "SDKs",
