@@ -88,6 +88,11 @@
                         "type": "boolean",
                         "description": "Replace all relative paths with absolute paths for images and links",
                         "default": false
+                      },
+                      "parsePDF": {
+                        "type": "boolean",
+                        "description": "Parse the content of the pdf and return the text of it inside `content`",
+                        "default": true
                       }
                     }
                   },
@@ -264,6 +269,11 @@
                         "type": "boolean",
                         "description": "Replace all relative paths with absolute paths for images and links",
                         "default": false
+                      },
+                      "parsePDF": {
+                        "type": "boolean",
+                        "description": "Parse the content of the pdf and return the text of it inside `content`",
+                        "default": true
                       }
                     }
                   }

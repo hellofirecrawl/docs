@@ -50,11 +50,6 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://docs.firecrawl.dev/introduction"
-    },
-    {
       "name": "Playground",
       "icon": "play",
       "url": "https://firecrawl.dev/playground"
@@ -81,12 +76,16 @@
       "pages": ["introduction", "advanced-scraping-guide", "rate-limits","integrations"]
     },
     {
-      "group": "SDKs",
-      "pages": ["sdk/python", "sdk/node", "sdk/langchain", "sdk/llamaindex"]
+      "group": "Features",
+      "pages": [ "features/scrape", "features/crawl", "features/extract", "features/search"]
     },
     {
-      "group": "Features",
-      "pages": [ "features/scrape", "features/crawl", "features/search", "features/extract"]
+      "group": "SDKs",
+      "pages": ["sdk/python", "sdk/node" ]
+    },
+    {
+      "group": "Integrations",
+      "pages": ["sdk/langchain", "sdk/llamaindex"]
     },
     {
       "group": "Guide",
