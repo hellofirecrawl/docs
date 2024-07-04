@@ -29,11 +29,53 @@ Self-host. To self-host refer to guide [here](https://github.com/mendableai/fire
 
 To use the API, you need to sign up on [Firecrawl](https://firecrawl.dev) and get an API key.
 
-### Crawling
+## Crawling
 
 Used to crawl a URL and all accessible subpages. This submits a crawl job and returns a job ID to check the status of the crawl.
 
-```bash
+### Installation 
+
+<CodeGroup>
+
+```bash Python
+pip install firecrawl-py
+```
+
+```bash JavaScript
+npm install @mendable/firecrawl-js
+```
+
+</CodeGroup>
+
+### Usage 
+<CodeGroup>
+
+```python Python
+from firecrawl import FirecrawlApp
+
+app = FirecrawlApp(api_key="YOUR_API_KEY")
+
+crawl_result = app.crawl_url('mendable.ai', {'crawlerOptions': {'excludes': ['blog/*']}})
+
+# Get the markdown
+for result in crawl_result:
+    print(result['markdown'])
+```
+
+```js JavaScript
+import FirecrawlApp from '@mendable/firecrawl-js';
+
+// Initialize the FirecrawlApp with your API key
+const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
+
+// Crawl a website
+const crawlResult = await app.crawlUrl('mendable.ai', { crawlerOptions: { excludes: ['blog/*'] } });
+
+// Log the markdown
+console.log(crawlResult.map(result => result.markdown));
+```
+
+```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
@@ -42,7 +84,12 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
     }'
 ```
 
-Returns a jobId
+</CodeGroup>
+
+If you are not using the sdk or prefer to use webhook or a different polling method, you can set the `wait_until_done` to `false`. 
+This will return a jobId.
+
+For cURL, /crawl will always return a jobId where you can use to check the status of the crawl.
 
 ```json
 { "jobId": "1234-5678-9101" }
@@ -51,12 +98,25 @@ Returns a jobId
 ### Check Crawl Job
 
 Used to check the status of a crawl job and get its result.
+<CodeGroup>
 
-```bash
+```python Python
+status = app.check_crawl_status(job_id)
+```
+
+```js JavaScript
+const status = await app.checkCrawlStatus(jobId);
+```
+
+```bash cURL
 curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer YOUR_API_KEY'
 ```
+
+</CodeGroup>
+
+#### Response
 
 ```json
 {
@@ -79,36 +139,161 @@ curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
 }
 ```
 
-## Using Python SDK
 
-### Installing Python SDK
+## Scraping
 
-```bash
-pip install firecrawl-py
-```
+To scrape a single URL, use the `scrape_url` method. It takes the URL as a parameter and returns the scraped data as a dictionary.
 
-### Crawl a website
+<CodeGroup>
 
-```python
+```python Python
 from firecrawl import FirecrawlApp
 
 app = FirecrawlApp(api_key="YOUR_API_KEY")
 
-crawl_result = app.crawl_url('mendable.ai', {'crawlerOptions': {'excludes': ['blog/*']}})
-
-# Get the markdown
-for result in crawl_result:
-    print(result['markdown'])
+content = app.scrape_url("https://mendable.ai")
 ```
 
-### Scraping a URL
+```JavaScript JavaScript
+import { FirecrawlApp } from 'firecrawl-js';
 
-To scrape a single URL, use the `scrape_url` method. It takes the URL as a parameter and returns the scraped data as a dictionary.
+const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
 
-```python
-url = 'https://example.com'
-scraped_data = app.scrape_url(url)
+const content = await app.scrapeUrl('https://mendable.ai');
 ```
+
+```bash cURL
+curl -X POST https://api.firecrawl.dev/v0/scrape \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "url": "https://mendable.ai"
+    }'
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "markdown": "<string>",
+    "content": "<string>",
+    "html": "<string>",
+    "rawHtml": "<string>",
+    "metadata": {
+      "title": "<string>",
+      "description": "<string>",
+      "language": "<string>",
+      "sourceURL": "<string>",
+      "<any other metadata> ": "<string>",
+      "pageStatusCode": 123,
+      "pageError": "<string>"
+    },
+    "llm_extraction": {},
+    "warning": "<string>"
+  }
+}
+```
+
+## Extraction
+
+With LLM extraction, you can easily extract structured data from any URL. We support pydantic schemas to make it easier for you too. Here is how you to use it:
+
+<CodeGroup>
+```python Python
+class ArticleSchema(BaseModel):
+    title: str
+    points: int 
+    by: str
+    commentsURL: str
+
+class TopArticlesSchema(BaseModel):
+    top: List[ArticleSchema] = Field(..., max_items=5, description="Top 5 stories")
+
+data = app.scrape_url('https://news.ycombinator.com', {
+    'extractorOptions': {
+        'extractionSchema': TopArticlesSchema.model_json_schema(),
+        'mode': 'llm-extraction'
+    },
+    'pageOptions':{
+        'onlyMainContent': True
+    }
+})
+print(data["llm_extraction"])
+```
+
+```js JavaScript
+import FirecrawlApp from "@mendable/firecrawl-js";
+import { z } from "zod";
+
+const app = new FirecrawlApp({
+  apiKey: "fc-YOUR_API_KEY",
+});
+
+// Define schema to extract contents into
+const schema = z.object({
+  top: z
+    .array(
+      z.object({
+        title: z.string(),
+        points: z.number(),
+        by: z.string(),
+        commentsURL: z.string(),
+      })
+    )
+    .length(5)
+    .describe("Top 5 stories on Hacker News"),
+});
+
+const scrapeResult = await app.scrapeUrl("https://news.ycombinator.com", {
+  extractorOptions: { extractionSchema: schema },
+});
+
+console.log(scrapeResult.data["llm_extraction"]);
+```
+
+```bash cURL
+curl -X POST https://api.firecrawl.dev/v0/scrape \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "url": "https://www.mendable.ai/",
+      "extractorOptions": {
+        "mode": "llm-extraction",
+        "extractionPrompt": "Based on the information on the page, extract the information from the schema. ",
+        "extractionSchema": {
+          "type": "object",
+          "properties": {
+            "company_mission": {
+                      "type": "string"
+            },
+            "supports_sso": {
+                      "type": "boolean"
+            },
+            "is_open_source": {
+                      "type": "boolean"
+            },
+            "is_in_yc": {
+                      "type": "boolean"
+            }
+          },
+          "required": [
+            "company_mission",
+            "supports_sso",
+            "is_open_source",
+            "is_in_yc"
+          ]
+        }
+      }
+    }'
+```
+
+</CodeGroup>
+
+
 
 ## Contributing
 

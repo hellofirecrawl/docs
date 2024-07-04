@@ -6,13 +6,10 @@ og:title: "Crawl | Firecrawl"
 og:description: "Firecrawl can recursively search through a urls subdomains, and gather the content"
 ---
 
-
-## Crawl with Firecrawl
-
 Firecrawl thoroughly crawls websites, ensuring comprehensive data extraction while bypassing any web blocker mechanisms. Here's how it works:
 
 1. **URL Analysis:**
-   Begins with a specified URL, identifying links by crawling or utilizing the website's sitemap.
+   Begins with a specified URL, identifying links by looking at the sitemap and then crawling the website. If no sitemap is found, it will crawl the website following the links.
 
 2. **Recursive Traversal:**
    Recursively follows each link to uncover all subpages.
@@ -32,7 +29,51 @@ This method guarantees an exhaustive crawl and data collection from any starting
 
 Used to crawl a URL and all accessible subpages. This submits a crawl job and returns a job ID to check the status of the crawl.
 
-```bash
+
+### Installation 
+
+<CodeGroup>
+
+```bash Python
+pip install firecrawl-py
+```
+
+```bash JavaScript
+npm install @mendable/firecrawl-js
+```
+
+</CodeGroup>
+
+### Usage
+
+<CodeGroup>
+
+```python Python
+from firecrawl import FirecrawlApp
+
+app = FirecrawlApp(api_key="YOUR_API_KEY")
+
+crawl_result = app.crawl_url('mendable.ai', {'crawlerOptions': {'excludes': ['blog/*']}})
+
+# Get the markdown
+for result in crawl_result:
+    print(result['markdown'])
+```
+
+```js JavaScript
+import FirecrawlApp from '@mendable/firecrawl-js';
+
+// Initialize the FirecrawlApp with your API key
+const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
+
+// Crawl a website
+const crawlResult = await app.crawlUrl('mendable.ai', { crawlerOptions: { excludes: ['blog/*'] } });
+
+// Log the markdown
+console.log(crawlResult.map(result => result.markdown));
+```
+
+```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
@@ -41,7 +82,14 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
     }'
 ```
 
-Returns a jobId
+</CodeGroup>
+
+### Job ID Response
+
+If you are not using the sdk or prefer to use webhook or a different polling method, you can set the `wait_until_done` to `false`. 
+This will return a jobId.
+
+For cURL, /crawl will always return a jobId where you can use to check the status of the crawl.
 
 ```json
 { "jobId": "1234-5678-9101" }
@@ -50,12 +98,25 @@ Returns a jobId
 ### Check Crawl Job
 
 Used to check the status of a crawl job and get its result.
+<CodeGroup>
 
-```bash
+```python Python
+status = app.check_crawl_status(job_id)
+```
+
+```js JavaScript
+const status = await app.checkCrawlStatus(jobId);
+```
+
+```bash cURL
 curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer YOUR_API_KEY'
 ```
+
+</CodeGroup>
+
+#### Response
 
 ```json
 {
@@ -77,50 +138,3 @@ curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
   ]
 }
 ```
-
-## Using Python SDK
-
-### Installing Python SDK
-
-```bash
-pip install firecrawl-py
-```
-
-### Crawl a website
-
-```python
-from firecrawl import FirecrawlApp
-
-app = FirecrawlApp(api_key="YOUR_API_KEY")
-
-crawl_result = app.crawl_url('mendable.ai', {'crawlerOptions': {'excludes': ['blog/*']}})
-
-# Get the markdown
-for result in crawl_result:
-    print(result['markdown'])
-```
-
-### With JavaScript SDK
-
-#### Installing JavaScript SDK
-
-```bash
-npm install @mendable/firecrawl-js
-```
-
-#### Crawl a website
-
-```js
-import FirecrawlApp from '@mendable/firecrawl-js';
-
-// Initialize the FirecrawlApp with your API key
-const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
-
-// Crawl a website
-const crawlResult = await app.crawlUrl('mendable.ai', { crawlerOptions: { excludes: ['blog/*'] } });
-
-// Log the markdown
-console.log(crawlResult.map(result => result.markdown));
-```
-
-The response will be similar to the one shown in the curl command above.

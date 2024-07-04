@@ -14,12 +14,12 @@ Firecrawl converts web pages into markdown, ideal for LLM applications. Here's w
    Handles proxies, caching, rate limits, and JavaScript-blocked content for smooth scraping.
 
 2. **Dynamic Content:**
-   Gathers data from JavaScript-rendered websites.
+   Gathers data from JavaScript-rendered websites, pdfs, images etc.
 
 3. **Markdown or Structured data conversion:**
    Converts collected data into clean markdown or structured output, perfect for LLM processing or any other task.
 
-For more details, refer to the [Scrape Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+For more details, refer to the [Scrape Endpoint API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
 
 
 ## Scrape a URL
@@ -28,7 +28,41 @@ For more details, refer to the [Scrape Endpoint Documentation](https://docs.fire
 
 Used to scrape a URL and get its content.
 
-```bash
+### Installation 
+
+<CodeGroup>
+
+```bash Python
+pip install firecrawl-py
+```
+
+```bash JavaScript
+npm install @mendable/firecrawl-js
+```
+
+</CodeGroup>
+
+### Usage
+
+<CodeGroup>
+
+```python Python
+from firecrawl import FirecrawlApp
+
+app = FirecrawlApp(api_key="YOUR_API_KEY")
+
+content = app.scrape_url("https://mendable.ai")
+```
+
+```JavaScript JavaScript
+import { FirecrawlApp } from 'firecrawl-js';
+
+const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
+
+const content = await app.scrapeUrl('https://mendable.ai');
+```
+
+```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
@@ -37,7 +71,11 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     }'
 ```
 
-Response:
+</CodeGroup>
+
+### Response
+
+SDKs will return the data object directly. cURL will return they payload exactly as shown below
 
 ```json
 {
@@ -55,45 +93,5 @@ Response:
   }
 }
 ```
-
-### With Python SDK
-
-#### Installing Python SDK
-
-```bash
-pip install firecrawl-py
-```
-
-#### Scrape a website
-
-```python
-from firecrawl import FirecrawlApp
-
-app = FirecrawlApp(api_key="YOUR_API_KEY")
-
-app.scrape_url("https://mendable.ai")
-```
-
-The response will be similar to the one shown in the curl command above.
-
-### With JavaScript SDK
-
-#### Installing JavaScript SDK
-
-```bash
-npm install firecrawl-js
-```
-
-#### Scrape a website
-
-```javascript
-import { FirecrawlApp } from 'firecrawl-js';
-
-const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
-
-app.scrapeUrl('https://mendable.ai');
-```
-
-The response will be similar to the one shown in the curl command above.
 
 
