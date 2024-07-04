@@ -11,7 +11,29 @@ This guide will walk you through the different endpoints of Firecrawl and how to
 
 To scrape a single page and get clean markdown content, you can use the `/scrape` endpoint.
 
-```bash
+<CodeGroup>
+
+```python Python
+# pip install firecrawl-py
+
+from firecrawl import FirecrawlApp
+
+app = FirecrawlApp(api_key="YOUR_API_KEY")
+
+content = app.scrape_url("https://mendable.ai")
+```
+
+```JavaScript JavaScript
+// npm install @mendable/firecrawl-js
+
+import { FirecrawlApp } from 'firecrawl-js';
+
+const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
+
+const content = await app.scrapeUrl('https://mendable.ai');
+```
+
+```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
@@ -19,6 +41,8 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
       "url": "https://mendable.ai"
     }'
 ```
+
+</CodeGroup>
 
 ## Scraping pdfs
 
