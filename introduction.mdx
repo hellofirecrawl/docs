@@ -18,10 +18,13 @@ We provide an easy to use API with our hosted version. You can find the playgrou
 - [x] [API](https://docs.firecrawl.dev/api-reference/introduction)
 - [x] [Python SDK](https://docs.firecrawl.dev/sdk/python)
 - [x] [Node SDK](https://docs.firecrawl.dev/sdk/node)
-- [x] [Langchain Integration 🦜🔗](https://docs.firecrawl.dev/sdk/langchain)
-- [x] [Llama Index Integration 🦙](https://docs.firecrawl.dev/sdk/llamaindex)
-- [x] [LangchainJS 🦜🔗](https://js.langchain.com/v0.1/docs/integrations/document_loaders/web_loaders/firecrawl/)
-- [x] [Zapier](https://zapier.com/apps/firecrawl/integrations)
+- [x] [Langchain Integration 🦜🔗](https://python.langchain.com/docs/integrations/document_loaders/firecrawl/)
+- [x] [Langchain JS Integration 🦜🔗](https://js.langchain.com/docs/integrations/document_loaders/web_loaders/firecrawl)
+- [x] [Llama Index Integration 🦙](https://docs.llamaindex.ai/en/latest/examples/data_connectors/WebPageDemo/#using-firecrawl-reader)
+- [x] [Dify Integration](https://dify.ai/blog/dify-ai-blog-integrated-with-firecrawl)
+- [x] [Langflow Integration](https://docs.langflow.org/)
+- [x] [Crew.ai Integration](https://docs.crewai.com/)
+- [x] [Flowise AI Integration](https://docs.flowiseai.com/integrations/langchain/document-loaders/firecrawl)
 
 Self-host. To self-host refer to guide [here](https://github.com/mendableai/firecrawl/blob/main/SELF_HOST.md).
 
@@ -33,7 +36,7 @@ To use the API, you need to sign up on [Firecrawl](https://firecrawl.dev) and ge
 
 Used to crawl a URL and all accessible subpages. This submits a crawl job and returns a job ID to check the status of the crawl.
 
-### Installation 
+### Installation
 
 <CodeGroup>
 
@@ -48,7 +51,7 @@ npm install @mendable/firecrawl-js
 </CodeGroup>
 
 ### Usage
- 
+
 <CodeGroup>
 
 ```python Python
@@ -64,16 +67,18 @@ for result in crawl_result:
 ```
 
 ```js JavaScript
-import FirecrawlApp from '@mendable/firecrawl-js';
+import FirecrawlApp from "@mendable/firecrawl-js";
 
 // Initialize the FirecrawlApp with your API key
-const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
+const app = new FirecrawlApp({ apiKey: "YOUR_API_KEY" });
 
 // Crawl a website
-const crawlResult = await app.crawlUrl('mendable.ai', { crawlerOptions: { excludes: ['blog/*'] } });
+const crawlResult = await app.crawlUrl("mendable.ai", {
+  crawlerOptions: { excludes: ["blog/*"] },
+});
 
 // Log the markdown
-console.log(crawlResult.map(result => result.markdown));
+console.log(crawlResult.map((result) => result.markdown));
 ```
 
 ```bash cURL
@@ -87,7 +92,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
 
 </CodeGroup>
 
-If you are not using the sdk or prefer to use webhook or a different polling method, you can set the `wait_until_done` to `false`. 
+If you are not using the sdk or prefer to use webhook or a different polling method, you can set the `wait_until_done` to `false`.
 This will return a jobId.
 
 For cURL, /crawl will always return a jobId where you can use to check the status of the crawl.
@@ -99,6 +104,7 @@ For cURL, /crawl will always return a jobId where you can use to check the statu
 ### Check Crawl Job
 
 Used to check the status of a crawl job and get its result.
+
 <CodeGroup>
 
 ```python Python
@@ -139,7 +145,6 @@ curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
   ]
 }
 ```
-
 
 ## Scraping
 
@@ -212,19 +217,20 @@ class ArticleSchema(BaseModel):
     commentsURL: str
 
 class TopArticlesSchema(BaseModel):
-    top: List[ArticleSchema] = Field(..., max_items=5, description="Top 5 stories")
+top: List[ArticleSchema] = Field(..., max_items=5, description="Top 5 stories")
 
 data = app.scrape_url('https://news.ycombinator.com', {
-    'extractorOptions': {
-        'extractionSchema': TopArticlesSchema.model_json_schema(),
-        'mode': 'llm-extraction'
-    },
-    'pageOptions':{
-        'onlyMainContent': True
-    }
+'extractorOptions': {
+'extractionSchema': TopArticlesSchema.model_json_schema(),
+'mode': 'llm-extraction'
+},
+'pageOptions':{
+'onlyMainContent': True
+}
 })
 print(data["llm_extraction"])
-```
+
+````
 
 ```js JavaScript
 import FirecrawlApp from "@mendable/firecrawl-js";
@@ -254,7 +260,7 @@ const scrapeResult = await app.scrapeUrl("https://news.ycombinator.com", {
 });
 
 console.log(scrapeResult.data["llm_extraction"]);
-```
+````
 
 ```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/scrape \
@@ -294,13 +300,11 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
 
 </CodeGroup>
 
-
-
 ## Contributing
 
 We love contributions! Please read our [contributing guide](https://github.com/mendableai/firecrawl/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
-{/* <CardGroup cols={2}>
+{/\* <CardGroup cols={2}>
 
   <Card
     title="Edit Your Docs"
