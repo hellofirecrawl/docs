@@ -452,7 +452,7 @@
                       "items": {
                         "$ref": "#/components/schemas/CrawlStatusResponseObj"
                       },
-                      "description": "Partial documents returned as it is being crawled (streaming). **This feature is currently in alpha - expect breaking changes** When a page is ready, it will append to the partial_data array, so there is no need to wait for the entire website to be crawled. There is a max of 50 items in the array response. The oldest item (top of the array) will be removed when the new item is added to the array."
+                      "description": "Partial documents returned as it is being crawled (streaming). **This feature is currently in alpha - expect breaking changes** When a page is ready, it will append to the partial_data array, so there is no need to wait for the entire website to be crawled. When the crawl is done, partial_data will become empty and the result will be available in `data`. There is a max of 50 items in the array response. The oldest item (top of the array) will be removed when the new item is added to the array."
                     }
                   }
                 }
