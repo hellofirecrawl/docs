@@ -428,14 +428,6 @@
                       "type": "integer",
                       "description": "Current page number"
                     },
-                    "current_url": {
-                      "type": "string",
-                      "description": "Current URL being scraped"
-                    },
-                    "current_step": {
-                      "type": "string",
-                      "description": "Current step in the process"
-                    },
                     "total": {
                       "type": "integer",
                       "description": "Total number of pages"
