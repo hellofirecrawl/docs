@@ -194,11 +194,7 @@
                         },
                         "description": "URL patterns to exclude"
                       },
-                      "waitFor": {
-                        "type": "integer",
-                        "description": "Wait x amount of milliseconds for the page to load to fetch content",
-                        "default": 0
-                      },
+                    
                       "generateImgAltText": {
                         "type": "boolean",
                         "description": "Generate alt text for images using LLMs (must have a paid plan)",
@@ -248,6 +244,11 @@
                         "type": "boolean",
                         "description": "Include the HTML version of the content on page. Will output a html key in the response.",
                         "default": false
+                      },
+                      "waitFor": {
+                        "type": "integer",
+                        "description": "Wait x amount of milliseconds for the page to load to fetch content",
+                        "default": 0
                       },
                       "includeRawHtml": {
                         "type": "boolean",
