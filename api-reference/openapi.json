@@ -41,10 +41,9 @@
                   "pageOptions": {
                     "type": "object",
                     "properties": {
-                      "onlyMainContent": {
-                        "type": "boolean",
-                        "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
-                        "default": false
+                      "headers": {
+                        "type": "object",
+                        "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
                       },
                       "includeHtml": {
                         "type": "boolean",
@@ -56,6 +55,30 @@
                         "description": "Include the raw HTML content of the page. Will output a rawHtml key in the response.",
                         "default": false
                       },
+                      "onlyIncludeTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Only include tags, classes and ids from the page in the final output. Use comma separated values. Example: 'script, .ad, #footer'"
+                      },
+                      "onlyMainContent": {
+                        "type": "boolean",
+                        "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                        "default": false
+                      },
+                      "removeTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Tags, classes and ids to remove from the page. Use comma separated values. Example: 'script, .ad, #footer'"
+                      },
+                      "replaceAllPathsWithAbsolutePaths": {
+                        "type": "boolean",
+                        "description": "Replace all relative paths with absolute paths for images and links",
+                        "default": false
+                      },
                       "screenshot": {
                         "type": "boolean",
                         "description": "Include a screenshot of the top of the page that you are scraping.",
@@ -65,54 +88,27 @@
                         "type": "integer",
                         "description": "Wait x amount of milliseconds for the page to load to fetch content",
                         "default": 0
-                      },
-                      "removeTags": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        },
-                        "description": "Tags, classes and ids to remove from the page. Use comma separated values. Example: 'script, .ad, #footer'"
-                      },
-                      "onlyIncludeTags": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        },
-                        "description": "Only include tags, classes and ids from the page in the final output. Use comma separated values. Example: 'script, .ad, #footer'"
-                      },
-                      "headers": {
-                        "type": "object",
-                        "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
-                      },
-                      "replaceAllPathsWithAbsolutePaths": {
-                        "type": "boolean",
-                        "description": "Replace all relative paths with absolute paths for images and links",
-                        "default": false
-                      },
-                      "parsePDF": {
-                        "type": "boolean",
-                        "description": "Parse the content of the pdf and return the text of it inside `content`",
-                        "default": true
                       }
                     }
                   },
                   "extractorOptions": {
                     "type": "object",
-                    "description": "Options for LLM-based extraction of structured information from the page content",
+                    "description": "Options for extraction of structured information from the page content. Note: LLM-based extraction is not performed by default and only occurs when explicitly configured. The 'markdown' mode simply returns the scraped markdown and is the default mode for scraping.",
+                    "default": {},
                     "properties": {
                       "mode": {
                         "type": "string",
-                        "enum": ["llm-extraction", "llm-extraction-from-raw-html"],
-                        "description": "The extraction mode to use. llm-extraction: Extracts information from the cleaned and parsed content. llm-extraction-from-raw-html: Extracts information directly from the raw HTML."
+                        "enum": ["markdown", "llm-extraction", "llm-extraction-from-raw-html", "llm-extraction-from-markdown"],
+                        "description": "The extraction mode to use. 'markdown': Returns the scraped markdown content, does not perform LLM extraction. 'llm-extraction': Extracts information from the cleaned and parsed content using LLM. 'llm-extraction-from-raw-html': Extracts information directly from the raw HTML using LLM. 'llm-extraction-from-markdown': Extracts information from the markdown content using LLM."
                       },
                       "extractionPrompt": {
                         "type": "string",
-                        "description": "A prompt describing what information to extract from the page"
+                        "description": "A prompt describing what information to extract from the page, applicable for LLM extraction modes."
                       },
                       "extractionSchema": {
                         "type": "object",
                         "additionalProperties": true,
-                        "description": "The schema for the data to be extracted",
+                        "description": "The schema for the data to be extracted, required only for LLM extraction modes.",
                         "required": [
                           "company_mission",
                           "supports_sso",
@@ -144,13 +140,52 @@
             }
           },
           "402": {
-            "description": "Payment required"
+            "description": "Payment required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Payment required to access this resource."
+                    }
+                  }
+                }
+              }
+            }
           },
           "429": {
-            "description": "Too many requests"
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Request rate limit exceeded. Please wait and try again later."
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -194,7 +229,6 @@
                         },
                         "description": "URL patterns to exclude"
                       },
-                    
                       "generateImgAltText": {
                         "type": "boolean",
                         "description": "Generate alt text for images using LLMs (must have a paid plan)",
@@ -227,7 +261,12 @@
                       },
                       "allowBackwardCrawling": {
                         "type": "boolean",
-                        "description": "Allow backward crawling (crawl from the base URL to the previous URLs)",
+                        "description": "Enables the crawler to navigate from a specific URL to previously linked pages. For instance, from 'example.com/product/123' back to 'example.com/product'",
+                        "default": false
+                      },
+                      "allowExternalContentLinks": {
+                        "type": "boolean",
+                        "description": "Allows the crawler to follow links to external websites.",
                         "default": false
                       }
                     }
@@ -235,34 +274,31 @@
                   "pageOptions": {
                     "type": "object",
                     "properties": {
-                      "onlyMainContent": {
-                        "type": "boolean",
-                        "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
-                        "default": false
+                      "headers": {
+                        "type": "object",
+                        "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
                       },
                       "includeHtml": {
                         "type": "boolean",
                         "description": "Include the HTML version of the content on page. Will output a html key in the response.",
                         "default": false
                       },
-                      "waitFor": {
-                        "type": "integer",
-                        "description": "Wait x amount of milliseconds for the page to load to fetch content",
-                        "default": 0
-                      },
                       "includeRawHtml": {
                         "type": "boolean",
                         "description": "Include the raw HTML content of the page. Will output a rawHtml key in the response.",
                         "default": false
                       },
-                      "screenshot": {
-                        "type": "boolean",
-                        "description": "Include a screenshot of the top of the page that you are scraping.",
-                        "default": false
+                      "onlyIncludeTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Only include tags, classes and ids from the page in the final output. Use comma separated values. Example: 'script, .ad, #footer'"
                       },
-                      "headers": {
-                        "type": "object",
-                        "description": "Headers to send with the request when scraping. Can be used to send cookies, user-agent, etc."
+                      "onlyMainContent": {
+                        "type": "boolean",
+                        "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                        "default": false
                       },
                       "removeTags": {
                         "type": "array",
@@ -276,10 +312,15 @@
                         "description": "Replace all relative paths with absolute paths for images and links",
                         "default": false
                       },
-                      "parsePDF": {
+                      "screenshot": {
                         "type": "boolean",
-                        "description": "Parse the content of the pdf and return the text of it inside `content`",
-                        "default": true
+                        "description": "Include a screenshot of the top of the page that you are scraping.",
+                        "default": false
+                      },
+                      "waitFor": {
+                        "type": "integer",
+                        "description": "Wait x amount of milliseconds for the page to load to fetch content",
+                        "default": 0
                       }
                     }
                   }
@@ -301,13 +342,52 @@
             }
           },
           "402": {
-            "description": "Payment required"
+            "description": "Payment required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Payment required to access this resource."
+                    }
+                  }
+                }
+              }
+            }
           },
           "429": {
-            "description": "Too many requests"
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Request rate limit exceeded. Please wait and try again later."
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -386,13 +466,52 @@
             }
           },
           "402": {
-            "description": "Payment required"
+            "description": "Payment required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Payment required to access this resource."
+                    }
+                  }
+                }
+              }
+            }
           },
           "429": {
-            "description": "Too many requests"
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Request rate limit exceeded. Please wait and try again later."
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -458,13 +577,52 @@
             }
           },
           "402": {
-            "description": "Payment required"
+            "description": "Payment required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Payment required to access this resource."
+                    }
+                  }
+                }
+              }
+            }
           },
           "429": {
-            "description": "Too many requests"
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Request rate limit exceeded. Please wait and try again later."
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -508,13 +666,52 @@
             }
           },
           "402": {
-            "description": "Payment required"
+            "description": "Payment required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Payment required to access this resource."
+                    }
+                  }
+                }
+              }
+            }
           },
           "429": {
-            "description": "Too many requests"
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Request rate limit exceeded. Please wait and try again later."
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

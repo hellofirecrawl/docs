@@ -40,6 +40,10 @@
   },
   "tabs": [
     {
+      "name": "SDKs",
+      "url": "sdks"
+    },
+    {
       "name": "Learn",
       "url": "learn"
     },
@@ -80,10 +84,6 @@
       "pages": [ "features/scrape", "features/crawl", "features/extract", "features/search"]
     },
     {
-      "group": "SDKs",
-      "pages": ["sdk/python", "sdk/node" ]
-    },
-    {
       "group": "Integrations",
       "pages": ["integrations/langchain", "integrations/llamaindex", "integrations/crewai",  "integrations/dify", "integrations/flowise", "integrations/langflow"]
     },
@@ -104,8 +104,16 @@
       "pages": ["contributing/guide"]
     },
     {
-      "group": "API Documentation",
+      "group": "Using the API",
       "pages": ["api-reference/introduction"]
+    },
+    {
+      "group": "Overall",
+      "pages": ["sdks/overview" ]
+    },
+    {
+      "group": "SDKs",
+      "pages": ["sdks/python", "sdks/node"]
     },
     {
       "group": "Endpoints",
