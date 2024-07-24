@@ -89,7 +89,7 @@
     },
     {
       "group": "Guide",
-      "pages": ["learn/guide/bypassing-auth"]
+      "pages": ["learn/guide/bypassing-auth", "learn/guide/firecrawl-ui-template"]
     },
     {
       "group": "Learn",
