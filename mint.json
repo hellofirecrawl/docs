@@ -101,7 +101,7 @@
     },
     {
       "group": "Contributing",
-      "pages": ["contributing/guide"]
+      "pages": ["contributing/guide", "contributing/self-host"]
     },
     {
       "group": "Using the API",

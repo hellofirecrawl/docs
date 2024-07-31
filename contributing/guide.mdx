@@ -6,10 +6,11 @@ og:description: "Learn how to run Firecrawl locally to run on your own and/or co
 ---
 # Contributors guide: 
 
-Welcome to [Firecrawl](https://firecrawl.dev) 🔥! Here are some instructions on how to get the project locally, so you can run it on your own (and contribute) 
+Welcome to [Firecrawl](https://firecrawl.dev) 🔥! Here are some instructions on how to get the project locally so you can run it on your own and contribute.
 
-If you're contributing, note that the process is similar to other open source repos i.e. (fork firecrawl, make changes, run tests, PR). If you have any questions, and would like help gettin on board, reach out to hello@mendable.ai for more or submit an issue!
+If you're contributing, note that the process is similar to other open-source repos, i.e., fork Firecrawl, make changes, run tests, PR.
 
+If you have any questions or would like help getting on board, join our Discord community [here](https://discord.gg/gSmWdAkdwd) for more information or submit an issue on Github [here](https://github.com/mendableai/firecrawl/issues/new/choose)!
 
 ## Running the project locally
 
@@ -19,12 +20,13 @@ First, start by installing dependencies
 3. redis [instructions](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/) 
 
 
-Set environment variables in a .env  in the /apps/api/ directoryyou can copy over the template in .env.example.
+Set environment variables in a `.env` file in the `/apps/api/` directory. You can copy over the template in `.env.example`.
 
-To start, we wont set up authentication, or any optional sub services (pdf parsing, JS blocking support, AI features )
+To start, we won't set up authentication, or any optional sub services (pdf parsing, JS blocking support, AI features)
 
-.env:
 ```
+# ./apps/api/.env
+
 # ===== Required ENVS ======
 NUM_WORKERS_PER_QUEUE=8 
 PORT=3002
@@ -63,7 +65,7 @@ pnpm install
 
 ### Running the project
 
-You're going to need to open 3 terminals. 
+You're going to need to open 3 terminals for running the services (optional: 4 terminals for running the services and testing).
 
 ### Terminal 1 - setting up redis
 
@@ -85,16 +87,17 @@ This will start the workers who are responsible for processing crawl jobs.
 ### Terminal 3 - setting up the main server
 
 
-To do this, navigate to the apps/api/ directory and run if you don’t have this already, install pnpm here: https://pnpm.io/installation
+To do this, navigate to the apps/api/ directory. If you haven’t installed pnpm already, you can do so here: https://pnpm.io/installation
+
 Next, run your server with:
 
 ```bash
 pnpm run start
 ```
 
-### Terminal 3 - sending our first request.
+### *(Optional)* Terminal 4 - sending our first request
 
-Alright: now let’s send our first request.
+Alright, now let’s send our first request.
 
 ```curl
 curl -X GET http://localhost:3002/test
