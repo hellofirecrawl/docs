@@ -85,7 +85,7 @@
     },
     {
       "group": "Integrations",
-      "pages": ["integrations/langchain", "integrations/llamaindex", "integrations/crewai",  "integrations/dify", "integrations/flowise", "integrations/langflow"]
+      "pages": ["integrations/langchain", "integrations/llamaindex", "integrations/crewai",  "integrations/dify", "integrations/flowise", "integrations/langflow", "integrations/camelai"]
     },
     {
       "group": "Guide",
