@@ -82,11 +82,6 @@ When using the `/scrape` endpoint, you can customize the scraping behavior with 
 - **Description**: To be used only as a last resort. Wait for a specified amount of milliseconds for the page to load before fetching content.
 - **Default**: `0`
 
-### Sending Headers for Authentication and more with `headers`
-
-- **Type**: `object`
-- **Description**: Headers to send with the request. Can be used to send cookies, user-agent, etc.
-- **Default**: `{}`
 
 ### Example Usage
 
@@ -102,11 +97,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
         "includeHtml": true,
         "includeRawHtml":true,
         "screenshot": true,
-        "waitFor": 5000,
-        "headers": {
-          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-          "Cookies": "cookie1=value1; cookie2=value2"
-        }
+        "waitFor": 5000
       }
     }'
 ```
