@@ -1,33 +1,60 @@
-# Mintlify Starter Kit
+# Firecrawl Docs 🔥
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+Welcome to the Firecrawl documentation repository! This repo contains the source files for [docs.firecrawl.dev](https://docs.firecrawl.dev), powered by [Mintlify](https://mintlify.com/).
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## About Firecrawl
 
-### Development
+Firecrawl is an open-source tool that turns websites into LLM-ready data. With Firecrawl, you can power your AI applications with clean data crawled from any website, making it easier to create powerful and accurate language models.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+## Getting Started
 
+To get started with the Firecrawl documentation, follow the steps below:
 
-```
-npm i -g mintlify
-```
+### Prerequisites
 
-Run the following command at the root of your documentation (where mint.json is)
+- Node.js (version 19 or higher)
 
-```
-mintlify dev
-```
+### Installation
 
-### Publishing Changes
+1. Install Mintlify globally using npm:
 
-Install our Github App to autopropagate changes from youre repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+   ```bash
+   npm install -g mintlify
+   ```
 
-#### Troubleshooting
+   Or if you prefer yarn:
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+   ```bash
+   yarn global add mintlify
+   ```
+
+2. Clone this repository and navigate to the directory:
+
+   ```bash
+   git clone https://github.com/hellofirecrawl/docs.git
+   cd docs
+   ```
+
+3. Start the Mintlify development server:
+
+   ```bash
+   mintlify dev
+   ```
+
+4. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to see a local preview of the documentation.
+
+## Contributing
+
+We welcome contributions to improve the Firecrawl documentation! If you find any issues or want to suggest enhancements, please open an issue or submit a pull request to this repository.
+
+When contributing, please follow these guidelines:
+
+- Keep the documentation clear, concise, and easy to understand.
+- Use proper formatting and adhere to the existing document structure.
+- Test your changes locally before submitting a pull request.
+
+## Contact
+
+If you have any questions or need further assistance, please reach out to us at [hello@firecrawl.dev](mailto:hello@firecrawl.dev).
+
+Happy crawling with Firecrawl! 🔥🕷️
