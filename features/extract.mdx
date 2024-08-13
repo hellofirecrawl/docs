@@ -149,3 +149,56 @@ const scrapeResult = await app.scrapeUrl("https://news.ycombinator.com", {
 
 console.log(scrapeResult.data["llm_extraction"]);
 ```
+
+### With Go SDK
+
+```go Go
+import (
+  "fmt"
+  "log"
+
+  "github.com/mendableai/firecrawl/firecrawl"
+)
+
+func main() {
+  app, err := firecrawl.NewFirecrawlApp("YOUR_API_KEY")
+  if err != nil {
+      log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
+  }
+
+  jsonSchema := map[string]any{
+    "type": "object",
+    "properties": map[string]any{
+      "top": map[string]any{
+        "type": "array",
+        "items": map[string]any{
+          "type": "object",
+          "properties": map[string]any{
+            "title":       map[string]string{"type": "string"},
+            "points":      map[string]string{"type": "number"},
+            "by":          map[string]string{"type": "string"},
+            "commentsURL": map[string]string{"type": "string"},
+          },
+          "required": []string{"title", "points", "by", "commentsURL"},
+        },
+        "minItems":    5,
+        "maxItems":    5,
+        "description": "Top 5 stories on Hacker News",
+      },
+    },
+    "required": []string{"top"},
+  }
+
+  llmExtractionParams := map[string]any{
+    "extractorOptions": firecrawl.ExtractorOptions{
+      ExtractionSchema: jsonSchema,
+    },
+  }
+
+  scrapeResult, err := app.ScrapeURL("https://news.ycombinator.com", llmExtractionParams)
+  if err != nil {
+    log.Fatalf("Failed to perform LLM extraction: %v", err)
+  }
+  fmt.Println(scrapeResult)
+}
+```

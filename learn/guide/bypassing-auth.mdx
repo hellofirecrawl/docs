@@ -22,6 +22,10 @@ pip install firecrawl-py
 npm install @mendable/firecrawl-js
 ```
 
+```bash Go
+go get github.com/mendableai/firecrawl
+```
+
 </CodeGroup>
 
 ### Usage
@@ -54,6 +58,36 @@ app.scrapeUrl('https://mendable.ai', {
     }
   }
 });
+```
+
+```go Go
+import (
+  "fmt"
+  "log"
+
+  "github.com/mendableai/firecrawl/firecrawl"
+)
+
+func main() {
+  // Initialize the FirecrawlApp with your API key
+  app, err := firecrawl.NewFirecrawlApp("YOUR_API_KEY")
+  if err != nil {
+    log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
+  }
+
+  params := map[string]any{
+    "pageOptions": map[string]any{
+      "headers": map[string]any{
+        "Cookie": "cookie1=value1; cookie2=value2"
+      }
+    },
+  }
+  scrapedData, err := app.ScrapeURL("mendable.ai", params)
+  if err != nil {
+    log.Fatalf("Error occurred while scraping: %v", err)
+  }
+  fmt.Println(scrapedData)
+}
 ```
 
 ```curl cURL

@@ -42,6 +42,10 @@ pip install firecrawl-py
 npm install @mendable/firecrawl-js
 ```
 
+```go Go
+go get github.com/mendableai/firecrawl
+```
+
 </CodeGroup>
 
 ### Usage
@@ -71,6 +75,29 @@ const crawlResult = await app.crawlUrl('mendable.ai', { crawlerOptions: { exclud
 
 // Log the markdown
 console.log(crawlResult.map(result => result.markdown));
+```
+
+```go Go
+import (
+  "fmt"
+  "log"
+
+  "github.com/mendableai/firecrawl/firecrawl"
+)
+
+func main() {
+  app, err := firecrawl.NewFirecrawlApp("YOUR_API_KEY")
+  if err != nil {
+    log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
+  }
+
+  crawlResult, err := app.CrawlURL("mendable.ai", nil)
+  if err != nil {
+    log.Fatalf("Failed to crawl URL: %v", err)
+  }
+
+  fmt.Println(crawlResult)
+}
 ```
 
 ```bash cURL
@@ -106,6 +133,13 @@ status = app.check_crawl_status(job_id)
 
 ```js JavaScript
 const status = await app.checkCrawlStatus(jobId);
+```
+
+```go Go
+status, err := app.CheckCrawlStatus(jobId)
+if err != nil {
+  log.Fatalf("Failed to check crawl status: %v", err)
+}
 ```
 
 ```bash cURL
