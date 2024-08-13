@@ -102,3 +102,36 @@ const result = await app.search('What is firecrawl?');
 ```
 
 The response will be similar to the one shown in the curl command above.
+
+### With Go SDK
+
+#### Installing Go SDK
+
+```bash
+go get github.com/mendableai/firecrawl
+```
+
+#### Search a query
+
+```go
+import (
+  "fmt"
+  "log"
+
+  "github.com/mendableai/firecrawl/firecrawl"
+)
+
+func main() {
+  app, err := firecrawl.NewFirecrawlApp("YOUR_API_KEY")
+  if err != nil {
+      log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
+  }
+
+  query := "What is firecrawl?"
+  searchResult, err := app.Search(query)
+  if err != nil {
+    log.Fatalf("Failed to search: %v", err)
+  }
+  fmt.Println(searchResult)
+}
+```
