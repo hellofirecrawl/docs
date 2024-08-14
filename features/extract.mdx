@@ -202,3 +202,58 @@ func main() {
   fmt.Println(scrapeResult)
 }
 ```
+
+### With Rust SDK
+```rust Rust
+use firecrawl_rs::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+    // Initialize the FirecrawlApp with the API key
+    let api_key = "YOUR_API_KEY";
+    let api_url = "https://api.firecrawl.dev";
+    let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
+
+    // Define schema to extract contents into
+    let json_schema = json!({
+        "type": "object",
+        "properties": {
+            "top": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title": {"type": "string"},
+                        "points": {"type": "number"},
+                        "by": {"type": "string"},
+                        "commentsURL": {"type": "string"}
+                    },
+                    "required": ["title", "points", "by", "commentsURL"]
+                },
+                "minItems": 5,
+                "maxItems": 5,
+                "description": "Top 5 stories on Hacker News"
+            }
+        },
+        "required": ["top"]
+    });
+
+    let llm_extraction_params = json!({
+        "extractorOptions": {
+            "extractionSchema": json_schema,
+            "mode": "llm-extraction"
+        },
+        "pageOptions": {
+            "onlyMainContent": true
+        }
+    });
+
+    let llm_extraction_result = app
+        .scrape_url("https://news.ycombinator.com", Some(llm_extraction_params))
+        .await;
+    match llm_extraction_result {
+        Ok(data) => println!("LLM Extraction Result:\n{}", data["llm_extraction"]),
+        Err(e) => eprintln!("LLM Extraction failed: {}", e),
+    }
+}
+```

@@ -113,7 +113,7 @@
     },
     {
       "group": "SDKs",
-      "pages": ["sdks/python", "sdks/node", "sdks/go"]
+      "pages": ["sdks/python", "sdks/node", "sdks/go", "sdks/rust"]
     },
     {
       "group": "Endpoints",

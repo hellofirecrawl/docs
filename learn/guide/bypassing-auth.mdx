@@ -90,6 +90,31 @@ func main() {
 }
 ```
 
+```rust Rust
+use firecrawl_rs::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+    let api_key = "YOUR_API_KEY";
+    let api_url = "https://api.firecrawl.dev";
+    let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
+
+    let scrape_params = json!({
+        "pageOptions": {
+            "headers": {
+                "Cookie": "cookie1=value1; cookie2=value2"
+            }
+        }
+    });
+
+    let scrape_result = app.scrape_url("https://mendable.ai", Some(scrape_params)).await;
+    match scrape_result {
+        Ok(data) => println!("Scrape Result:\n{}", data),
+        Err(e) => eprintln!("Scrape failed: {}", e),
+    }
+}
+```
+
 ```curl cURL
 curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \

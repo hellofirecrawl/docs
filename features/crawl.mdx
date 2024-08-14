@@ -46,6 +46,20 @@ npm install @mendable/firecrawl-js
 go get github.com/mendableai/firecrawl-go
 ```
 
+```toml Rust
+# add the following to your Cargo.toml
+
+[dependencies]
+firecrawl_rs = "^0.1"
+tokio = { version = "^1", features = ["full"] }
+serde = { version = "^1.0", features = ["derive"] }
+serde_json = "^1.0"
+uuid = { version = "^1.10", features = ["v4"] }
+
+[build-dependencies]
+tokio = { version = "1", features = ["full"] }
+```
+
 </CodeGroup>
 
 ### Usage
@@ -100,6 +114,35 @@ func main() {
 }
 ```
 
+```rust Rust
+use firecrawl_rs::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+  // Initialize the FirecrawlApp with the API key
+  let api_key = "YOUR_API_KEY";
+  let api_url = "https://api.firecrawl.dev";
+  let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
+
+  // Crawl the URL
+  let crawl_params = json!({
+    "crawlerOptions": {
+        "excludes": ["blog/*"]
+    }
+  });
+
+  let crawl_result = app
+      .crawl_url("https://example.com", Some(crawl_params), true, 2, None)
+      .await;
+
+  // Print the crawl result
+  match crawl_result {
+      Ok(data) => println!("Crawl Result:\n{}", data),
+      Err(e) => eprintln!("Crawl failed: {}", e),
+  }
+}
+```
+
 ```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
@@ -140,6 +183,15 @@ status, err := app.CheckCrawlStatus(jobId)
 if err != nil {
   log.Fatalf("Failed to check crawl status: %v", err)
 }
+```
+
+```rust Rust
+let status = match app.check_crawl_status(jobId).await {
+    Ok(status) => status,
+    Err(e) => panic!("Failed to check crawl status: {:?}", e),
+};
+
+println!("Crawl Status: {:?}", status);
 ```
 
 ```bash cURL

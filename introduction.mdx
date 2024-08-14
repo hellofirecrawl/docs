@@ -19,6 +19,7 @@ We provide an easy to use API with our hosted version. You can find the playgrou
 - [x] [Python SDK](https://docs.firecrawl.dev/sdks/python)
 - [x] [Node SDK](https://docs.firecrawl.dev/sdks/node)
 - [x] [Go SDK](https://docs.firecrawl.dev/sdks/go)
+- [x] [Rust SDK](https://docs.firecrawl.dev/sdks/rust)
 - [x] [Langchain Integration 🦜🔗](https://python.langchain.com/docs/integrations/document_loaders/firecrawl/)
 - [x] [Langchain JS Integration 🦜🔗](https://js.langchain.com/docs/integrations/document_loaders/web_loaders/firecrawl)
 - [x] [Llama Index Integration 🦙](https://docs.llamaindex.ai/en/latest/examples/data_connectors/WebPageDemo/#using-firecrawl-reader)
@@ -54,6 +55,20 @@ npm install @mendable/firecrawl-js
 
 ```bash Go
 go get github.com/mendableai/firecrawl-go
+```
+
+```toml Rust
+# add the following to your Cargo.toml
+
+[dependencies]
+firecrawl_rs = "^0.1"
+tokio = { version = "^1", features = ["full"] }
+serde = { version = "^1.0", features = ["derive"] }
+serde_json = "^1.0"
+uuid = { version = "^1.10", features = ["v4"] }
+
+[build-dependencies]
+tokio = { version = "1", features = ["full"] }
 ```
 
 </CodeGroup>
@@ -122,6 +137,35 @@ func main() {
 }
 ```
 
+```rust Rust
+use firecrawl_rs::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+  // Initialize the FirecrawlApp with the API key
+  let api_key = "YOUR_API_KEY";
+  let api_url = "https://api.firecrawl.dev";
+  let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
+
+  // Crawl the URL
+  let crawl_params = json!({
+    "crawlerOptions": {
+        "excludes": ["blog/*"]
+    }
+  });
+
+  let crawl_result = app
+      .crawl_url("https://example.com", Some(crawl_params), true, 2, None)
+      .await;
+
+  // Print the crawl result
+  match crawl_result {
+      Ok(data) => println!("Crawl Result:\n{}", data),
+      Err(e) => eprintln!("Crawl failed: {}", e),
+  }
+}
+```
+
 ```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
@@ -162,6 +206,16 @@ if err != nil {
   log.Fatalf("Failed to check crawl status: %v", err)
 }
 ```
+
+```rust Rust
+let status = match app.check_crawl_status(jobId).await {
+    Ok(status) => status,
+    Err(e) => panic!("Failed to check crawl status: {:?}", e),
+};
+
+println!("Crawl Status: {:?}", status);
+```
+
 
 ```bash cURL
 curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
@@ -232,6 +286,27 @@ func main() {
   content, err := app.ScrapeURL("mendable.ai", nil)
   if err != nil {
     log.Fatalf("Failed to scrape URL: %v", err)
+  }
+}
+```
+
+```rust Rust
+use firecrawl_rs::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+    // Initialize the FirecrawlApp with the API key
+    let api_key = "YOUR_API_KEY";
+    let api_url = "https://api.firecrawl.dev";
+    let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
+
+    // Scrape the URL
+    let scrape_result = app.scrape_url("https://example.com", None).await;
+
+    // Print the scrape result
+  match scrape_result {
+    Ok(data) => println!("Scrape Result:\n{}", data["markdown"]),
+    Err(e) => eprintln!("Scrape failed: {}", e),
   }
 }
 ```
@@ -363,6 +438,60 @@ if err != nil {
   log.Fatalf("Failed to scrape URL: %v", err)
 }
 fmt.Println(scrapeResult.LLMExtraction)
+```
+
+```rust Rust
+use firecrawl_rs::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+    // Initialize the FirecrawlApp with the API key
+    let api_key = "YOUR_API_KEY";
+    let api_url = "https://api.firecrawl.dev";
+    let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
+
+    // Define schema to extract contents into
+    let json_schema = json!({
+        "type": "object",
+        "properties": {
+            "top": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title": {"type": "string"},
+                        "points": {"type": "number"},
+                        "by": {"type": "string"},
+                        "commentsURL": {"type": "string"}
+                    },
+                    "required": ["title", "points", "by", "commentsURL"]
+                },
+                "minItems": 5,
+                "maxItems": 5,
+                "description": "Top 5 stories on Hacker News"
+            }
+        },
+        "required": ["top"]
+    });
+
+    let llm_extraction_params = json!({
+        "extractorOptions": {
+            "extractionSchema": json_schema,
+            "mode": "llm-extraction"
+        },
+        "pageOptions": {
+            "onlyMainContent": true
+        }
+    });
+
+    let llm_extraction_result = app
+        .scrape_url("https://news.ycombinator.com", Some(llm_extraction_params))
+        .await;
+    match llm_extraction_result {
+        Ok(data) => println!("LLM Extraction Result:\n{}", data["llm_extraction"]),
+        Err(e) => eprintln!("LLM Extraction failed: {}", e),
+    }
+}
 ```
 
 ```bash cURL
