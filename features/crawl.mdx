@@ -50,7 +50,7 @@ go get github.com/mendableai/firecrawl-go
 # add the following to your Cargo.toml
 
 [dependencies]
-firecrawl_rs = "^0.1"
+firecrawl = "^0.1"
 tokio = { version = "^1", features = ["full"] }
 serde = { version = "^1.0", features = ["derive"] }
 serde_json = "^1.0"
@@ -115,7 +115,7 @@ func main() {
 ```
 
 ```rust Rust
-use firecrawl_rs::FirecrawlApp;
+use firecrawl::FirecrawlApp;
 
 #[tokio::main]
 async fn main() {
