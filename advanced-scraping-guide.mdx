@@ -56,6 +56,25 @@ func main() {
 }
 ```
 
+```rust Rust
+// Install the firecrawl_rs crate with Cargo
+
+use firecrawl_rs::FirecrawlApp;
+#[tokio::main]
+async fn main() {
+  // Initialize the FirecrawlApp with the API key
+  let api_key = "YOUR_API_KEY";
+  let api_url = "https://api.firecrawl.dev";
+  let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
+
+  let scrape_result = app.scrape_url("https://mendable.ai", None).await;
+  match scrape_result {
+    Ok(data) => println!("Scrape Result:\n{}", data["markdown"]),
+    Err(e) => eprintln!("Scrape failed: {}", e),
+  }
+}
+```
+
 ```bash cURL
 curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \
