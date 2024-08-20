@@ -20,7 +20,7 @@ from firecrawl import FirecrawlApp
 
 app = FirecrawlApp(api_key="YOUR_API_KEY")
 
-content = app.scrape_url("https://mendable.ai")
+content = app.scrape_url("https://docs.firecrawl.dev")
 ```
 
 ```JavaScript JavaScript
@@ -30,7 +30,7 @@ import { FirecrawlApp } from 'firecrawl-js';
 
 const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
 
-const content = await app.scrapeUrl('https://mendable.ai');
+const content = await app.scrapeUrl('https://docs.firecrawl.dev');
 ```
 
 ```go Go
@@ -49,7 +49,7 @@ func main() {
     log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
   }
 
-  content, err := app.ScrapeURL("mendable.ai", nil)
+  content, err := app.ScrapeURL("docs.firecrawl.dev", nil)
   if err != nil {
     log.Fatalf("Failed)
   }
@@ -67,7 +67,7 @@ async fn main() {
   let api_url = "https://api.firecrawl.dev";
   let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
 
-  let scrape_result = app.scrape_url("https://mendable.ai", None).await;
+  let scrape_result = app.scrape_url("https://docs.firecrawl.dev", None).await;
   match scrape_result {
     Ok(data) => println!("Scrape Result:\n{}", data["markdown"]),
     Err(e) => eprintln!("Scrape failed: {}", e),
@@ -80,7 +80,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai"
+      "url": "https://docs.firecrawl.dev"
     }'
 ```
 
@@ -133,7 +133,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     Content-Type: application/json' \
     -H 'Authorization : Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai",
+      "url": "https://docs.firecrawl.dev",
       "pageOptions": {
         "onlyMainContent": true,
         "includeHtml": true,
@@ -180,7 +180,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://www.mendable.ai/",
+      "url": "https://docs.firecrawl.dev/",
       "extractorOptions": {
         "mode": "llm-extraction",
         "extractionPrompt": "Based on the information on the page, extract the information from the schema. ",
@@ -222,11 +222,11 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
       "robots": "follow, index",
       "ogTitle": "Mendable",
       "ogDescription": "Mendable allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
-      "ogUrl": "https://mendable.ai/",
-      "ogImage": "https://mendable.ai/mendable_new_og1.png",
+      "ogUrl": "https://docs.firecrawl.dev/",
+      "ogImage": "https://docs.firecrawl.dev/mendable_new_og1.png",
       "ogLocaleAlternate": [],
       "ogSiteName": "Mendable",
-      "sourceURL": "https://mendable.ai/"
+      "sourceURL": "https://docs.firecrawl.dev/"
     },
     "llm_extraction": {
       "company_mission": "Train a secure AI on your technical resources that answers customer and employee questions so your team doesn't have to",
@@ -250,7 +250,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai",
+      "url": "https://docs.firecrawl.dev",
       "timeout": 50000
     }'
 ```
@@ -264,7 +264,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai"
+      "url": "https://docs.firecrawl.dev"
     }'
 ```
 
@@ -332,7 +332,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
     -H 'Authorization : Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai",
+      "url": "https://docs.firecrawl.dev",
       "crawlerOptions": {
         "includes": ["/blog/*", "/products/*"],
         "excludes": ["/admin/*", "/login/*"],
@@ -364,7 +364,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai",
+      "url": "https://docs.firecrawl.dev",
       "pageOptions": {
         "onlyMainContent": true,
         "includeHtml": true,

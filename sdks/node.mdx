@@ -29,11 +29,11 @@ import FirecrawlApp from '@mendable/firecrawl-js';
 const app = new FirecrawlApp({ apiKey: "YOUR_API_KEY" });
 
 // Scrape a single URL
-const url = 'https://mendable.ai';
+const url = 'https://docs.firecrawl.dev';
 const scrapedData = await app.scrapeUrl(url);
 
 // Crawl a website
-const crawlUrl = 'https://mendable.ai';
+const crawlUrl = 'https://docs.firecrawl.dev';
 const params = {
   crawlerOptions: {
     excludes: ['blog/'],

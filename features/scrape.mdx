@@ -68,7 +68,7 @@ from firecrawl import FirecrawlApp
 
 app = FirecrawlApp(api_key="YOUR_API_KEY")
 
-content = app.scrape_url("https://mendable.ai")
+content = app.scrape_url("https://docs.firecrawl.dev")
 ```
 
 ```JavaScript JavaScript
@@ -76,7 +76,7 @@ import { FirecrawlApp } from 'firecrawl-js';
 
 const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
 
-const content = await app.scrapeUrl('https://mendable.ai');
+const content = await app.scrapeUrl('https://docs.firecrawl.dev');
 ```
 
 ```go Go
@@ -93,7 +93,7 @@ func main() {
     log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
   }
 
-  content, err := app.ScrapeURL("mendable.ai", nil)
+  content, err := app.ScrapeURL("docs.firecrawl.dev", nil)
   if err != nil {
     log.Fatalf("Failed to scrape URL: %v", err)
   }
@@ -112,7 +112,7 @@ async fn main() {
     let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
 
     // Scrape the URL
-    let scrape_result = app.scrape_url("https://mendable.ai", None).await;
+    let scrape_result = app.scrape_url("https://docs.firecrawl.dev", None).await;
 
     // Print the scrape result
   match scrape_result {
@@ -127,7 +127,7 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai"
+      "url": "https://docs.firecrawl.dev"
     }'
 ```
 
@@ -148,7 +148,7 @@ SDKs will return the data object directly. cURL will return they payload exactly
       "title": "Mendable | AI for CX and Sales",
       "description": "AI for CX and Sales",
       "language": null,
-      "sourceURL": "https://www.mendable.ai/"
+      "sourceURL": "https://docs.firecrawl.dev/"
     }
   }
 }

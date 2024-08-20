@@ -38,7 +38,7 @@ func main() {
   }
 
   // Scrape a single URL
-  scrapedData, err := app.ScrapeURL("mendable.ai", nil)
+  scrapedData, err := app.ScrapeURL("docs.firecrawl.dev", nil)
   if err != nil {
     log.Fatalf("Error occurred while scraping: %v", err)
   }
@@ -51,7 +51,7 @@ func main() {
     },
   }
 
-  crawlResult, err := app.CrawlURL("mendable.ai", params)
+  crawlResult, err := app.CrawlURL("docs.firecrawl.dev", params)
   if err != nil {
     log.Fatalf("Error occurred while crawling: %v", err)
   }
@@ -65,7 +65,7 @@ func main() {
 To scrape a single URL with error handling, use the `ScrapeURL` method. It takes the URL as a parameter and returns the scraped data as a dictionary.
 
 ```go
-scrapedData, err := app.ScrapeURL("mendable.ai", nil)
+scrapedData, err := app.ScrapeURL("docs.firecrawl.dev", nil)
 if err != nil {
   log.Fatalf("Failed to scrape URL: %v", err)
 }
@@ -88,7 +88,7 @@ crawlParams := map[string]any{
     "onlyMainContent": true,
   },
 }
-crawlResult, err := app.CrawlURL("mendable.ai", crawlParams, true, 2, idempotencyKey)
+crawlResult, err := app.CrawlURL("docs.firecrawl.dev", crawlParams, true, 2, idempotencyKey)
 if err != nil {
   log.Fatalf("Failed to crawl URL: %v", err)
 }

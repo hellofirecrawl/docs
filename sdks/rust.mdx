@@ -40,7 +40,7 @@ async fn main() {
   let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
 
   // Scrape a single URL
-  let scrape_result = app.scrape_url("https://mendable.ai", None).await;
+  let scrape_result = app.scrape_url("https://docs.firecrawl.dev", None).await;
   match scrape_result {
     Ok(data) => println!("Scraped Data: {}", data),
     Err(e) => eprintln!("Error occurred while scraping: {}", e),
@@ -52,7 +52,7 @@ async fn main() {
     }
   });
 
-  let crawl_result = app.crawl_url("https://mendable.ai", Some(crawl_params)).await;
+  let crawl_result = app.crawl_url("https://docs.firecrawl.dev", Some(crawl_params)).await;
   
   match crawl_result {
     Ok(data) => println!("Crawl Result: {}", data),
@@ -66,7 +66,7 @@ async fn main() {
 To scrape a single URL with error handling, use the `scrape_url` method. It takes the URL as a parameter and returns the scraped data as a `serde_json::Value`.
 
 ```rust
-let scrape_result = app.scrape_url("https://mendable.ai", None).await;
+let scrape_result = app.scrape_url("https://docs.firecrawl.dev", None).await;
 
 match scrape_result {
   Ok(data) => println!("Scraped Data: {}", data),
@@ -89,7 +89,7 @@ let crawl_params = json!({
     "onlyMainContent": true
   }
 });
-let crawl_result = app.crawl_url("https://mendable.ai", Some(crawl_params)).await;
+let crawl_result = app.crawl_url("https://docs.firecrawl.dev", Some(crawl_params)).await;
 
 match crawl_result {
   Ok(data) => println!("Crawl Result: {}", data),
