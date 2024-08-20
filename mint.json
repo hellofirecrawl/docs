@@ -88,7 +88,13 @@
     },
     {
       "group": "Features",
-      "pages": [ "features/scrape", "features/crawl", "features/extract", "features/search"]
+      "pages": [ "features/scrape", "features/crawl", "features/map"],
+      "version": "v1"
+    },
+    {
+      "group": "Features",
+      "pages": [ "v0/features/scrape", "v0/features/crawl", "features/extract", "features/search"],
+      "version": "v0"
     },
     {
       "group": "Integrations",
