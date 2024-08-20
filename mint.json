@@ -84,7 +84,13 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "advanced-scraping-guide", "rate-limits","integrations"]
+      "pages": ["introduction", "rate-limits","integrations"],
+      "version": "v1"
+    },
+    {
+      "group": "Get Started",
+      "pages": ["v0/introduction", "v0/advanced-scraping-guide", "rate-limits","integrations"],
+      "version": "v0"
     },
     {
       "group": "Features",
