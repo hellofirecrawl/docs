@@ -71,7 +71,7 @@ from firecrawl import FirecrawlApp
 
 app = FirecrawlApp(api_key="YOUR_API_KEY")
 
-crawl_result = app.crawl_url('mendable.ai', {'crawlerOptions': {'excludes': ['blog/*']}})
+crawl_result = app.crawl_url('docs.firecrawl.dev', {'crawlerOptions': {'excludes': ['blog/*']}})
 
 # Get the markdown
 for result in crawl_result:
@@ -85,7 +85,7 @@ import FirecrawlApp from '@mendable/firecrawl-js';
 const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
 
 // Crawl a website
-const crawlResult = await app.crawlUrl('mendable.ai', { crawlerOptions: { excludes: ['blog/*'] } });
+const crawlResult = await app.crawlUrl('docs.firecrawl.dev', { crawlerOptions: { excludes: ['blog/*'] } });
 
 // Log the markdown
 console.log(crawlResult.map(result => result.markdown));
@@ -105,7 +105,7 @@ func main() {
     log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
   }
 
-  crawlResult, err := app.CrawlURL("mendable.ai", nil)
+  crawlResult, err := app.CrawlURL("docs.firecrawl.dev", nil)
   if err != nil {
     log.Fatalf("Failed to crawl URL: %v", err)
   }
@@ -148,7 +148,7 @@ curl -X POST https://api.firecrawl.dev/v0/crawl \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://mendable.ai"
+      "url": "https://docs.firecrawl.dev"
     }'
 ```
 
@@ -215,10 +215,10 @@ curl -X GET https://api.firecrawl.dev/v0/crawl/status/1234-5678-9101 \
       "markdown": "# Markdown Content",
       "provider": "web-scraper",
       "metadata": {
-        "title": "Mendable | AI for CX and Sales",
+        "title": "Firecrawl | Scrape the web reliably for your LLMs",
         "description": "AI for CX and Sales",
         "language": null,
-        "sourceURL": "https://www.mendable.ai/"
+        "sourceURL": "https://docs.firecrawl.dev/"
       }
     }
   ]
