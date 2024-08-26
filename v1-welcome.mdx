@@ -1,0 +1,36 @@
+---
+title: Welcome to V1
+description: "Firecrawl allows you to turn entire websites into LLM-ready markdown"
+og:title: "Welcome to V1 | Firecrawl"
+og:description: "Firecrawl allows you to turn entire websites into LLM-ready markdown"
+---
+
+import ScrapeV1 from "/snippets/v1/scrape/base/curl.mdx";
+
+Firecrawl V1 is here! With that we introduce a more reliable and developer friendly API.
+
+Here is what's new:
+
+- Output Formats for `/scrape`. Choose what formats you want your output in.
+- New [`/map` endpoint](/features/map) for getting all of the URLs of a webpage.
+- `/crawl` webhooks and websocket support.
+- `onlyMainContent` is now default to `true`.
+- Developer friendly API for `/crawl/status`.
+- 2x Rate Limits for Standard and Growth plans.
+- Go SDK and Rust SDK
+- Teams support
+- API Key Management in the dashboard.
+
+## Scrape Formats
+
+You can now choose what formats you want your output in. You can specify multiple output formats. Supported formats are:
+
+- Markdown (markdown)
+- HTML (html)
+- Raw HTML (rawHtml) (with no modifications)
+- Screenshot (screenshot)
+- Links (links)
+
+Output keys will match the format you choose.
+
+<ScrapeV1 />

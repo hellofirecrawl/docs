@@ -14,7 +14,7 @@
     "og:image": "/images/og.png",
     "twitter:title": "Firecrawl Docs",
     "twitter:image": "/images/og.png"
-},
+  },
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#000",
@@ -84,27 +84,51 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "rate-limits","integrations"],
+      "pages": [
+        "introduction",
+        "v1-welcome",
+        "rate-limits",
+        "integrations",
+        "migrating-from-v0"
+      ],
       "version": "v1"
     },
     {
       "group": "Get Started",
-      "pages": ["v0/introduction", "v0/advanced-scraping-guide", "rate-limits","integrations"],
+      "pages": [
+        "v0/introduction",
+        "v0/advanced-scraping-guide",
+        "rate-limits",
+        "integrations"
+      ],
       "version": "v0"
     },
     {
       "group": "Features",
-      "pages": [ "features/scrape", "features/crawl", "features/map"],
+      "pages": ["features/scrape", "features/crawl", "features/map"],
       "version": "v1"
     },
     {
       "group": "Features",
-      "pages": [ "v0/features/scrape", "v0/features/crawl", "features/extract", "features/search"],
+      "pages": [
+        "v0/features/scrape",
+        "v0/features/crawl",
+        "features/extract",
+        "features/search"
+      ],
       "version": "v0"
     },
     {
       "group": "Integrations",
-      "pages": ["integrations/langchain", "integrations/llamaindex", "integrations/crewai",  "integrations/dify", "integrations/flowise", "integrations/langflow", "integrations/camelai"]
+      "pages": [
+        "integrations/langchain",
+        "integrations/llamaindex",
+        "integrations/crewai",
+        "integrations/dify",
+        "integrations/flowise",
+        "integrations/langflow",
+        "integrations/camelai"
+      ]
     },
     {
       "group": "Guide",
@@ -112,7 +136,13 @@
     },
     {
       "group": "Learn",
-      "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3", "learn/contradiction-agent", "learn/lead-gen-business-insights-make-firecrawl", "learn/scrape-analyze-airbnb-data"]
+      "pages": [
+        "learn/data-extraction-using-llms",
+        "learn/rag-llama3",
+        "learn/contradiction-agent",
+        "learn/lead-gen-business-insights-make-firecrawl",
+        "learn/scrape-analyze-airbnb-data"
+      ]
     },
     {
       "group": "Articles",
@@ -134,7 +164,7 @@
     },
     {
       "group": "Overall",
-      "pages": ["sdks/overview" ]
+      "pages": ["sdks/overview"]
     },
     {
       "group": "SDKs",
