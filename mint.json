@@ -109,6 +109,11 @@
       "version": "v1"
     },
     {
+      "group": "Beta Features",
+      "pages": ["features/extract"],
+      "version": "v1"
+    },
+    {
       "group": "Features",
       "pages": [
         "v0/features/scrape",
@@ -118,6 +123,7 @@
       ],
       "version": "v0"
     },
+    
     {
       "group": "Integrations",
       "pages": [
