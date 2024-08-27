@@ -154,7 +154,7 @@
         ],
         "parameters": [
           {
-            "name": "jobId",
+            "name": "id",
             "in": "path",
             "description": "The job ID of the crawl job to get the status of",
             "required": true,
