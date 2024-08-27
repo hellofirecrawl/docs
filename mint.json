@@ -174,10 +174,10 @@
       "group": "Endpoints",
       "pages": [
         "api-reference/endpoint/scrape",
-        "api-reference/endpoint/search",
-        "api-reference/endpoint/crawl",
-        "api-reference/endpoint/status",
-        "api-reference/endpoint/crawl-cancel"
+        "api-reference/endpoint/crawl-post",
+        "api-reference/endpoint/crawl-get",
+        "api-reference/endpoint/crawl-delete",
+        "api-reference/endpoint/map"
       ],
       "version": "v1"
     },
