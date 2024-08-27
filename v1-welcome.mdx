@@ -5,7 +5,16 @@ og:title: "Welcome to V1 | Firecrawl"
 og:description: "Firecrawl allows you to turn entire websites into LLM-ready markdown"
 ---
 
-import ScrapeV1 from "/snippets/v1/scrape/base/curl.mdx";
+import InstallationPython from "/snippets/v1/installation/base/python.mdx";
+import InstallationNode from "/snippets/v1/installation/base/js.mdx";
+import InstallationGo from "/snippets/v1/installation/base/go.mdx";
+import InstallationRust from "/snippets/v1/installation/base/rust.mdx";
+import ScrapePython from "/snippets/v1/scrape/base/python.mdx";
+import ScrapeNode from "/snippets/v1/scrape/base/js.mdx";
+import ScrapeGo from "/snippets/v1/scrape/base/go.mdx";
+import ScrapeRust from "/snippets/v1/scrape/base/rust.mdx";
+import ScrapeCURL from "/snippets/v1/scrape/base/curl.mdx";
+import ScrapeResponse from "/snippets/v1/scrape/base/output.mdx";
 
 Firecrawl V1 is here! With that we introduce a more reliable and developer friendly API.
 
@@ -15,7 +24,7 @@ Here is what's new:
 - New [`/map` endpoint](/features/map) for getting all of the URLs of a webpage.
 - `/crawl` webhooks and websocket support.
 - `onlyMainContent` is now default to `true`.
-- Developer friendly API for `/crawl/status`.
+- Developer friendly API for `/crawl/{id}` status.
 - 2x Rate Limits for Standard and Growth plans.
 - Go SDK and Rust SDK
 - Teams support
@@ -33,4 +42,22 @@ You can now choose what formats you want your output in. You can specify multipl
 
 Output keys will match the format you choose.
 
-<ScrapeV1 />
+<CodeGroup>
+
+  <ScrapePython />
+
+  <ScrapeNode />
+
+  <ScrapeGo />
+
+  <ScrapeRust />
+
+  <ScrapeCURL />
+
+</CodeGroup>
+
+### Response
+
+SDKs will return the data object directly. cURL will return the payload exactly as shown below.
+
+<ScrapeResponse />
