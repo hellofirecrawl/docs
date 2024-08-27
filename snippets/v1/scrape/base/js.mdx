@@ -1,0 +1,12 @@
+```javascript
+import FirecrawlApp, { ScrapeResponse } from '@mendable/firecrawl-js';
+
+const app = new FirecrawlApp({apiKey: "fc-YOUR_API_KEY"});
+
+// Scrape a website:
+const scrapeResult = await app.scrapeUrl('firecrawl.dev', { formats: ['markdown', 'html'] }) as ScrapeResponse;
+
+if (scrapeResult) {
+  console.log(scrapeResult)
+}
+```
