@@ -1,0 +1,36 @@
+```rust
+use firecrawl::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+    // Initialize the FirecrawlApp with the API key
+    let api_key = "fc-YOUR_API_KEY";
+    let api_url = "https://api.firecrawl.dev";
+    let version = "v1";
+    let app = FirecrawlApp::new(api_key, api_url, version).expect("Failed to initialize FirecrawlApp");
+
+    // Crawl a website
+    let random_uuid = String::from(Uuid::new_v4());
+    let idempotency_key = Some(random_uuid); // optional idempotency key
+    let crawl_params = json!({
+        "limit": 100,
+        "scrapeOptions": {
+            "formats": ["markdown", "html"]
+        }
+    });
+    let crawl_result = app
+        .crawl_url(
+            "https://firecrawl.dev",
+            Some(crawl_params),
+            true,
+            2,
+            idempotency_key,
+        )
+        .await;
+
+    match crawl_result {
+        Ok(data) => println!("Crawl Result:\n{}", data),
+        Err(e) => eprintln!("Crawl failed: {}", e),
+    }
+}
+```
