@@ -1,20 +1,8 @@
-```rust
-use firecrawl::FirecrawlApp;
+```rust Rust
+  let crawlStatus = app.CheckCrawlStatus("<crawl_id>").await;
 
-#[tokio::main]
-async fn main() {
-    // Initialize the FirecrawlApp with the API key
-    let api_key = "fc-YOUR_API_KEY";
-    let api_url = "https://api.firecrawl.dev";
-    let version = "v1";
-    let app = FirecrawlApp::new(api_key, api_url, version).expect("Failed to initialize FirecrawlApp");
-
-    // Check crawl status
-    let crawlStatus = app.CheckCrawlStatus("<crawl_id>").await;
-
-    match crawlStatus {
-        Ok(data) => println!("Crawl Status:\n{}", data),
-        Err(e) => eprintln!("Check crawl status failed: {}", e),
-    }
-}
+  match crawlStatus {
+      Ok(data) => println!("Crawl Status:\n{}", data),
+      Err(e) => eprintln!("Check crawl status failed: {}", e),
+  }
 ```

@@ -1,8 +1,4 @@
-```javascript
-import FirecrawlApp, { CrawlParams, CrawlStatusResponse } from '@mendable/firecrawl-js';
-
-const app = new FirecrawlApp({apiKey: "fc-YOUR_API_KEY"});
-
+```js Node
 const crawlResponse = await app.checkCrawlStatus("<crawl_id>") as CrawlStatusResponse;
 
 if (crawlResponse) {
