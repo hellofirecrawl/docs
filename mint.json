@@ -51,14 +51,12 @@
     {
       "name": "API Reference",
       "url": "api-reference",
-      "version": "v1",
-      "openapi": "api-reference/openapi.json"
+      "version": "v1"
     },
     {
       "name": "API Reference",
       "url": "v0/api-reference",
-      "version": "v0",
-      "openapi": "v0/api-reference/openapi.json"
+      "version": "v0"
     }
   ],
   "anchors": [

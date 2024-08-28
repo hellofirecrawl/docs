@@ -41,9 +41,10 @@
                   "formats": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "enum": ["markdown", "html", "rawHtml", "links", "screenshot"]
                     },
-                    "description": "Formats to include in the output. Options are 'markdown', 'html', 'rawHtml', 'links', 'screenshot'.",
+                    "description": "Formats to include in the output.",
                     "default": ["markdown"]
                   },
                   "includeTags": {
@@ -143,6 +144,17 @@
       }
     },
     "/crawl/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "The job ID of the crawl job",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
       "get": {
         "summary": "Get the status of a crawl job",
         "operationId": "getCrawlStatus",
@@ -150,17 +162,6 @@
         "security": [
           {
             "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The job ID of the crawl job to get the status of",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -232,7 +233,61 @@
           {
             "bearerAuth": []
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful cancellation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Crawl job successfully cancelled."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Crawl job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Crawl job not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/crawl": {
@@ -302,9 +357,10 @@
                       "formats": {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": ["markdown", "html", "rawHtml", "links", "screenshot"]
                         },
-                        "description": "Formats to include in the output. Options are 'markdown', 'html', 'rawHtml', 'links', 'screenshot'.",
+                        "description": "Formats to include in the output.",
                         "default": ["markdown"]
                       },
                       "headers": {
