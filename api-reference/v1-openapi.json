@@ -662,54 +662,80 @@
       "CrawlStatusResponseObj": {
         "type": "object",
         "properties": {
-          "markdown": {
+          "status": {
             "type": "string"
           },
-          "content": {
-            "type": "string"
+          "totalCount": {
+            "type": "integer"
           },
-          "html": {
+          "creditsUsed": {
+            "type": "integer"
+          },
+          "expiresAt": {
             "type": "string",
-            "nullable": true,
-            "description": "HTML version of the content on page if `includeHtml`  is true"
+            "format": "date-time"
           },
-          "rawHtml": {
-            "type": "string",
-            "nullable": true,
-            "description": "Raw HTML content of the page if `includeRawHtml`  is true"
-          },
-          "index": {
-            "type": "integer",
-            "description": "The number of the page that was crawled. This is useful for `partial_data` so you know which page the data is from." 
-          },
-          "metadata": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "language": {
-                "type": "string",
-                "nullable": true
-              },
-              "sourceURL": {
-                "type": "string",
-                "format": "uri"
-              },
-              "<any other metadata> ": {
-                "type": "string"
-              },
-              "pageStatusCode": {
-                "type": "integer",
-                "description": "The status code of the page"
-              },
-              "pageError": {
-                "type": "string",
-                "nullable": true,
-                "description": "The error message of the page"
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "markdown": {
+                  "type": "string"
+                },
+                "html": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "HTML version of the content on page if `includeHtml`  is true"
+                },
+                "rawHtml": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "Raw HTML content of the page if `includeRawHtml`  is true"
+                },
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "List of links on the page if `includeLinks` is true"
+                },
+                "screenshot": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "Screenshot of the page if `includeScreenshot` is true"
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "language": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "sourceURL": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "<any other metadata> ": {
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "type": "integer",
+                      "description": "The status code of the page"
+                    },
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "The error message of the page"
+                    }
+                  }
+                }
               }
             }
           }
@@ -718,8 +744,15 @@
       "CrawlResponse": {
         "type": "object",
         "properties": {
-          "jobId": {
+          "success": {
+            "type": "boolean"
+          },
+          "id": {
             "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
           }
         }
       },
@@ -729,15 +762,10 @@
           "success": {
             "type": "boolean"
           },
-          "data": {
-            "type": "object",
-            "properties": {
-              "links": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         }
