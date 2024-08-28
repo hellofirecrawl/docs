@@ -1,0 +1,11 @@
+```rust Rust
+let scrapeParams = json!({
+    "formats": ["markdown", "html"]
+});
+
+let scrapeResult = app.ScrapeURL("https://firecrawl.dev", Some(scrapeParams)).await;
+match scrapeResult {
+    Ok(data) => println!("Scrape Result:\n{}", data),
+    Err(e) => eprintln!("Map failed: {}", e),
+}
+```

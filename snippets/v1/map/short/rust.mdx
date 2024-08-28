@@ -1,0 +1,7 @@
+```rust Rust
+let mapResult = app.MapURL("https://firecrawl.dev", None).await;
+match mapResult {
+    Ok(data) => println!("Map Result:\n{}", data["links"]),
+    Err(e) => eprintln!("Map failed: {}", e),
+}
+```
