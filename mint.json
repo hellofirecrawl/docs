@@ -42,7 +42,13 @@
   "tabs": [
     {
       "name": "SDKs",
-      "url": "sdks"
+      "url": "sdks",
+      "version": "v1"
+    },
+    {
+      "name": "SDKs",
+      "url": "v0/sdks",
+      "version": "v0"
     },
     {
       "name": "Learn",
@@ -174,7 +180,13 @@
     },
     {
       "group": "SDKs",
-      "pages": ["sdks/python", "sdks/node", "sdks/go", "sdks/rust"]
+      "pages": ["sdks/python", "sdks/node", "sdks/go", "sdks/rust"],
+      "version": "v1"
+    },
+    {
+      "group": "SDKs",
+      "pages": ["v0/sdks/python", "v0/sdks/node", "v0/sdks/go", "v0/sdks/rust"],
+      "version": "v0"
     },
     {
       "group": "Endpoints",
