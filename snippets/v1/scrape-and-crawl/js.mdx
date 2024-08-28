@@ -1,0 +1,26 @@
+```js Node
+import FirecrawlApp, { CrawlParams, CrawlStatusResponse } from '@mendable/firecrawl-js';
+
+const app = new FirecrawlApp({apiKey: "fc-YOUR_API_KEY"});
+
+// Scrape a website
+const scrapeResponse = await app.scrapeUrl('https://firecrawl.dev', {
+  formats: ['markdown', 'html'],
+});
+
+if (scrapeResponse) {
+  console.log(scrapeResponse)
+}
+
+// Crawl a website
+const crawlResponse = await app.crawlUrl('https://firecrawl.dev', {
+  limit: 100,
+  scrapeOptions: {
+    formats: ['markdown', 'html'],
+  }
+} as CrawlParams, true, 30) as CrawlStatusResponse;
+
+if (crawlResponse) {
+  console.log(crawlResponse)
+}
+```

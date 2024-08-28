@@ -1,0 +1,40 @@
+```rust Rust
+use firecrawl::FirecrawlApp;
+
+#[tokio::main]
+async fn main() {
+    // Initialize the FirecrawlApp with the API key
+    let apiKey = "fc-YOUR_API_KEY";
+    let apiURL = "https://api.firecrawl.dev";
+    let version = "v1";
+    let app = FirecrawlApp::new(apiKey, apiURL, version).expect("Failed to initialize FirecrawlApp");
+
+    // Scrape a website
+    let scrapeResponse = app.scrape_url("https://firecrawl.dev", Some(json!({
+        "formats": ["markdown", "html"]
+    })));
+    println!("Scrape Result:\n{}", scrapeResponse);
+
+    // Crawl a website
+    let crawlParams = json!({
+        "limit": 100,
+        "scrapeOptions": {
+            "formats": ["markdown", "html"]
+        }
+    });
+    let crawlResult = app
+        .CrawlURL(
+            "https://firecrawl.dev",
+            Some(crawlParams),
+            true,
+            2,
+            None,
+        )
+        .await;
+
+    match crawlResult {
+        Ok(data) => println!("Crawl Result:\n{}", data),
+        Err(e) => eprintln!("Crawl failed: {}", e),
+    }
+}
+```

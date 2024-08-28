@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Firecrawl API",
-    "version": "1.0.0",
+    "version": "v0",
     "description": "API for interacting with Firecrawl services to perform web scraping and crawling tasks.",
     "contact": {
       "name": "Firecrawl Support",
@@ -17,6 +17,7 @@
   ],
   "paths": {
     "/scrape": {
+      
       "post": {
         "summary": "Scrape a single URL and optionally extract information using an LLM",
         "operationId": "scrapeAndExtractFromUrl",

@@ -1,0 +1,37 @@
+```rust Rust
+use firecrawl::FirecrawlApp;
+use uuid::Uuid;
+
+#[tokio::main]
+async fn main() {
+    // Initialize the FirecrawlApp with the API key
+    let apiKey = "fc-YOUR_API_KEY";
+    let apiURL = "https://api.firecrawl.dev";
+    let version = "v1";
+    let app = FirecrawlApp::new(apiKey, apiURL, version).expect("Failed to initialize FirecrawlApp");
+
+    // Crawl a website
+    let randomUUID = String::from(Uuid::new_v4());
+    let idempotencyKey = Some(randomUUID); // optional idempotency key
+    let crawlParams = json!({
+        "limit": 100,
+        "scrapeOptions": {
+            "formats": ["markdown", "html"]
+        }
+    });
+    let crawlResult = app
+        .CrawlURL(
+            "https://firecrawl.dev",
+            Some(crawlParams),
+            true,
+            2,
+            idempotencyKey,
+        )
+        .await;
+
+    match crawlResult {
+        Ok(data) => println!("Crawl Result:\n{}", data),
+        Err(e) => eprintln!("Crawl failed: {}", e),
+    }
+}
+```

@@ -1,0 +1,94 @@
+---
+title: Welcome to V1
+description: "Firecrawl allows you to turn entire websites into LLM-ready markdown"
+og:title: "Welcome to V1 | Firecrawl"
+og:description: "Firecrawl allows you to turn entire websites into LLM-ready markdown"
+---
+
+import InstallationPython from "/snippets/v1/installation/python.mdx";
+import InstallationNode from "/snippets/v1/installation/js.mdx";
+import InstallationGo from "/snippets/v1/installation/go.mdx";
+import InstallationRust from "/snippets/v1/installation/rust.mdx";
+import ScrapePython from "/snippets/v1/scrape/base/python.mdx";
+import ScrapeNode from "/snippets/v1/scrape/base/js.mdx";
+import ScrapeGo from "/snippets/v1/scrape/base/go.mdx";
+import ScrapeRust from "/snippets/v1/scrape/base/rust.mdx";
+import ScrapeCURL from "/snippets/v1/scrape/base/curl.mdx";
+import ScrapeResponse from "/snippets/v1/scrape/base/output.mdx";
+import MapPython from "/snippets/v1/map/base/python.mdx";
+import MapJavaScript from "/snippets/v1/map/base/js.mdx";
+import MapGo from "/snippets/v1/map/base/go.mdx";
+import MapRust from "/snippets/v1/map/base/rust.mdx";
+import MapCURL from "/snippets/v1/map/base/curl.mdx";
+import MapResponse from "/snippets/v1/map/base/output.mdx";
+
+Firecrawl V1 is here! With that we introduce a more reliable and developer friendly API.
+
+Here is what's new:
+
+- Output Formats for `/scrape`. Choose what formats you want your output in.
+- New [`/map` endpoint](/features/map) for getting most of the URLs of a webpage.
+- Developer friendly API for `/crawl/{id}` status.
+- 2x Rate Limits for all plans.
+- [Go SDK](/sdks/go) and [Rust SDK](/sdks/rust)
+- Teams support
+- API Key Management in the dashboard.
+- `onlyMainContent` is now default to `true`.
+- `/crawl` webhooks and websocket support (coming soon).
+
+
+## Scrape Formats
+
+You can now choose what formats you want your output in. You can specify multiple output formats. Supported formats are:
+
+- Markdown (markdown)
+- HTML (html)
+- Raw HTML (rawHtml) (with no modifications)
+- Screenshot (screenshot or screenshot@fullPage)
+- Links (links)
+
+Output keys will match the format you choose.
+
+<CodeGroup>
+
+  <ScrapePython />
+
+  <ScrapeNode />
+
+  <ScrapeGo />
+
+  <ScrapeRust />
+
+  <ScrapeCURL />
+
+</CodeGroup>
+
+### Response
+
+SDKs will return the data object directly. cURL will return the payload exactly as shown below.
+
+<ScrapeResponse />
+
+## Introducing /map (Alpha)
+
+The easiest way to go from a single url to a map of the entire website.
+
+### Usage
+
+<CodeGroup>
+
+<MapPython />
+<MapJavaScript />
+<MapGo />
+<MapRust />
+<MapCURL />
+
+</CodeGroup>
+
+### Response
+
+SDKs will return the data object directly. cURL will return the payload exactly as shown below.
+
+<MapResponse />
+
+## Crawl Webhooks and Websockets (Coming Soon)

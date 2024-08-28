@@ -6,6 +6,7 @@
     "light": "/logo/light.svg",
     "href": "https://firecrawl.dev"
   },
+  "versions": ["v1", "v0"],
   "metadata": {
     "og:title": "Firecrawl Docs",
     "og:description": "Firecrawl allows you turn websites to LLM-ready data in seconds.",
@@ -13,7 +14,7 @@
     "og:image": "/images/og.png",
     "twitter:title": "Firecrawl Docs",
     "twitter:image": "/images/og.png"
-},
+  },
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#000",
@@ -41,7 +42,13 @@
   "tabs": [
     {
       "name": "SDKs",
-      "url": "sdks"
+      "url": "sdks",
+      "version": "v1"
+    },
+    {
+      "name": "SDKs",
+      "url": "v0/sdks",
+      "version": "v0"
     },
     {
       "name": "Learn",
@@ -49,7 +56,13 @@
     },
     {
       "name": "API Reference",
-      "url": "api-reference"
+      "url": "api-reference",
+      "version": "v1"
+    },
+    {
+      "name": "API Reference",
+      "url": "v0/api-reference",
+      "version": "v0"
     }
   ],
   "anchors": [
@@ -77,15 +90,57 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "advanced-scraping-guide", "rate-limits","integrations"]
+      "pages": [
+        "introduction",
+        "v1-welcome",
+        "rate-limits",
+        "integrations",
+        "migrating-from-v0"
+      ],
+      "version": "v1"
+    },
+    {
+      "group": "Get Started",
+      "pages": [
+        "v0/introduction",
+        "v0/advanced-scraping-guide",
+        "rate-limits",
+        "integrations"
+      ],
+      "version": "v0"
     },
     {
       "group": "Features",
-      "pages": [ "features/scrape", "features/crawl", "features/extract", "features/search"]
+      "pages": ["features/scrape", "features/crawl", "features/map"],
+      "version": "v1"
     },
     {
+      "group": "Beta Features",
+      "pages": ["features/extract"],
+      "version": "v1"
+    },
+    {
+      "group": "Features",
+      "pages": [
+        "v0/features/scrape",
+        "v0/features/crawl",
+        "features/extract",
+        "features/search"
+      ],
+      "version": "v0"
+    },
+    
+    {
       "group": "Integrations",
-      "pages": ["integrations/langchain", "integrations/llamaindex", "integrations/crewai",  "integrations/dify", "integrations/flowise", "integrations/langflow", "integrations/camelai"]
+      "pages": [
+        "integrations/langchain",
+        "integrations/llamaindex",
+        "integrations/crewai",
+        "integrations/dify",
+        "integrations/flowise",
+        "integrations/langflow",
+        "integrations/camelai"
+      ]
     },
     {
       "group": "Guide",
@@ -93,7 +148,13 @@
     },
     {
       "group": "Learn",
-      "pages": ["learn/data-extraction-using-llms", "learn/rag-llama3", "learn/contradiction-agent", "learn/lead-gen-business-insights-make-firecrawl", "learn/scrape-analyze-airbnb-data"]
+      "pages": [
+        "learn/data-extraction-using-llms",
+        "learn/rag-llama3",
+        "learn/contradiction-agent",
+        "learn/lead-gen-business-insights-make-firecrawl",
+        "learn/scrape-analyze-airbnb-data"
+      ]
     },
     {
       "group": "Articles",
@@ -105,25 +166,49 @@
     },
     {
       "group": "Using the API",
-      "pages": ["api-reference/introduction"]
+      "pages": ["api-reference/introduction"],
+      "version": "v1"
+    },
+    {
+      "group": "Using the API",
+      "pages": ["v0/api-reference/introduction"],
+      "version": "v0"
     },
     {
       "group": "Overall",
-      "pages": ["sdks/overview" ]
+      "pages": ["sdks/overview"]
     },
     {
       "group": "SDKs",
-      "pages": ["sdks/python", "sdks/node", "sdks/go", "sdks/rust"]
+      "pages": ["sdks/python", "sdks/node", "sdks/go", "sdks/rust"],
+      "version": "v1"
+    },
+    {
+      "group": "SDKs",
+      "pages": ["v0/sdks/python", "v0/sdks/node", "v0/sdks/go", "v0/sdks/rust"],
+      "version": "v0"
     },
     {
       "group": "Endpoints",
       "pages": [
         "api-reference/endpoint/scrape",
-        "api-reference/endpoint/search",
-        "api-reference/endpoint/crawl",
-        "api-reference/endpoint/status",
-        "api-reference/endpoint/crawl-cancel"
-      ]
+        "api-reference/endpoint/crawl-post",
+        "api-reference/endpoint/crawl-get",
+        "api-reference/endpoint/crawl-delete",
+        "api-reference/endpoint/map"
+      ],
+      "version": "v1"
+    },
+    {
+      "group": "Endpoints",
+      "pages": [
+        "v0/api-reference/endpoint/scrape",
+        "v0/api-reference/endpoint/search",
+        "v0/api-reference/endpoint/crawl",
+        "v0/api-reference/endpoint/status",
+        "v0/api-reference/endpoint/crawl-cancel"
+      ],
+      "version": "v0"
     }
   ],
   "footerSocials": {
