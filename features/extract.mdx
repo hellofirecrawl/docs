@@ -97,6 +97,11 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
 ### Using Python SDK
 
 ```python
+from firecrawl import FirecrawlApp
+
+# Initialize the FirecrawlApp with your API key
+app = FirecrawlApp(api_key='your_api_key', version='v0')
+
 class ArticleSchema(BaseModel):
     title: str
     points: int 
@@ -126,6 +131,7 @@ import { z } from "zod";
 
 const app = new FirecrawlApp({
   apiKey: "fc-YOUR_API_KEY",
+  version: "v0"
 });
 
 // Define schema to extract contents into

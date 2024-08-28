@@ -15,20 +15,27 @@ import ScrapeGo from "/snippets/v1/scrape/base/go.mdx";
 import ScrapeRust from "/snippets/v1/scrape/base/rust.mdx";
 import ScrapeCURL from "/snippets/v1/scrape/base/curl.mdx";
 import ScrapeResponse from "/snippets/v1/scrape/base/output.mdx";
+import MapPython from "/snippets/v1/map/base/python.mdx";
+import MapJavaScript from "/snippets/v1/map/base/js.mdx";
+import MapGo from "/snippets/v1/map/base/go.mdx";
+import MapRust from "/snippets/v1/map/base/rust.mdx";
+import MapCURL from "/snippets/v1/map/base/curl.mdx";
+import MapResponse from "/snippets/v1/map/base/output.mdx";
 
 Firecrawl V1 is here! With that we introduce a more reliable and developer friendly API.
 
 Here is what's new:
 
 - Output Formats for `/scrape`. Choose what formats you want your output in.
-- New [`/map` endpoint](/features/map) for getting all of the URLs of a webpage.
-- `/crawl` webhooks and websocket support.
-- `onlyMainContent` is now default to `true`.
+- New [`/map` endpoint](/features/map) for getting most of the URLs of a webpage.
 - Developer friendly API for `/crawl/{id}` status.
-- 2x Rate Limits for Standard and Growth plans.
-- Go SDK and Rust SDK
+- 2x Rate Limits for all plans.
+- [Go SDK](/sdks/go) and [Rust SDK](/sdks/rust)
 - Teams support
 - API Key Management in the dashboard.
+- `onlyMainContent` is now default to `true`.
+- `/crawl` webhooks and websocket support (coming soon).
+
 
 ## Scrape Formats
 
@@ -61,3 +68,27 @@ Output keys will match the format you choose.
 SDKs will return the data object directly. cURL will return the payload exactly as shown below.
 
 <ScrapeResponse />
+
+## Introducing /map (Alpha)
+
+The easiest way to go from a single url to a map of the entire website.
+
+### Usage
+
+<CodeGroup>
+
+<MapPython />
+<MapJavaScript />
+<MapGo />
+<MapRust />
+<MapCURL />
+
+</CodeGroup>
+
+### Response
+
+SDKs will return the data object directly. cURL will return the payload exactly as shown below.
+
+<MapResponse />
+
+## Crawl Webhooks and Websockets (Coming Soon)
