@@ -16,8 +16,7 @@ crawl_status = app.crawl_url(
   params={
     'limit': 100, 
     'scrapeOptions': {'formats': ['markdown', 'html']}
-  }, 
-  poll_interval=30
+  }
 )
 print(crawl_status)
 ```

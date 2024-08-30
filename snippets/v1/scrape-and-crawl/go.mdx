@@ -2,9 +2,13 @@
 import (
 	"fmt"
 	"log"
-
+	"github.com/google/uuid"
 	"github.com/mendableai/firecrawl-go"
 )
+
+func ptr[T any](v T) *T {
+	return &v
+}
 
 func main() {
 	// Initialize the FirecrawlApp with your API key
@@ -18,8 +22,8 @@ func main() {
 	}
 
   // Scrape a website
-  scrapeStatus, err := app.ScrapeUrl("https://firecrawl.dev", map[string]any{
-    "formats": []string{"markdown", "html"},
+  scrapeStatus, err := app.ScrapeUrl("https://firecrawl.dev", firecrawl.ScrapeParams{
+    Formats: []string{"markdown", "html"},
   })
   if err != nil {
     log.Fatalf("Failed to send scrape request: %v", err)
@@ -28,12 +32,13 @@ func main() {
   fmt.Println(scrapeStatus)
 
 	// Crawl a website
-	crawlStatus, err := app.CrawlUrl("https://firecrawl.dev", map[string]any{
-		"limit": 100,
-		"scrapeOptions": map[string]any{
-			"formats": []string{"markdown", "html"},
-		},
-	})
+  idempotencyKey := uuid.New().String() // optional idempotency key
+  crawlParams := &firecrawl.CrawlParams{
+		ExcludePaths: []string{"blog/*"},
+		MaxDepth:     ptr(2),
+	}
+
+	crawlStatus, err := app.CrawlUrl("https://firecrawl.dev", crawlParams, &idempotencyKey)
 	if err != nil {
 		log.Fatalf("Failed to send crawl request: %v", err)
 	}
