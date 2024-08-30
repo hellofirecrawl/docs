@@ -15,7 +15,7 @@ import CrawlNode from "/snippets/v1/crawl/base/js.mdx";
 import CrawlGo from "/snippets/v1/crawl/base/go.mdx";
 import CrawlRust from "/snippets/v1/crawl/base/rust.mdx";
 import CrawlCURL from "/snippets/v1/crawl/base/curl.mdx";
-import CrawlOutput from "/snippets/v1/crawl/base/output.mdx";
+import AsyncCrawlOutput from "/snippets/v1/crawl-async/base/output.mdx";
 import CheckCrawlJobPython from "/snippets/v1/crawl-status/short/python.mdx";
 import CheckCrawlJobNode from "/snippets/v1/crawl-status/short/js.mdx";
 import CheckCrawlJobGo from "/snippets/v1/crawl-status/short/go.mdx";
@@ -23,6 +23,8 @@ import CheckCrawlJobRust from "/snippets/v1/crawl-status/short/rust.mdx";
 import CheckCrawlJobCURL from "/snippets/v1/crawl-status/short/curl.mdx";
 import CheckCrawlJobOutputScraping from "/snippets/v1/crawl-status/base/output-scraping.mdx";
 import CheckCrawlJobOutputCompleted from "/snippets/v1/crawl-status/base/output-completed.mdx";
+import CrawlWebSocketPython from "/snippets/v1/crawl-websocket/base/python.mdx";
+import CrawlWebSocketNode from "/snippets/v1/crawl-websocket/base/js.mdx";
 
 Firecrawl thoroughly crawls websites, ensuring comprehensive data extraction while bypassing any web blocker mechanisms. Here's how it works:
 
@@ -73,12 +75,9 @@ Used to crawl a URL and all accessible subpages. This submits a crawl job and re
 
 ### Job ID Response
 
-If you are not using the sdk or prefer to use webhook or a different polling method, you can set the `wait until done` parameter to `false`. 
-This will return a jobId.
+If you're using cURL or `async crawl` functions on SDKs, this will return an `ID` where you can use to check the status of the crawl.
 
-For cURL, /crawl will always return a jobId where you can use to check the status of the crawl.
-
-<CrawlOutput />
+<AsyncCrawlOutput />
 
 ### Check Crawl Job
 
@@ -99,4 +98,13 @@ The response will be different depending on the status of the crawl.
 <CodeGroup>
   <CheckCrawlJobOutputScraping />
   <CheckCrawlJobOutputCompleted />
+</CodeGroup>
+
+## Crawl WebSocket
+
+Firecrawl's WebSocket-based method, `Crawl URL and Watch`, enables real-time data extraction and monitoring. Start a crawl with a URL and customize it with options like page limits, allowed domains, and output formats, ideal for immediate data processing needs.
+
+<CodeGroup>
+  <CrawlWebSocketPython />
+  <CrawlWebSocketNode />
 </CodeGroup>

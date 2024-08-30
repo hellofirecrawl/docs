@@ -20,7 +20,7 @@ import CrawlNode from "/snippets/v1/crawl/base/js.mdx";
 import CrawlGo from "/snippets/v1/crawl/base/go.mdx";
 import CrawlRust from "/snippets/v1/crawl/base/rust.mdx";
 import CrawlCURL from "/snippets/v1/crawl/base/curl.mdx";
-import CrawlOutput from "/snippets/v1/crawl/base/output.mdx";
+import CrawlAsyncOutput from "/snippets/v1/crawl-async/base/output.mdx";
 import CheckCrawlJobPython from "/snippets/v1/crawl-status/short/python.mdx";
 import CheckCrawlJobNode from "/snippets/v1/crawl-status/short/js.mdx";
 import CheckCrawlJobGo from "/snippets/v1/crawl-status/short/go.mdx";
@@ -92,12 +92,9 @@ Used to crawl a URL and all accessible subpages. This submits a crawl job and re
 
 </CodeGroup>
 
-If you are not using the sdk or prefer to use webhook or a different polling method, you can set the `wait_until_done` to `false`.
-This will return a jobId.
+If you're using cURL or `async crawl` functions on SDKs, this will return an `ID` where you can use to check the status of the crawl.
 
-For cURL, /crawl will always return a jobId where you can use to check the status of the crawl.
-
-<CrawlOutput />
+<CrawlAsyncOutput />
 
 ### Check Crawl Job
 
