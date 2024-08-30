@@ -10,8 +10,10 @@ import InstallationNode from '/snippets/v1/installation/js.mdx'
 import ScrapeAndCrawlExampleNode from '/snippets/v1/scrape-and-crawl/js.mdx'
 import ScrapeNodeShort from '/snippets/v1/scrape/short/js.mdx'
 import CrawlNodeShort from '/snippets/v1/crawl/short/js.mdx'
+import CrawlAsyncNodeShort from '/snippets/v1/crawl-async/short/js.mdx'
 import CheckCrawlStatusNodeShort from '/snippets/v1/crawl-status/short/js.mdx'
 import MapNodeShort from '/snippets/v1/map/short/js.mdx'
+import CrawlWebSocketNodeBase from '/snippets/v1/crawl-websocket/base/js.mdx'
 
 ## Installation
 
@@ -41,10 +43,15 @@ To crawl a website with error handling, use the `crawlUrl` method. It takes the 
 
 <CrawlNodeShort />
 
+### Asynchronous Crawling
+
+To crawl a website asynchronously, use the `crawlUrlAsync` method. It returns the crawl `ID` which you can use to check the status of the crawl job. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
+
+<CrawlAsyncNodeShort />
 
 ### Checking Crawl Status
 
-To check the status of a crawl job with error handling, use the `checkCrawlStatus` method. It takes the job ID as a parameter and returns the current status of the crawl job.
+To check the status of a crawl job with error handling, use the `checkCrawlStatus` method. It takes the `ID` as a parameter and returns the current status of the crawl job.
 
 <CheckCrawlStatusNodeShort />
 
@@ -53,6 +60,12 @@ To check the status of a crawl job with error handling, use the `checkCrawlStatu
 To map a website with error handling, use the `mapUrl` method. It takes the starting URL as a parameter and returns the mapped data as a dictionary.
 
 <MapNodeShort />
+
+### Crawling a Website with WebSockets
+
+To crawl a website with WebSockets, use the `crawlUrlAndWatch` method. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
+
+<CrawlWebSocketNodeBase />
 
 ## Error Handling
 

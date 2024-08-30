@@ -10,8 +10,10 @@ import InstallationPython from '/snippets/v1/installation/python.mdx'
 import ScrapePythonShort from '/snippets/v1/scrape/short/python.mdx'
 import CrawlPythonShort from '/snippets/v1/crawl/short/python.mdx'
 import CheckCrawlStatusPythonShort from '/snippets/v1/crawl-status/short/python.mdx'
+import CrawlAsyncPythonShort from '/snippets/v1/crawl-async/short/python.mdx'
 import MapPythonShort from '/snippets/v1/map/short/python.mdx'
 import ScrapeAndCrawlExamplePython from '/snippets/v1/scrape-and-crawl/python.mdx'
+import CrawlWebSocketPythonBase from '/snippets/v1/crawl-websocket/base/python.mdx'
 
 ## Installation
 
@@ -39,11 +41,14 @@ To scrape a single URL, use the `scrape_url` method. It takes the URL as a param
 
 To crawl a website, use the `crawl_url` method. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
 
-The `wait_until_done` parameter determines whether the method should wait for the crawl job to complete before returning the result. If set to `True`, the method will periodically check the status of the crawl job until it is completed or the specified `timeout` (in seconds) is reached. If set to `False`, the method will return immediately with the job ID, and you can manually check the status of the crawl job using the `check_crawl_status` method.
-
 <CrawlPythonShort />
 
-If `wait_until_done` is set to `True`, the `crawl_url` method will return the crawl result once the job is completed. If the job fails or is stopped, an exception will be raised.
+### Asynchronous Crawling
+
+To crawl a website asynchronously, use the `crawl_url_async` method. It returns the crawl `ID` which you can use to check the status of the crawl job. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
+
+<CrawlAsyncPythonShort />
+
 
 ### Checking Crawl Status
 
@@ -56,6 +61,12 @@ To check the status of a crawl job, use the `check_crawl_status` method. It take
 Use `map_url` to generate a list of URLs from a website. The `params` argument let you customize the mapping process, including options to exclude subdomains or to utilize the sitemap.
 
 <MapPythonShort />
+
+### Crawling a Website with WebSockets
+
+To crawl a website with WebSockets, use the `crawl_url_and_watch` method. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
+
+<CrawlWebSocketPythonBase />
 
 ## Error Handling
 
