@@ -485,7 +485,7 @@
                     },
                     "search": {
                       "type": "string",
-                      "description": "Search query to use for mapping"
+                      "description": "Search query to use for mapping. The search in itself is limited to 50 results while in Alpha."
                     },
                     "ignoreSitemap": {
                       "type": "boolean",
@@ -499,8 +499,9 @@
                     },
                     "limit": {
                       "type": "integer",
-                      "description": "Maximum number of pages to crawl",
-                      "default": 10
+                      "description": "Maximum number of links to return",
+                      "default": 5000,
+                      "maximum": 5000
                     }
                   },
                   "required": ["url"]
