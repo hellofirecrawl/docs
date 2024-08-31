@@ -23,6 +23,13 @@ import MapCURL from "/snippets/v1/map/base/curl.mdx";
 import MapResponse from "/snippets/v1/map/base/output.mdx";
 import CrawlWebSocketPythonBase from "/snippets/v1/crawl-websocket/base/python.mdx";
 import CrawlWebSocketNodeBase from "/snippets/v1/crawl-websocket/base/js.mdx";
+import ExtractCURL from "/snippets/v1/llm-extract/base/curl.mdx";
+import ExtractPython from "/snippets/v1/llm-extract/base/python.mdx";
+import ExtractNode from "/snippets/v1/llm-extract/base/js.mdx";
+import ExtractOutput from "/snippets/v1/llm-extract/base/output.mdx";
+import ExtractNoSchemaCURL from "/snippets/v1/llm-extract/no-schema/curl.mdx";
+import ExtractNoSchemaOutput from "/snippets/v1/llm-extract/no-schema/output.mdx";
+
 
 Firecrawl V1 is here! With that we introduce a more reliable and developer friendly API.
 
@@ -104,5 +111,34 @@ To crawl a website with WebSockets, use the `Crawl URL and Watch` method.
 
 </CodeGroup>
 
+## Extract format
+
+LLM extraction is now available in v1 under the `extract` format. To extract structured from a page, you can pass a schema to the endpoint or just provide a prompt.
+
+<CodeGroup>
+
+<ExtractPython />
+<ExtractNode />
+<ExtractCURL />
+
+</CodeGroup>
+
+Output:
+
+<ExtractOutput />
+
+### Extracting without schema (New)
+
+You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
+
+<CodeGroup>
+
+<ExtractNoSchemaCURL />
+
+</CodeGroup>
+
+Output:
+
+<ExtractNoSchemaOutput />
 
 ## Crawl Webhook (Coming soon)

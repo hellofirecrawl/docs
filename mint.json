@@ -124,7 +124,7 @@
       "pages": [
         "v0/features/scrape",
         "v0/features/crawl",
-        "features/extract",
+        "v0/features/extract",
         "features/search"
       ],
       "version": "v0"

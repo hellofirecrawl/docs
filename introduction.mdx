@@ -28,7 +28,12 @@ import CheckCrawlJobRust from "/snippets/v1/crawl-status/short/rust.mdx";
 import CheckCrawlJobCURL from "/snippets/v1/crawl-status/short/curl.mdx";
 import CheckCrawlJobOutputScraping from "/snippets/v1/crawl-status/base/output-scraping.mdx";
 import CheckCrawlJobOutputCompleted from "/snippets/v1/crawl-status/base/output-completed.mdx";
-
+import ExtractCURL from "/snippets/v1/llm-extract/base/curl.mdx";
+import ExtractPython from "/snippets/v1/llm-extract/base/python.mdx";
+import ExtractNode from "/snippets/v1/llm-extract/base/js.mdx";
+import ExtractOutput from "/snippets/v1/llm-extract/base/output.mdx";
+import ExtractNoSchemaCURL from "/snippets/v1/llm-extract/no-schema/curl.mdx";
+import ExtractNoSchemaOutput from "/snippets/v1/llm-extract/no-schema/output.mdx";
 
 <img className="block" src="/images/hero.png" alt="Hero Light" />
 
@@ -145,6 +150,36 @@ SDKs will return the data object directly. cURL will return the payload exactly 
 ## Extraction
 
 With LLM extraction, you can easily extract structured data from any URL. We support pydantic schemas to make it easier for you too. Here is how you to use it:
+
+v1 is only supported on node, python and cURL at this time.
+
+<CodeGroup>
+
+<ExtractPython />
+<ExtractNode />
+<ExtractCURL />
+
+</CodeGroup>
+
+Output:
+
+<ExtractOutput />
+
+### Extracting without schema (New)
+
+You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
+
+<CodeGroup>
+
+<ExtractNoSchemaCURL />
+
+</CodeGroup>
+
+Output:
+
+<ExtractNoSchemaOutput />
+
+### Extraction (v0)
 
 <CodeGroup>
 ```python Python
