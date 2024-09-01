@@ -29,6 +29,7 @@ import ExtractNode from "/snippets/v1/llm-extract/base/js.mdx";
 import ExtractOutput from "/snippets/v1/llm-extract/base/output.mdx";
 import ExtractNoSchemaCURL from "/snippets/v1/llm-extract/no-schema/curl.mdx";
 import ExtractNoSchemaOutput from "/snippets/v1/llm-extract/no-schema/output.mdx";
+import CrawlWebhookCURL from "/snippets/v1/crawl-webhook/base/curl.mdx";
 
 
 Firecrawl V1 is here! With that we introduce a more reliable and developer friendly API.
@@ -141,4 +142,27 @@ Output:
 
 <ExtractNoSchemaOutput />
 
-## Crawl Webhook (Coming soon)
+## New Crawl Webhook
+
+You can now pass a `webhook` parameter to the `/crawl` endpoint. This will send a POST request to the URL you specify when the crawl is started, updated and completed.
+
+The webhook will now trigger for every page crawled and not just the whole result at the end.
+
+<CrawlWebhookCURL />
+
+### Webhook Events
+
+There are now 4 types of events:
+
+- `crawl.started` - Triggered when the crawl is started.
+- `crawl.page` - Triggered for every page crawled.
+- `crawl.completed` - Triggered when the crawl is completed to let you know it's done.
+- `crawl.failed` - Triggered when the crawl fails.
+
+### Webhook Response
+
+- `success` - If the webhook was successful in crawling the page correctly.
+- `type` - The type of event that occurred.
+- `id` - The ID of the crawl.
+- `data` - The data that was scraped (Array). This will only be non empty on `crawl.page` and will contain 1 item if the page was scraped successfully. The response is the same as the `/scrape` endpoint.
+- `error` - If the webhook failed, this will contain the error message.

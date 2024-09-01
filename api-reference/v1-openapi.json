@@ -369,6 +369,10 @@
                     "description": "Allows the crawler to follow links to external websites.",
                     "default": false
                   },
+                  "webhook": {
+                    "type": "string",
+                    "description": "The URL to send the webhook to. This will trigger for crawl started (crawl.started) ,every page crawled (crawl.page) and when the crawl is completed (crawl.completed or crawl.failed). The response will be the same as the `/scrape` endpoint."
+                  },
                   "scrapeOptions": {
                     "type": "object",
                     "properties": {
