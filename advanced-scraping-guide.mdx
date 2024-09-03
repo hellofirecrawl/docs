@@ -359,3 +359,69 @@ In this example, the crawler will:
 - Return the full document data for each page.
 - Crawl up to a maximum depth of 2.
 - Crawl a maximum of 1000 pages.
+
+## Mapping Website Links with `/map`
+
+The `/map` endpoint is adept at identifying URLs that are contextually related to a given website. This feature is crucial for understanding a site's contextual link environment, which can greatly aid in strategic site analysis and navigation planning.
+
+### Usage
+
+To use the `/map` endpoint, you need to send a GET request with the URL of the page you want to map. Here is an example using `curl`:
+
+```bash
+curl -X POST https://api.firecrawl.dev/v1/map \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "url": "https://docs.firecrawl.dev"
+    }'
+```
+
+This will return a JSON object containing links contextually related to the url.
+
+### Example Response
+
+```json
+  {
+    "success":true,
+    "links":[
+      "https://docs.firecrawl.dev",
+      "https://docs.firecrawl.dev/api-reference/endpoint/crawl-delete",
+      "https://docs.firecrawl.dev/api-reference/endpoint/crawl-get",
+      "https://docs.firecrawl.dev/api-reference/endpoint/crawl-post",
+      "https://docs.firecrawl.dev/api-reference/endpoint/map",
+      "https://docs.firecrawl.dev/api-reference/endpoint/scrape",
+      "https://docs.firecrawl.dev/api-reference/introduction",
+      "https://docs.firecrawl.dev/articles/search-announcement",
+      ...
+    ]
+  }
+```
+
+### Map Options
+
+#### `search`
+
+- **Type**: `string`
+- **Description**: Search for links containing specific text.
+- **Example**: `"blog"`
+
+#### `limit`
+
+- **Type**: `integer`
+- **Description**: Maximum number of links to return.
+- **Default**: `100`
+
+#### `ignoreSitemap`
+
+- **Type**: `boolean`
+- **Description**: Ignore the website sitemap when crawling
+- **Default**: `true`
+
+#### `includeSubdomains`
+
+- **Type**: `boolean`
+- **Description**: Include subdomains of the website
+- **Default**: `false`
+
+Here is the API Reference for it: [Map Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/map)
