@@ -47,6 +47,11 @@
                     "description": "Formats to include in the output.",
                     "default": ["markdown"]
                   },
+                  "onlyMainContent": {
+                    "type": "boolean",
+                    "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                    "default": true
+                  },
                   "includeTags": {
                     "type": "array",
                     "items": {
