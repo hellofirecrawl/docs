@@ -171,10 +171,11 @@
         {
           "name": "id",
           "in": "path",
-          "description": "The job ID of the crawl job",
+          "description": "The ID of the crawl job",
           "required": true,
           "schema": {
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           }
         }
       ],
@@ -691,20 +692,34 @@
         "type": "object",
         "properties": {
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "The current status of the crawl. Can be `scraping`, `completed`, or `failed`."
           },
-          "totalCount": {
-            "type": "integer"
+          "total": {
+            "type": "integer",
+            "description": "The total number of pages that were attempted to be crawled."
+          },
+          "completed": {
+            "type": "integer",
+            "description": "The number of pages that have been successfully crawled."
           },
           "creditsUsed": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The number of credits used for the crawl."
           },
           "expiresAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "The date and time when the crawl will expire."
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL to retrieve the next 10MB of data. Returned if the crawl is not completed or if the response is larger than 10MB."
           },
           "data": {
             "type": "array",
+            "description": "The data of the crawl.",
             "items": {
               "type": "object",
               "properties": {

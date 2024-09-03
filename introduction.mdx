@@ -117,7 +117,8 @@ Used to check the status of a crawl job and get its result.
 
 #### Response
 
-The response will be different depending on the status of the crawl.
+The response will be different depending on the status of the crawl. For not completed or large responses exceeding 10MB, a `next` URL parameter is provided. You must request this URL to retrieve the next 10MB of data. If the `next` parameter is absent, it indicates the end of the crawl data.
+
 <CodeGroup>
   <CheckCrawlJobOutputScraping />
   <CheckCrawlJobOutputCompleted />
