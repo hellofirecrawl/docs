@@ -1,4 +1,11 @@
 ```js Node
 const mapResult = await app.mapUrl('https://firecrawl.dev') as MapResponse;
-console.log(mapResult)
+
+if (mapResult) {
+  if (!mapResult.success) {
+    throw new Error(`Failed to map: ${mapResult.error}`)
+  }
+
+  console.log(mapResult)
+}
 ```

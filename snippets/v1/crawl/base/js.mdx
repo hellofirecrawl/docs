@@ -11,6 +11,10 @@ const crawlResponse = await app.crawlUrl('https://firecrawl.dev', {
 })
 
 if (crawlResponse) {
+  if (!crawlResponse.success) {
+    throw new Error(`Failed to crawl: ${crawlResponse.error}`)
+  }
+
   console.log(crawlResponse)
 }
 ```

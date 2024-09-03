@@ -19,4 +19,10 @@ const scrapeResult = await app.scrapeUrl("https://docs.firecrawl.dev/", {
   extract: { schema: schema }
 });
 
-console.log(scrapeResult.data["extract"]);
+if (scrapeResult) {
+  if (!scrapeResult.success) {
+    throw new Error(`Failed to scrape: ${scrapeResult.error}`)
+  }
+
+  console.log(scrapeResult.data["extract"]);
+}
