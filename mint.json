@@ -95,7 +95,8 @@
         "v1-welcome",
         "rate-limits",
         "integrations",
-        "migrating-from-v0"
+        "migrating-from-v0",
+        "advanced-scraping-guide"
       ],
       "version": "v1"
     },

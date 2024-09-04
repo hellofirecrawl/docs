@@ -46,9 +46,13 @@ This method guarantees an exhaustive crawl and data collection from any starting
 
 ## Crawling
 
+
 ### /crawl endpoint
 
 Used to crawl a URL and all accessible subpages. This submits a crawl job and returns a job ID to check the status of the crawl.
+
+
+<Warning>By default - Crawl will ignore sublinks of a page if they aren't children of the url you provide. So, the website.com/other-parent/blog-1 wouldn't be returned if you crawled website.com/blogs/. If you want website.com/other-parent/blog-1, use the `allowBackwardLinks` parameter</Warning>
 
 
 ### Installation 
