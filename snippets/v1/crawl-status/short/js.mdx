@@ -1,7 +1,9 @@
 ```js Node
-const crawlResponse = await app.checkCrawlStatus("<crawl_id>") as CrawlStatusResponse;
+const crawlResponse = await app.checkCrawlStatus("<crawl_id>");
 
-if (crawlResponse) {
-  console.log(crawlResponse)
+if (!crawlResponse.success) {
+  throw new Error(`Failed to check crawl status: ${crawlResponse.error}`)
 }
+
+console.log(crawlResponse)
 ```

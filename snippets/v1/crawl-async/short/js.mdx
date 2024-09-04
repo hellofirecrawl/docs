@@ -6,7 +6,9 @@ const crawlResponse = await app.asyncCrawlUrl('https://firecrawl.dev', {
   }
 });
 
-if (crawlResponse) {
-  console.log(crawlResponse)
+if (!crawlResponse.success) {
+  throw new Error(`Failed to crawl: ${crawlResponse.error}`)
 }
+
+console.log(crawlResponse)
 ```
