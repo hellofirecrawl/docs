@@ -2,11 +2,9 @@
 // Scrape a website:
 const scrapeResult = await app.scrapeUrl('firecrawl.dev', { formats: ['markdown', 'html'] }) as ScrapeResponse;
 
-if (scrapeResult) {
-  if (!scrapeResult.success) {
-    throw new Error(`Failed to scrape: ${scrapeResult.error}`)
-  }
-
-  console.log(scrapeResult)
+if (!scrapeResult.success) {
+  throw new Error(`Failed to scrape: ${scrapeResult.error}`)
 }
+
+console.log(scrapeResult)
 ```
