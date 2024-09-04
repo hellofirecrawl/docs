@@ -72,7 +72,7 @@
                   },
                   "waitFor": {
                     "type": "integer",
-                    "description": "Wait x amount of milliseconds for the page to load to fetch content",
+                    "description": "Specify a delay in milliseconds before fetching the content, allowing the page sufficient time to load.",
                     "default": 0
                   },
                   "timeout": {
