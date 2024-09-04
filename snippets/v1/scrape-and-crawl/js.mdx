@@ -8,13 +8,11 @@ const scrapeResponse = await app.scrapeUrl('https://firecrawl.dev', {
   formats: ['markdown', 'html'],
 });
 
-if (scrapeResponse) {
-  if (!scrapeResponse.success) {
-    throw new Error(`Failed to scrape: ${scrapeResponse.error}`)
-  }
-
-  console.log(scrapeResponse)
+if (!scrapeResponse.success) {
+  throw new Error(`Failed to scrape: ${scrapeResponse.error}`)
 }
+
+console.log(scrapeResponse)
 
 // Crawl a website
 const crawlResponse = await app.crawlUrl('https://firecrawl.dev', {
