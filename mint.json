@@ -163,7 +163,7 @@
     },
     {
       "group": "Contributing",
-      "pages": ["contributing/guide", "contributing/self-host"]
+      "pages": ["contributing/open-source-or-cloud", "contributing/guide", "contributing/self-host"]
     },
     {
       "group": "Using the API",
