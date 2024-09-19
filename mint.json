@@ -157,10 +157,7 @@
         "learn/scrape-analyze-airbnb-data"
       ]
     },
-    {
-      "group": "Articles",
-      "pages": ["articles/search-announcement"]
-    },
+ 
     {
       "group": "Contributing",
       "pages": ["contributing/guide", "contributing/self-host"]
