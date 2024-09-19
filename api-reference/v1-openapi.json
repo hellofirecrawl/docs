@@ -97,6 +97,64 @@
                         "description": "The prompt to use for the extraction without a schema (Optional)"
                       }
                     }
+                  },
+                  "actions": {
+                    "type": "array",
+                    "description": "Actions to perform on the page before grabbing the content",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "title": "Wait",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Wait for a specified amount of milliseconds",
+                              "enum": ["wait"]
+                            },
+                            "milliseconds": {
+                              "type": "integer",
+                              "minimum": 1
+                            }
+                          },
+                          "required": ["type", "milliseconds"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Screenshot",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Take a screenshot",
+                              "enum": ["screenshot"]
+                            },
+                            "fullPage": {
+                              "type": "boolean",
+                              "description": "Should the screenshot be full-page or viewport sized?",
+                              "default": false
+                            }
+                          },
+                          "required": ["type"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Click",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Click on an element",
+                              "enum": ["click"]
+                            },
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector to find the element by",
+                              "example": "#load-more-button"
+                            }
+                          },
+                          "required": ["type", "selector"]
+                        }
+                      ]
+                    }
                   }
                 },
                 "required": ["url"]
@@ -642,6 +700,21 @@
                 },
                 "description": "List of links on the page if `links` is in `formats`"
               },
+              "actions": {
+                "type": "object",
+                "nullable": true,
+                "description": "Results of the actions specified in the `actions` parameter. Only present if the `actions` parameter was provided in the request",
+                "properties": {
+                  "screenshots": {
+                    "type": "array",
+                    "description": "Screenshot URLs, in the same order as the screenshot actions provided.",
+                    "items": {
+                      "type": "string",
+                      "format": "url"
+                    }
+                  }
+                }
+              },  
               "metadata": {
                 "type": "object",
                 "properties": {
