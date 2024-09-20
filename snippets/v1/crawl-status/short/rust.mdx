@@ -1,8 +1,8 @@
 ```rust Rust
-  let crawlStatus = app.CheckCrawlStatus("<crawl_id>").await;
+let crawl_status = app.check_crawl_status(crawl_id).await;
 
-  match crawlStatus {
-      Ok(data) => println!("Crawl Status:\n{}", data),
-      Err(e) => eprintln!("Check crawl status failed: {}", e),
-  }
+match crawl_status {
+    Ok(data) => println!("Crawl Status:\n{:#?}", data),
+    Err(e) => eprintln!("Check crawl status failed: {}", e),
+}
 ```

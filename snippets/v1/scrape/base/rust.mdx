@@ -1,21 +1,20 @@
 ```rust Rust
-use firecrawl::FirecrawlApp;
+use firecrawl::{FirecrawlApp, scrape::{ScrapeOptions, ScrapeFormats}};
 
 #[tokio::main]
 async fn main() {
     // Initialize the FirecrawlApp with the API key
-    let apiKey = "fc-YOUR_API_KEY";
-    let apiURL = "https://api.firecrawl.dev";
-    let version = "v1";
-    let app = FirecrawlApp::new(apiKey, apiURL, version).expect("Failed to initialize FirecrawlApp");
+    let app = FirecrawlApp::new("fc-YOUR_API_KEY").expect("Failed to initialize FirecrawlApp");
 
-    let scrapeParams = json!({
-        "formats": ["markdown", "html"]
-    });
+    let options = ScrapeOptions {
+        formats vec! [ ScrapeFormats::Markdown, ScrapeFormats::HTML ].into(),
+        ..Default::default()
+    };
 
-    let scrapeResult = app.ScrapeURL("https://firecrawl.dev", Some(scrapeParams)).await;
-    match scrapeResult {
-        Ok(data) => println!("Scrape Result:\n{}", data),
+    let scrape_result = app.scrape_url("https://firecrawl.dev", options).await;
+
+    match scrape_result {
+        Ok(data) => println!("Scrape Result:\n{}", data.markdown.unwrap()),
         Err(e) => eprintln!("Map failed: {}", e),
     }
 }
