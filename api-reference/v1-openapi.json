@@ -102,19 +102,20 @@
                     "type": "array",
                     "description": "Actions to perform on the page before grabbing the content",
                     "items": {
-                      "anyOf": [
+                      "oneOf": [
                         {
                           "type": "object",
                           "title": "Wait",
                           "properties": {
                             "type": {
                               "type": "string",
-                              "description": "Wait for a specified amount of milliseconds",
-                              "enum": ["wait"]
+                              "enum": ["wait"],
+                              "description": "Wait for a specified amount of milliseconds"
                             },
                             "milliseconds": {
                               "type": "integer",
-                              "minimum": 1
+                              "minimum": 1,
+                              "description": "Number of milliseconds to wait"
                             }
                           },
                           "required": ["type", "milliseconds"]
@@ -125,8 +126,8 @@
                           "properties": {
                             "type": {
                               "type": "string",
-                              "description": "Take a screenshot",
-                              "enum": ["screenshot"]
+                              "enum": ["screenshot"],
+                              "description": "Take a screenshot"
                             },
                             "fullPage": {
                               "type": "boolean",
@@ -142,8 +143,8 @@
                           "properties": {
                             "type": {
                               "type": "string",
-                              "description": "Click on an element",
-                              "enum": ["click"]
+                              "enum": ["click"],
+                              "description": "Click on an element"
                             },
                             "selector": {
                               "type": "string",
@@ -159,16 +160,21 @@
                           "properties": {
                             "type": {
                               "type": "string",
-                              "description": "Type on the page",
-                              "enum": ["typeText"]
+                              "enum": ["typeText"],
+                              "description": "Type on the page"
                             },
                             "text": {
                               "type": "string",
                               "description": "Text to type",
                               "example": "Hello, world!"
+                            },
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector for the input field",
+                              "example": "#search-input"
                             }
                           },
-                          "required": ["type", "text"]
+                          "required": ["type", "text", "selector"]
                         },
                         {
                           "type": "object",
@@ -176,13 +182,13 @@
                           "properties": {
                             "type": {
                               "type": "string",
-                              "description": "Press a key on the page",
-                              "enum": ["pressKey"]
+                              "enum": ["pressKey"],
+                              "description": "Press a key on the page"
                             },
                             "key": {
                               "type": "string",
                               "description": "Key to press",
-                              "example": "Escape"
+                              "example": "Enter"
                             }
                           },
                           "required": ["type", "key"]
@@ -193,13 +199,18 @@
                           "properties": {
                             "type": {
                               "type": "string",
-                              "description": "Scroll to top/bottom of the page",
-                              "enum": ["scroll"]
+                              "enum": ["scroll"],
+                              "description": "Scroll the page"
                             },
                             "direction": {
                               "type": "string",
-                              "description": "Direction to scroll in",
-                              "enum": ["up", "down"]
+                              "enum": ["up", "down"],
+                              "description": "Direction to scroll"
+                            },
+                            "amount": {
+                              "type": "integer",
+                              "description": "Amount to scroll in pixels",
+                              "minimum": 1
                             }
                           },
                           "required": ["type", "direction"]
