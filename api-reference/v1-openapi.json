@@ -152,6 +152,40 @@
                             }
                           },
                           "required": ["type", "selector"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Type text",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Type on the page",
+                              "enum": ["typeText"]
+                            },
+                            "text": {
+                              "type": "string",
+                              "description": "Text to type",
+                              "example": "Hello, world!"
+                            }
+                          },
+                          "required": ["type", "text"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Press a key",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Press a key on the page",
+                              "enum": ["pressKey"]
+                            },
+                            "key": {
+                              "type": "string",
+                              "description": "Key to press",
+                              "example": "Escape"
+                            }
+                          },
+                          "required": ["type", "key"]
                         }
                       ]
                     }
