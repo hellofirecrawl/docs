@@ -186,6 +186,23 @@
                             }
                           },
                           "required": ["type", "key"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Scroll",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Scroll to top/bottom of the page",
+                              "enum": ["scroll"]
+                            },
+                            "direction": {
+                              "type": "string",
+                              "description": "Direction to scroll in",
+                              "enum": ["up", "down"]
+                            }
+                          },
+                          "required": ["type", "direction"]
                         }
                       ]
                     }
