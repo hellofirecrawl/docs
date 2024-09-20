@@ -52,7 +52,7 @@
     },
     {
       "name": "Learn",
-      "url": "learn"
+      "url": "https://www.firecrawl.dev/blog/category/tutorials"
     },
     {
       "name": "API Reference",
@@ -143,27 +143,11 @@
         "integrations/camelai"
       ]
     },
-    {
-      "group": "Guide",
-      "pages": ["learn/guide/firecrawl-ui-template"]
-    },
-    {
-      "group": "Learn",
-      "pages": [
-        "learn/data-extraction-using-llms",
-        "learn/rag-llama3",
-        "learn/contradiction-agent",
-        "learn/lead-gen-business-insights-make-firecrawl",
-        "learn/scrape-analyze-airbnb-data"
-      ]
-    },
-    {
-      "group": "Articles",
-      "pages": ["articles/search-announcement"]
-    },
+    
+ 
     {
       "group": "Contributing",
-      "pages": ["contributing/guide", "contributing/self-host"]
+      "pages": ["contributing/open-source-or-cloud", "contributing/guide", "contributing/self-host"]
     },
     {
       "group": "Using the API",
