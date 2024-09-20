@@ -179,6 +179,7 @@
                         {
                           "type": "object",
                           "title": "Press a key",
+                          "description": "Press a key on the page. See https://asawicki.info/nosense/doc/devices/keyboard/key_codes.html for key codes.",
                           "properties": {
                             "type": {
                               "type": "string",
