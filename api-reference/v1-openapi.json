@@ -160,8 +160,8 @@
                           "properties": {
                             "type": {
                               "type": "string",
-                              "enum": ["typeText"],
-                              "description": "Type on the page"
+                              "enum": ["write"],
+                              "description": "Write text into an input field"
                             },
                             "text": {
                               "type": "string",
@@ -182,7 +182,7 @@
                           "properties": {
                             "type": {
                               "type": "string",
-                              "enum": ["pressKey"],
+                              "enum": ["press"],
                               "description": "Press a key on the page"
                             },
                             "key": {
