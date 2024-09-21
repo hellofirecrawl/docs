@@ -156,7 +156,7 @@
                         },
                         {
                           "type": "object",
-                          "title": "Type text",
+                          "title": "Write text",
                           "properties": {
                             "type": {
                               "type": "string",
