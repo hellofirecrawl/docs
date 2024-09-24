@@ -34,6 +34,10 @@ import ExtractNode from "/snippets/v1/llm-extract/base/js.mdx";
 import ExtractOutput from "/snippets/v1/llm-extract/base/output.mdx";
 import ExtractNoSchemaCURL from "/snippets/v1/llm-extract/no-schema/curl.mdx";
 import ExtractNoSchemaOutput from "/snippets/v1/llm-extract/no-schema/output.mdx";
+import ScrapeActionsPython from "/snippets/v1/scrape/actions/python.mdx";
+import ScrapeActionsNode from "/snippets/v1/scrape/actions/js.mdx";
+import ScrapeActionsCURL from "/snippets/v1/scrape/actions/curl.mdx";
+import ScrapeActionsOutput from "/snippets/v1/scrape/actions/output.mdx";
 
 <img className="block" src="/images/hero.png" alt="Hero Light" />
 
@@ -370,6 +374,30 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
       }
     }'
 ```
+
+</CodeGroup>
+
+## Interacting with the page with Actions
+
+Firecrawl allows you to perform various actions on a web page before scraping its content. This is particularly useful for interacting with dynamic content, navigating through pages, or accessing content that requires user interaction.
+
+Here is an example of how to use actions to navigate to google.com, search for Firecrawl, click on the first result, and take a screenshot.
+
+### Example
+
+<CodeGroup>
+
+<ScrapeActionsPython />
+<ScrapeActionsNode /> 
+<ScrapeActionsCURL />
+
+</CodeGroup>
+
+### Output
+
+<CodeGroup>
+
+<ScrapeActionsOutput />
 
 </CodeGroup>
 
