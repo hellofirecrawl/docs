@@ -85,6 +85,11 @@
       "name": "Talk to Us",
       "icon": "comments",
       "url": "https://calendly.com/d/cj83-ngq-knk/meet-firecrawl"
+    },
+    {
+      "name": "Changelog",
+      "icon": "list",
+      "url": "https://firecrawl.dev/changelog"
     }
   ],
   "navigation": [
