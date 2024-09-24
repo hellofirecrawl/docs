@@ -1,36 +1,27 @@
 ```rust Rust
-use firecrawl::FirecrawlApp;
-use uuid::Uuid;
+use firecrawl::{crawl::{CrawlOptions, CrawlScrapeOptions, CrawlScrapeFormats}, FirecrawlApp};
 
 #[tokio::main]
 async fn main() {
     // Initialize the FirecrawlApp with the API key
-    let apiKey = "fc-YOUR_API_KEY";
-    let apiURL = "https://api.firecrawl.dev";
-    let version = "v1";
-    let app = FirecrawlApp::new(apiKey, apiURL, version).expect("Failed to initialize FirecrawlApp");
+    let app = FirecrawlApp::new("fc-YOUR_API_KEY").expect("Failed to initialize FirecrawlApp");
 
     // Crawl a website
-    let randomUUID = String::from(Uuid::new_v4());
-    let idempotencyKey = Some(randomUUID); // optional idempotency key
-    let crawlParams = json!({
-        "limit": 100,
-        "scrapeOptions": {
-            "formats": ["markdown", "html"]
-        }
-    });
-    let crawlResult = app
-        .CrawlURL(
-            "https://firecrawl.dev",
-            Some(crawlParams),
-            true,
-            2,
-            idempotencyKey,
-        )
+    let crawl_options = CrawlOptions {
+        scrape_options: CrawlScrapeOptions {
+            formats: vec![ CrawlScrapeFormats::Markdown, CrawlScrapeFormats::HTML ].into(),
+            ..Default::default()
+        }.into(),
+        limit: 100.into(),
+        ..Default::default()
+    };
+
+    let crawl_result = app
+        .crawl_url("https://mendable.ai", crawl_options)
         .await;
 
-    match crawlResult {
-        Ok(data) => println!("Crawl Result:\n{}", data),
+    match crawl_result {
+        Ok(data) => println!("Crawl Result (used {} credits):\n{:#?}", data.credits_used, data.data),
         Err(e) => eprintln!("Crawl failed: {}", e),
     }
 }
