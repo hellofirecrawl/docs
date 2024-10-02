@@ -392,15 +392,15 @@ If the content is larger than 10MB or if the crawl job is still running, the res
 
 ### Crawler Options
 
-When using the `/crawl` endpoint, you can customize the crawling behavior with the `crawlerOptions` parameter. Here are the available options:
+When using the `/crawl` endpoint, you can customize the crawling behavior with request body parameters. Here are the available options:
 
-#### `includesPath`
+#### `includePaths`
 
 - **Type**: `array`
 - **Description**: URL patterns to include in the crawl. Only URLs matching these patterns will be crawled.
 - **Example**: `["/blog/*", "/products/*"]`
 
-#### `excludesPath`
+#### `excludePaths`
 
 - **Type**: `array`
 - **Description**: URL patterns to exclude from the crawl. URLs matching these patterns will be skipped.
