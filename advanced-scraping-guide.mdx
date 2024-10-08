@@ -254,6 +254,109 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
 }
 ```
 
+## Actions
+
+When using the `/scrape` endpoint, Firecrawl allows you to perform various actions on a web page before scraping its content. This is particularly useful for interacting with dynamic content, navigating through pages, or accessing content that requires user interaction.
+
+### Available Actions
+
+#### wait
+
+- **Type**: `object`
+- **Description**: Wait for a specified amount of milliseconds.
+- **Properties**:
+  - `type`: `"wait"`
+  - `milliseconds`: Number of milliseconds to wait.
+- **Example**:
+  ```json
+  {
+    "type": "wait",
+    "milliseconds": 2000
+  }
+  ```
+
+#### screenshot
+
+- **Type**: `object`
+- **Description**: Take a screenshot.
+- **Properties**:
+  - `type`: `"screenshot"`
+  - `fullPage`: Should the screenshot be full-page or viewport sized? (default: `false`)
+- **Example**:
+  ```json
+  {
+    "type": "screenshot",
+    "fullPage": true
+  }
+  ```
+
+#### click
+
+- **Type**: `object`
+- **Description**: Click on an element.
+- **Properties**:
+  - `type`: `"click"`
+  - `selector`: Query selector to find the element by.
+- **Example**:
+  ```json
+  {
+    "type": "click",
+    "selector": "#load-more-button"
+  }
+  ```
+
+#### write
+
+- **Type**: `object`
+- **Description**: Write text into an input field.
+- **Properties**:
+  - `type`: `"write"`
+  - `text`: Text to type.
+  - `selector`: Query selector for the input field.
+- **Example**:
+  ```json
+  {
+    "type": "write",
+    "text": "Hello, world!",
+    "selector": "#search-input"
+  }
+  ```
+
+#### press
+
+- **Type**: `object`
+- **Description**: Press a key on the page.
+- **Properties**:
+  - `type`: `"press"`
+  - `key`: Key to press.
+- **Example**:
+  ```json
+  {
+    "type": "press",
+    "key": "Enter"
+  }
+  ```
+
+#### scroll
+
+- **Type**: `object`
+- **Description**: Scroll the page.
+- **Properties**:
+  - `type`: `"scroll"`
+  - `direction`: Direction to scroll (`"up"` or `"down"`).
+  - `amount`: Amount to scroll in pixels.
+- **Example**:
+  ```json
+  {
+    "type": "scroll",
+    "direction": "down",
+    "amount": 500
+  }
+  ```
+
+For more details about the actions parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+
+
 ## Crawling Multiple Pages
 
 To crawl multiple pages, you can use the `/crawl` endpoint. This endpoint allows you to specify a base URL you want to crawl and all accessible subpages will be crawled.
@@ -289,15 +392,15 @@ If the content is larger than 10MB or if the crawl job is still running, the res
 
 ### Crawler Options
 
-When using the `/crawl` endpoint, you can customize the crawling behavior with the `crawlerOptions` parameter. Here are the available options:
+When using the `/crawl` endpoint, you can customize the crawling behavior with request body parameters. Here are the available options:
 
-#### `includesPath`
+#### `includePaths`
 
 - **Type**: `array`
 - **Description**: URL patterns to include in the crawl. Only URLs matching these patterns will be crawled.
 - **Example**: `["/blog/*", "/products/*"]`
 
-#### `excludesPath`
+#### `excludePaths`
 
 - **Type**: `array`
 - **Description**: URL patterns to exclude from the crawl. URLs matching these patterns will be skipped.
@@ -425,3 +528,4 @@ This will return a JSON object containing links contextually related to the url.
 - **Default**: `false`
 
 Here is the API Reference for it: [Map Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/map)
+

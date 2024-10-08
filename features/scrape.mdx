@@ -16,24 +16,27 @@ import ScrapeGo from "/snippets/v1/scrape/base/go.mdx";
 import ScrapeRust from "/snippets/v1/scrape/base/rust.mdx";
 import ScrapeCURL from "/snippets/v1/scrape/base/curl.mdx";
 import ScrapeResponse from "/snippets/v1/scrape/base/output.mdx";
+import ExtractCURL from "/snippets/v1/llm-extract/base/curl.mdx";
+import ExtractPython from "/snippets/v1/llm-extract/base/python.mdx";
+import ExtractNode from "/snippets/v1/llm-extract/base/js.mdx";
+import ExtractOutput from "/snippets/v1/llm-extract/base/output.mdx";
+import ExtractNoSchemaCURL from "/snippets/v1/llm-extract/no-schema/curl.mdx";
+import ExtractNoSchemaOutput from "/snippets/v1/llm-extract/no-schema/output.mdx";
+import ScrapeActionsPython from "/snippets/v1/scrape/actions/python.mdx";
+import ScrapeActionsNode from "/snippets/v1/scrape/actions/js.mdx";
+import ScrapeActionsCURL from "/snippets/v1/scrape/actions/curl.mdx";
+import ScrapeActionsOutput from "/snippets/v1/scrape/actions/output.mdx";
 
-## Scraping with Firecrawl
+Firecrawl converts web pages into markdown, ideal for LLM applications.
 
-Firecrawl converts web pages into markdown, ideal for LLM applications. Here's why:
+- It manages complexities: proxies, caching, rate limits, js-blocked content
+- Handles dynamic content: dynamic websites, js-rendered sites, PDFs, images
+- Outputs clean markdown, structured data, screenshots or html.
 
-1. **Complexities Managed:**
-   Handles proxies, caching, rate limits, and JavaScript-blocked content for smooth scraping.
-
-2. **Dynamic Content:**
-   Gathers data from JavaScript-rendered websites, pdfs, images etc.
-
-3. **Markdown or Structured data conversion:**
-   Converts collected data into clean markdown or structured output, perfect for LLM processing or any other task.
-
-For more details, refer to the [Scrape Endpoint API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+For details, see the [Scrape Endpoint API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
 
 
-## Scrape a URL
+## Scraping a URL with Firecrawl
 
 ### /scrape endpoint
 
@@ -69,9 +72,85 @@ Used to scrape a URL and get its content.
 
 </CodeGroup>
 
+For more details about the parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+
 ### Response
 
 SDKs will return the data object directly. cURL will return the payload exactly as shown below.
 
 <ScrapeResponse />
+
+## Extract structured data
+
+### /scrape (with extract) endpoint
+
+Used to extract structured data from scraped pages.
+
+<CodeGroup>
+
+<ExtractPython />
+<ExtractNode />
+<ExtractCURL />
+
+</CodeGroup>
+
+Output:
+
+<ExtractOutput />
+
+### Extracting without schema (New)
+
+You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
+
+<CodeGroup>
+
+<ExtractNoSchemaCURL />
+
+</CodeGroup>
+
+Output:
+
+<ExtractNoSchemaOutput />
+
+### Extract object
+
+The `extract` object accepts the following parameters:
+
+- `schema`: The schema to use for the extraction.
+- `systemPrompt`: The system prompt to use for the extraction.
+- `prompt`: The prompt to use for the extraction without a schema.
+
+
+
+## Interacting with the page with Actions
+
+Firecrawl allows you to perform various actions on a web page before scraping its content. This is particularly useful for interacting with dynamic content, navigating through pages, or accessing content that requires user interaction.
+
+Here is an example of how to use actions to navigate to google.com, search for Firecrawl, click on the first result, and take a screenshot.
+
+It is important to almost always use the `wait` action before/after executing other actions to give enough time for the page to load.
+
+### Example
+<CodeGroup>
+
+<ScrapeActionsPython />
+<ScrapeActionsNode /> 
+<ScrapeActionsCURL />
+
+</CodeGroup>
+### Output
+
+<CodeGroup>
+
+<ScrapeActionsOutput />
+
+
+</CodeGroup>
+For more details about the actions parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+
+
+
+
+
+
 
