@@ -11,6 +11,7 @@ import ScrapePythonShort from '/snippets/v1/scrape/short/python.mdx'
 import CrawlPythonShort from '/snippets/v1/crawl/short/python.mdx'
 import CheckCrawlStatusPythonShort from '/snippets/v1/crawl-status/short/python.mdx'
 import CrawlAsyncPythonShort from '/snippets/v1/crawl-async/short/python.mdx'
+import CancelCrawlPythonShort from '/snippets/v1/crawl-delete/short/python.mdx'
 import MapPythonShort from '/snippets/v1/map/short/python.mdx'
 import ScrapeAndCrawlExamplePython from '/snippets/v1/scrape-and-crawl/python.mdx'
 import CrawlWebSocketPythonBase from '/snippets/v1/crawl-websocket/base/python.mdx'
@@ -55,6 +56,12 @@ To crawl a website asynchronously, use the `crawl_url_async` method. It returns 
 To check the status of a crawl job, use the `check_crawl_status` method. It takes the job ID as a parameter and returns the current status of the crawl job.
 
 <CheckCrawlStatusPythonShort />
+
+### Cancelling a Crawl
+
+To cancel an asynchronous crawl job, use the `cancel_crawl` method. It takes the job ID of the asynchronous crawl as a parameter and returns the cancellation status.
+
+<CancelCrawlPythonShort />
 
 ### Map a Website
 

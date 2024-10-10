@@ -12,6 +12,7 @@ import ScrapeNodeShort from '/snippets/v1/scrape/short/js.mdx'
 import CrawlNodeShort from '/snippets/v1/crawl/short/js.mdx'
 import CrawlAsyncNodeShort from '/snippets/v1/crawl-async/short/js.mdx'
 import CheckCrawlStatusNodeShort from '/snippets/v1/crawl-status/short/js.mdx'
+import CancelCrawlNodeShort from '/snippets/v1/crawl-delete/short/js.mdx'
 import MapNodeShort from '/snippets/v1/map/short/js.mdx'
 import CrawlWebSocketNodeBase from '/snippets/v1/crawl-websocket/base/js.mdx'
 
@@ -54,6 +55,12 @@ To crawl a website asynchronously, use the `crawlUrlAsync` method. It returns th
 To check the status of a crawl job with error handling, use the `checkCrawlStatus` method. It takes the `ID` as a parameter and returns the current status of the crawl job.
 
 <CheckCrawlStatusNodeShort />
+
+### Cancelling a Crawl
+
+To cancel an asynchronous crawl job, use the `cancelCrawl` method. It takes the job ID of the asynchronous crawl as a parameter and returns the cancellation status.
+
+<CancelCrawlNodeShort />
 
 ### Mapping a Website
 
