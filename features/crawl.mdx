@@ -103,7 +103,16 @@ Used to check the status of a crawl job and get its result.
 
 #### Response Handling
 
-The response varies based on the crawl's status. For not completed or large responses exceeding 10MB, a `next` URL parameter is provided. You must request this URL to retrieve the next 10MB of data. If the `next` parameter is absent, it indicates the end of the crawl data.
+The response varies based on the crawl's status.
+
+For not completed or large responses exceeding 10MB, a `next` URL parameter is provided. You must request this URL to retrieve the next 10MB of data. If the `next` parameter is absent, it indicates the end of the crawl data.
+
+<Info>
+The skip and next parameter are only relavent when hitting the api directly. If you're using the SDK, we handle this for you.
+<Info>
+
+
+
 
 <CodeGroup>
   <CheckCrawlJobOutputScraping />
