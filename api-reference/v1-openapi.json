@@ -215,7 +215,29 @@
                             }
                           },
                           "required": ["type", "direction"]
-                        }   
+                        },
+                        {
+                          "type": "object",
+                          "title": "Scrape",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["scrape"],
+                              "description": "Scroll the page"
+                            },
+                            "direction": {
+                              "type": "string",
+                              "enum": ["up", "down"],
+                              "description": "Direction to scroll"
+                            },
+                            "amount": {
+                              "type": "integer",
+                              "description": "Amount to scroll in pixels",
+                              "minimum": 1
+                            }
+                          },
+                          "required": ["type", "direction"]
+                        }
                       ]
                     }
                   }
@@ -483,7 +505,7 @@
                   },
                   "limit": {
                     "type": "integer",
-                    "description": "Maximum number of pages to crawl. Default limit is 10000.",
+                    "description": "Maximum number of pages to crawl. Default limit on the API is 10000.",
                     "default": 10
                   },
                   "allowBackwardLinks": {
