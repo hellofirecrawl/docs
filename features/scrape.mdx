@@ -185,6 +185,6 @@ If you’re using the sync methods from the SDKs, it will return the results of 
 
 #### Asynchronous
 
-You can then use the job ID to check the status of the batch scrape by calling the `/batch/scrape/{id}` endpoint.
+You can then use the job ID to check the status of the batch scrape by calling the `/batch/scrape/{id}` endpoint. This endpoint is meant to be used while the job is still running or right after it has completed **as batch scrape jobs expire after 24 hours**.
 
 <BatchScrapeAsyncOutput />
