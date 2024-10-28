@@ -218,6 +218,18 @@
                         }   
                       ]
                     }
+                  },
+                  "geolocation": {
+                    "type": "object",
+                    "description": "Geolocation settings for the request. When specified, this will use an appropriate proxy if available and emulate the corresponding language and timezone settings. Defaults to 'US' if not specified.",
+                    "properties": {
+                      "country": {
+                        "type": "string",
+                        "description": "ISO 3166-1 alpha-2 country code (e.g., 'US', 'GB', 'DE')",
+                        "pattern": "^[A-Z]{2}$",
+                        "default": "US"
+                      }
+                    }
                   }
                 },
                 "required": ["url"]
