@@ -38,6 +38,11 @@
                     "format": "uri",
                     "description": "The URL to scrape"
                   },
+                  "skipTlsVerification": {
+                    "type": "boolean",
+                    "description": "Skip TLS certificate verification when making requests",
+                    "default": false
+                  },
                   "formats": {
                     "type": "array",
                     "items": {
