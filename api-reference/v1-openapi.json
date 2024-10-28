@@ -224,9 +224,9 @@
                       ]
                     }
                   },
-                  "geolocation": {
+                  "location": {
                     "type": "object",
-                    "description": "Geolocation settings for the request. When specified, this will use an appropriate proxy if available and emulate the corresponding language and timezone settings. Defaults to 'US' if not specified.",
+                    "description": "Location settings for the request. When specified, this will use an appropriate proxy if available and emulate the corresponding language and timezone settings. Defaults to 'US' if not specified.",
                     "properties": {
                       "country": {
                         "type": "string",
