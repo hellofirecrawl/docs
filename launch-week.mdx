@@ -11,6 +11,31 @@ import BatchScrapeCURL from "/snippets/v1/batch-scrape/base/curl.mdx";
 import BatchScrapeOutput from "/snippets/v1/batch-scrape/base/output.mdx";
 import BatchScrapeAsyncOutput from "/snippets/v1/batch-scrape/base/async-output.mdx";
 
+import ScrapeLocationPython from "/snippets/v1/scrape/location/python.mdx";
+import ScrapeLocationNode from "/snippets/v1/scrape/location/js.mdx";
+import ScrapeLocationCURL from "/snippets/v1/scrape/location/curl.mdx";
+
+## Day 2 - Location and Language
+
+Introducing location and language settings for scraping requests. Specify country and preferred languages to get relevant content based on your target location and language preferences.
+
+### How it works
+
+When you specify the location settings, Firecrawl will use an appropriate proxy if available and emulate the corresponding language and timezone settings. By default, the location is set to 'US' if not specified.
+
+### Usage
+
+To use the location and language settings, include the `location` object in your request body with the following properties:
+
+- `country`: ISO 3166-1 alpha-2 country code (e.g., 'US', 'AU', 'DE', 'JP'). Defaults to 'US'.
+- `languages`: An array of preferred languages and locales for the request in order of priority. Defaults to the language of the specified location.
+
+<CodeGroup>
+<ScrapeLocationPython />
+<ScrapeLocationNode />
+<ScrapeLocationCURL />
+</CodeGroup>
+
 ## Day 1 - Batch Scrape
 
 You can now scrape multiple URLs at the same time with our new batch endpoint. Ideal for when you don't need the scraping results immediately.
