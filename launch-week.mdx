@@ -15,6 +15,33 @@ import ScrapeLocationPython from "/snippets/v1/scrape/location/python.mdx";
 import ScrapeLocationNode from "/snippets/v1/scrape/location/js.mdx";
 import ScrapeLocationCURL from "/snippets/v1/scrape/location/curl.mdx";
 
+## Day 4 - Advanced iframe Scraping
+
+We're excited to announce comprehensive iframe scraping support in Firecrawl. Our scraper can now seamlessly handle nested iframes, dynamically loaded content, and cross-origin frames - solving one of web scraping's most challenging technical hurdles.
+
+### Technical Innovation
+
+Firecrawl now implements:
+- Recursive iframe traversal and content extraction
+- Cross-origin iframe handling with proper security context management
+- Smart automatic wait for iframe content to load
+- Support for dynamically injected iframes
+- Proper handling of sandboxed iframes
+
+### Why it matters
+
+Many modern websites use iframes for:
+- Embedded content and widgets
+- Payment forms and secure inputs
+- Third-party integrations
+- Advertisement frames
+- Social media embeds
+
+Previously, these elements were often black boxes in scraping results. Now, you get complete access to iframe content just like any other part of the page.
+
+### Usage
+
+No additional configuration needed! The iframe scraping happens automatically when you use any of our scraping or crawling endpoints. Whether you're using `/scrape` for single pages or `/crawl` for entire websites, iframe content will be seamlessly integrated into your results.
 
 ## Day 3 - Credit Packs
 
