@@ -13,6 +13,7 @@ const scrapeResult = await app.scrapeUrl('firecrawl.dev', { formats: ['markdown'
     { type: "press", key: "ENTER" },
     { type: "wait", milliseconds: 3000 },
     { type: "click", selector: "h3" },
+    { type: "scrape" },
     {"type": "screenshot"}
 ] }) as ScrapeResponse;
 

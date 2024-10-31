@@ -121,9 +121,14 @@
                               "type": "integer",
                               "minimum": 1,
                               "description": "Number of milliseconds to wait"
+                            },
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector to find the element by",
+                              "example": "#my-element"
                             }
                           },
-                          "required": ["type", "milliseconds"]
+                          "required": ["type"]
                         },
                         {
                           "type": "object",
@@ -220,6 +225,18 @@
                             }
                           },
                           "required": ["type", "direction"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Scrape",
+                          "properties": {
+                            "type": {
+                              "type": "string", 
+                              "enum": ["scrape"],
+                              "description": "Scrape the current page content, returns the url and the html."
+                            }
+                          },
+                          "required": ["type"]
                         }   
                       ]
                     }
@@ -403,7 +420,7 @@
                     "items": {
                       "oneOf": [
                         {
-                          "type": "object",
+                          "type": "object", 
                           "title": "Wait",
                           "properties": {
                             "type": {
@@ -415,9 +432,14 @@
                               "type": "integer",
                               "minimum": 1,
                               "description": "Number of milliseconds to wait"
+                            },
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector to find the element by",
+                              "example": "#my-element"
                             }
                           },
-                          "required": ["type", "milliseconds"]
+                          "required": ["type"]
                         },
                         {
                           "type": "object",
@@ -514,7 +536,19 @@
                             }
                           },
                           "required": ["type", "direction"]
-                        }   
+                        },
+                        {
+                          "type": "object",
+                          "title": "Scrape",
+                          "properties": {
+                            "type": {
+                              "type": "string", 
+                              "enum": ["scrape"],
+                              "description": "Scrape the current page content, returns the url and the html."
+                            }
+                          },
+                          "required": ["type"]
+                        }
                       ]
                     }
                   }
