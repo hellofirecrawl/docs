@@ -1022,8 +1022,8 @@
                         "default": true
                       },
                       "mobile": {
-                    "type": "boolean",
-                    "description": "Set to true if you want to emulate a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                        "type": "boolean",
+                        "description": "Set to true if you want to emulate a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
                         "default": false
                       },
                       "waitFor": {
