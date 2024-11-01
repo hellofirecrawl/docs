@@ -77,7 +77,7 @@
                   },
                   "mobile": {
                     "type": "boolean",
-                    "description": "Set to true if you want to emulate a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                    "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
                     "default": false
                   },
                   "skipTlsVerification": {
@@ -1023,7 +1023,7 @@
                       },
                       "mobile": {
                         "type": "boolean",
-                        "description": "Set to true if you want to emulate a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                        "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
                         "default": false
                       },
                       "waitFor": {
