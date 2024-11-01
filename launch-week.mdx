@@ -15,6 +15,51 @@ import ScrapeLocationPython from "/snippets/v1/scrape/location/python.mdx";
 import ScrapeLocationNode from "/snippets/v1/scrape/location/js.mdx";
 import ScrapeLocationCURL from "/snippets/v1/scrape/location/curl.mdx";
 
+import ScrapeActionsPython from "/snippets/v1/scrape/actions/python.mdx";
+import ScrapeActionsNode from "/snippets/v1/scrape/actions/js.mdx";
+import ScrapeActionsCURL from "/snippets/v1/scrape/actions/curl.mdx";
+import ScrapeActionsOutput from "/snippets/v1/scrape/actions/output.mdx";
+
+
+## Day 5 - Actions (2 new actions)
+
+Firecrawl allows you to perform various actions on a web page before scraping its content. This is particularly useful for interacting with dynamic content, navigating through pages, or accessing content that requires user interaction.
+
+We're excited to introduce two powerful new actions:
+
+1. **Scrape**: Capture the current page content at any point during your interaction sequence, returning both URL and HTML.
+2. **Wait for Selector**: Wait for a specific element to appear on the page before proceeding, ensuring more reliable automation.
+
+```json
+actions = [
+    {"type": "scrape"},
+    {"type": "wait", "selector": "#my-element"},
+]
+```
+
+Here is an example of how to use actions to navigate to google.com, search for Firecrawl, click on the first result, scrape the current page content, and take a screenshot.
+
+For more precise control, you can now use `{type: "wait", selector: "#my-element"}` to wait for a specific element to appear on the page.
+
+### Example
+<CodeGroup>
+
+<ScrapeActionsPython />
+<ScrapeActionsNode /> 
+<ScrapeActionsCURL />
+
+</CodeGroup>
+### Output
+
+<CodeGroup>
+
+<ScrapeActionsOutput />
+
+
+</CodeGroup>
+For more details about the actions parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+
+
 ## Day 4 - Advanced iframe scraping
 
 We're excited to announce comprehensive iframe scraping support in Firecrawl. Our scraper can now seamlessly handle nested iframes, dynamically loaded content, and cross-origin frames - solving one of web scraping's most challenging technical hurdles.
