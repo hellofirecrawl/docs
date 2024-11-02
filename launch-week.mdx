@@ -15,10 +15,41 @@ import ScrapeLocationPython from "/snippets/v1/scrape/location/python.mdx";
 import ScrapeLocationNode from "/snippets/v1/scrape/location/js.mdx";
 import ScrapeLocationCURL from "/snippets/v1/scrape/location/curl.mdx";
 
+import ScrapeMobilePython from "/snippets/v1/scrape/mobile/python.mdx";
+import ScrapeMobileNode from "/snippets/v1/scrape/mobile/js.mdx";
+import ScrapeMobileCURL from "/snippets/v1/scrape/mobile/curl.mdx";
+
 import ScrapeActionsPython from "/snippets/v1/scrape/actions/python.mdx";
 import ScrapeActionsNode from "/snippets/v1/scrape/actions/js.mdx";
 import ScrapeActionsCURL from "/snippets/v1/scrape/actions/curl.mdx";
 import ScrapeActionsOutput from "/snippets/v1/scrape/actions/output.mdx";
+
+To make Day 6 more detailed and similar in style to Day 2, I'll expand on its technical capabilities, usage examples, and benefits, making it more instructive for users. Here’s an updated Day 6 section:
+
+---
+
+## Day 6 - Mobile Scraping (+ Mobile Screenshots)
+
+Firecrawl now introduces **mobile device emulation** for both scraping and screenshots, empowering you to interact with sites as if from a mobile device. This feature is essential for testing mobile-specific content, understanding responsive design, and gaining insights from mobile-specific elements.
+
+### Why Mobile Scraping?
+
+Mobile-first experiences are increasingly common, and this feature enables you to:
+- Take high-fidelity mobile screenshots for a more accurate representation of how a site appears on mobile.
+- Test and verify mobile layouts and UI elements, ensuring the accuracy of your scraping results for responsive websites.
+- Scrape mobile-only content, gaining access to information or layouts that vary from desktop versions.
+
+### Usage
+
+To activate mobile scraping, simply add `"mobile": true` in your request, which will enable Firecrawl’s mobile emulation mode.
+
+<CodeGroup>
+<ScrapeMobilePython />
+<ScrapeMobileNode />
+<ScrapeMobileCURL />
+</CodeGroup>
+
+For further details, including additional configuration options, visit the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
 
 
 ## Day 5 - Actions (2 new actions)

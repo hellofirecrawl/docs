@@ -38,7 +38,6 @@
                     "format": "uri",
                     "description": "The URL to scrape"
                   },
-                  
                   "formats": {
                     "type": "array",
                     "items": {
@@ -75,6 +74,11 @@
                     "type": "integer",
                     "description": "Specify a delay in milliseconds before fetching the content, allowing the page sufficient time to load.",
                     "default": 0
+                  },
+                  "mobile": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                    "default": false
                   },
                   "skipTlsVerification": {
                     "type": "boolean",
@@ -1016,6 +1020,11 @@
                         "type": "boolean",
                         "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
                         "default": true
+                      },
+                      "mobile": {
+                        "type": "boolean",
+                        "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                        "default": false
                       },
                       "waitFor": {
                         "type": "integer",
