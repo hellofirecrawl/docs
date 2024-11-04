@@ -17,6 +17,7 @@ scrape_result = app.scrape_url('firecrawl.dev',
             {"type": "wait", "milliseconds": 3000},
             {"type": "click", "selector": "h3"},
             {"type": "wait", "milliseconds": 3000},
+            {"type": "scrape"},
             {"type": "screenshot"}
         ]
     }

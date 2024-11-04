@@ -1,0 +1,202 @@
+---
+title: Launch Week II (New)
+description: "Check out what's new coming to Firecrawl in Launch Week II (Oct 28th - Nov 3rd)"
+og:title: "Launch Week II | Firecrawl"
+og:description: "Check out what's new coming to Firecrawl in Launch Week II (Oct 28th - Nov 3rd)"
+---
+
+import BatchScrapePython from "/snippets/v1/batch-scrape/base/python.mdx";
+import BatchScrapeNode from "/snippets/v1/batch-scrape/base/js.mdx";
+import BatchScrapeCURL from "/snippets/v1/batch-scrape/base/curl.mdx";
+import BatchScrapeOutput from "/snippets/v1/batch-scrape/base/output.mdx";
+import BatchScrapeAsyncOutput from "/snippets/v1/batch-scrape/base/async-output.mdx";
+
+import ScrapeLocationPython from "/snippets/v1/scrape/location/python.mdx";
+import ScrapeLocationNode from "/snippets/v1/scrape/location/js.mdx";
+import ScrapeLocationCURL from "/snippets/v1/scrape/location/curl.mdx";
+
+import ScrapeMobilePython from "/snippets/v1/scrape/mobile/python.mdx";
+import ScrapeMobileNode from "/snippets/v1/scrape/mobile/js.mdx";
+import ScrapeMobileCURL from "/snippets/v1/scrape/mobile/curl.mdx";
+
+import ScrapeActionsPython from "/snippets/v1/scrape/actions/python.mdx";
+import ScrapeActionsNode from "/snippets/v1/scrape/actions/js.mdx";
+import ScrapeActionsCURL from "/snippets/v1/scrape/actions/curl.mdx";
+import ScrapeActionsOutput from "/snippets/v1/scrape/actions/output.mdx";
+
+
+## Day 7 - Faster Markdown Parsing
+
+We've rebuilt our Markdown parser from the ground up with a focus on speed and performance. This enhancement ensures that your web scraping tasks are more efficient and deliver higher-quality results.
+
+### What's New?
+
+- **Speed Improvements**: Experience parsing speeds up to 4 times faster than before, allowing for quicker data processing and reduced waiting times.
+- **Enhanced Reliability**: Our new parser handles a wider range of HTML content more gracefully, reducing errors and improving consistency.
+- **Cleaner Markdown Output**: Get cleaner and more readable Markdown, making your data easier to work with and integrate into your workflows.
+
+## Day 6 - Mobile Scraping (+ Mobile Screenshots)
+
+Firecrawl now introduces **mobile device emulation** for both scraping and screenshots, empowering you to interact with sites as if from a mobile device. This feature is essential for testing mobile-specific content, understanding responsive design, and gaining insights from mobile-specific elements.
+
+### Why Mobile Scraping?
+
+Mobile-first experiences are increasingly common, and this feature enables you to:
+- Take high-fidelity mobile screenshots for a more accurate representation of how a site appears on mobile.
+- Test and verify mobile layouts and UI elements, ensuring the accuracy of your scraping results for responsive websites.
+- Scrape mobile-only content, gaining access to information or layouts that vary from desktop versions.
+
+### Usage
+
+To activate mobile scraping, simply add `"mobile": true` in your request, which will enable Firecrawl’s mobile emulation mode.
+
+<CodeGroup>
+<ScrapeMobilePython />
+<ScrapeMobileNode />
+<ScrapeMobileCURL />
+</CodeGroup>
+
+For further details, including additional configuration options, visit the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+
+
+## Day 5 - Actions (2 new actions)
+
+Firecrawl allows you to perform various actions on a web page before scraping its content. This is particularly useful for interacting with dynamic content, navigating through pages, or accessing content that requires user interaction.
+
+We're excited to introduce two powerful new actions:
+
+1. **Scrape**: Capture the current page content at any point during your interaction sequence, returning both URL and HTML.
+2. **Wait for Selector**: Wait for a specific element to appear on the page before proceeding, ensuring more reliable automation.
+
+```json
+actions = [
+    {"type": "scrape"},
+    {"type": "wait", "selector": "#my-element"},
+]
+```
+
+Here is an example of how to use actions to navigate to google.com, search for Firecrawl, click on the first result, scrape the current page content, and take a screenshot.
+
+For more precise control, you can now use `{type: "wait", selector: "#my-element"}` to wait for a specific element to appear on the page.
+
+### Example
+<CodeGroup>
+
+<ScrapeActionsPython />
+<ScrapeActionsNode /> 
+<ScrapeActionsCURL />
+
+</CodeGroup>
+### Output
+
+<CodeGroup>
+
+<ScrapeActionsOutput />
+
+
+</CodeGroup>
+For more details about the actions parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+
+
+## Day 4 - Advanced iframe scraping
+
+We're excited to announce comprehensive iframe scraping support in Firecrawl. Our scraper can now seamlessly handle nested iframes, dynamically loaded content, and cross-origin frames - solving one of web scraping's most challenging technical hurdles.
+
+### Technical Innovation
+
+Firecrawl now implements:
+- Recursive iframe traversal and content extraction
+- Cross-origin iframe handling with proper security context management
+- Smart automatic wait for iframe content to load
+- Support for dynamically injected iframes
+- Proper handling of sandboxed iframes
+
+### Why it matters
+
+Many modern websites use iframes for:
+- Embedded content and widgets
+- Payment forms and secure inputs
+- Third-party integrations
+- Advertisement frames
+- Social media embeds
+
+Previously, these elements were often black boxes in scraping results. Now, you get complete access to iframe content just like any other part of the page.
+
+### Usage
+
+No additional configuration needed! The iframe scraping happens automatically when you use any of our scraping or crawling endpoints. Whether you're using `/scrape` for single pages or `/crawl` for entire websites, iframe content will be seamlessly integrated into your results.
+
+## Day 3 - Credit Packs
+
+Credit Packs allow you to you can easily top up your plan if your running low.
+Additionally, we now offer Auto Recharge, which automatically recharges your account when you're approaching your limit.
+To enable visit the pricing page at [https://www.firecrawl.dev/pricing](https://www.firecrawl.dev/pricing)
+
+### Credit Packs 
+Flexible monthly credit boosts for your projects.
+- **$9/mo for 1000 credits**
+- Add to any existing plan
+- Choose the amount you need
+
+### Auto Recharge Credits
+Automatically top up your account when credits run low.
+- **$11 per 1000 credits**
+- Enable auto recharge with any subscription plan
+
+
+
+
+## Day 2 - Geolocation
+
+Introducing location and language settings for scraping requests. Specify country and preferred languages to get relevant content based on your target location and language preferences.
+
+### How it works
+
+When you specify the location settings, Firecrawl will use an appropriate proxy if available and emulate the corresponding language and timezone settings. By default, the location is set to 'US' if not specified.
+
+### Usage
+
+To use the location and language settings, include the `location` object in your request body with the following properties:
+
+- `country`: ISO 3166-1 alpha-2 country code (e.g., 'US', 'AU', 'DE', 'JP'). Defaults to 'US'.
+- `languages`: An array of preferred languages and locales for the request in order of priority. Defaults to the language of the specified location.
+
+<CodeGroup>
+<ScrapeLocationPython />
+<ScrapeLocationNode />
+<ScrapeLocationCURL />
+</CodeGroup>
+
+## Day 1 - Batch Scrape
+
+You can now scrape multiple URLs at the same time with our new batch endpoint. Ideal for when you don't need the scraping results immediately.
+
+### How it works
+
+It is very similar to how the `/crawl` endpoint works. It submits a batch scrape job and returns a job ID to check the status of the batch scrape. 
+
+The sdk provides 2 methods, synchronous and asynchronous. The synchronous method will return the results of the batch scrape job, while the asynchronous method will return a job ID that you can use to check the status of the batch scrape.
+
+### Usage
+
+<CodeGroup>
+
+<BatchScrapePython />
+<BatchScrapeNode />
+<BatchScrapeCURL />
+
+</CodeGroup>
+
+### Response
+
+If you’re using the sync methods from the SDKs, it will return the results of the batch scrape job. Otherwise, it will return a job ID that you can use to check the status of the batch scrape.
+
+#### Synchronous
+
+<BatchScrapeOutput />
+
+#### Asynchronous
+
+You can then use the job ID to check the status of the batch scrape by calling the `/batch/scrape/{id}` endpoint. This endpoint is meant to be used while the job is still running or right after it has completed **as batch scrape jobs expire after 24 hours**.
+
+<BatchScrapeAsyncOutput />
