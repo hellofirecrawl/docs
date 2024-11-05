@@ -13,7 +13,7 @@ If you have any questions or would like help getting on board, join our Discord 
 
 ## Running the project locally
 
-First, start by installing dependencies
+First, start by installing dependencies:
 1. node.js [instructions](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs)
 2. pnpm [instructions](https://pnpm.io/installation)
 3. redis [instructions](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/) 
@@ -104,12 +104,13 @@ LOGGING_LEVEL=INFO
 First, install the dependencies using pnpm.
 
 ```bash
-pnpm install
+# cd apps/api # to make sure you're in the right folder
+pnpm install # make sure you have pnpm version 9+!
 ```
 
 ### Running the project
 
-You're going to need to open 3 terminals for running the services (optional: 4 terminals for running the services and testing).
+You're going to need to open 3 terminals for running the services. Here is [a video guide accurate as of Oct 2024](https://youtu.be/LHqg5QNI4UY) (optional: 4 terminals for running the services and testing).
 
 ### Terminal 1 - setting up redis
 
@@ -124,6 +125,7 @@ redis-server
 Now, navigate to the apps/api/ directory and run:
 ```bash
 pnpm run workers
+# if you are going to use the [llm-extract feature](https://github.com/mendableai/firecrawl/pull/586/), you should also export OPENAI_API_KEY=sk-______
 ```
 
 This will start the workers who are responsible for processing crawl jobs.
