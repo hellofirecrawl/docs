@@ -176,20 +176,15 @@
                             "type": {
                               "type": "string",
                               "enum": ["write"],
-                              "description": "Write text into an input field"
+                              "description": "Write text into an input field, text area, or contenteditable element. Note: You must first focus the element using a 'click' action before writing. The text will be typed character by character to simulate keyboard input."
                             },
                             "text": {
                               "type": "string",
                               "description": "Text to type",
                               "example": "Hello, world!"
-                            },
-                            "selector": {
-                              "type": "string",
-                              "description": "Query selector for the input field",
-                              "example": "#search-input"
                             }
                           },
-                          "required": ["type", "text", "selector"]
+                          "required": ["type", "text"]
                         },
                         {
                           "type": "object",
