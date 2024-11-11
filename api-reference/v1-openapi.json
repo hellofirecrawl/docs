@@ -216,20 +216,21 @@
                             "type": {
                               "type": "string",
                               "enum": ["scroll"],
-                              "description": "Scroll the page"
+                              "description": "Scroll the page or a specific element"
                             },
                             "direction": {
                               "type": "string",
                               "enum": ["up", "down"],
-                              "description": "Direction to scroll"
+                              "description": "Direction to scroll",
+                              "default": "down"
                             },
-                            "amount": {
-                              "type": "integer",
-                              "description": "Amount to scroll in pixels",
-                              "minimum": 1
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector for the element to scroll",
+                              "example": "#my-element"
                             }
                           },
-                          "required": ["type", "direction"]
+                          "required": ["type"]
                         },
                         {
                           "type": "object",
@@ -527,20 +528,21 @@
                             "type": {
                               "type": "string",
                               "enum": ["scroll"],
-                              "description": "Scroll the page"
+                              "description": "Scroll the page or a specific element"
                             },
                             "direction": {
                               "type": "string",
                               "enum": ["up", "down"],
-                              "description": "Direction to scroll"
+                              "description": "Direction to scroll",
+                              "default": "down"
                             },
-                            "amount": {
-                              "type": "integer",
-                              "description": "Amount to scroll in pixels",
-                              "minimum": 1
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector for the element to scroll",
+                              "example": "#my-element"
                             }
                           },
-                          "required": ["type", "direction"]
+                          "required": ["type"]
                         },
                         {
                           "type": "object",
