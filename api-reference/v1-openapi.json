@@ -266,6 +266,10 @@
                         }
                       }
                     }
+                  },
+                  "removeBase64Images": {
+                    "type": "boolean",
+                    "description": "Removes all base 64 images from the output, which may be overwhelmingly long. The image's alt text remains in the output, but the URL is replaced with a placeholder."
                   }
                 },
                 "required": ["url"]
@@ -396,6 +400,16 @@
                     "type": "integer",
                     "description": "Specify a delay in milliseconds before fetching the content, allowing the page sufficient time to load.",
                     "default": 0
+                  },
+                  "mobile": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                    "default": false
+                  },
+                  "skipTlsVerification": {
+                    "type": "boolean",
+                    "description": "Skip TLS certificate verification when making requests",
+                    "default": false
                   },
                   "timeout": {
                     "type": "integer",
@@ -558,6 +572,30 @@
                         }
                       ]
                     }
+                  },
+                  "location": {
+                    "type": "object",
+                    "description": "Location settings for the request. When specified, this will use an appropriate proxy if available and emulate the corresponding language and timezone settings. Defaults to 'US' if not specified.",
+                    "properties": {
+                      "country": {
+                        "type": "string",
+                        "description": "ISO 3166-1 alpha-2 country code (e.g., 'US', 'AU', 'DE', 'JP')",
+                        "pattern": "^[A-Z]{2}$",
+                        "default": "US"
+                      },
+                      "languages": {
+                        "type": "array",
+                        "description": "Preferred languages and locales for the request in order of priority. Defaults to the language of the specified location. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language",
+                        "items": {
+                          "type": "string",
+                          "example": "en-US"
+                        }
+                      }
+                    }
+                  },
+                  "removeBase64Images": {
+                    "type": "boolean",
+                    "description": "Removes all base 64 images from the output, which may be overwhelmingly long. The image's alt text remains in the output, but the URL is replaced with a placeholder."
                   }
                 },
                 "required": ["url"]
@@ -985,8 +1023,30 @@
                     "default": false
                   },
                   "webhook": {
-                    "type": "string",
-                    "description": "The URL to send the webhook to. This will trigger for crawl started (crawl.started) ,every page crawled (crawl.page) and when the crawl is completed (crawl.completed or crawl.failed). The response will be the same as the `/scrape` endpoint."
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "description": "The URL to send the webhook to. This will trigger for crawl started (crawl.started) ,every page crawled (crawl.page) and when the crawl is completed (crawl.completed or crawl.failed). The response will be the same as the `/scrape` endpoint."
+                      },
+                      {
+                        "type": "object",
+                        "description": "A complex webhook specification object.",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "The URL to send the webhook to. This will trigger for crawl started (crawl.started), every page crawled (crawl.page) and when the crawl is completed (crawl.completed or crawl.failed). The response will be the same as the `/scrape` endpoint."
+                          },
+                          "headers": {
+                            "type": "object",
+                            "description": "Headers to send to the webhook URL.",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": ["url"]
+                      }
+                    ]
                   },
                   "scrapeOptions": {
                     "type": "object",
