@@ -90,6 +90,11 @@
                     "description": "Timeout in milliseconds for the request",
                     "default": 30000
                   },
+                  "removeBase64Images": {
+                    "type": "boolean",
+                    "description": "Remove base64 encoded images from the output",
+                    "default": true
+                  },
                   "extract": {
                     "type": "object",
                     "description": "Extract object",
@@ -1076,6 +1081,11 @@
                       "onlyMainContent": {
                         "type": "boolean",
                         "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                        "default": true
+                      },
+                      "removeBase64Images": {
+                        "type": "boolean",
+                        "description": "Remove base64 encoded images from the output",
                         "default": true
                       },
                       "mobile": {
