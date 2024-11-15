@@ -1230,7 +1230,7 @@
                       "description": "Include subdomains of the website",
                       "default": false
                     },
-                    "onlySitemap": {
+                    "sitemapOnly": {
                       "type": "boolean",
                       "description": "Only return links found in the website sitemap",
                       "default": false
