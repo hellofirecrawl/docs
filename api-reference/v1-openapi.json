@@ -1225,14 +1225,14 @@
                       "description": "Ignore the website sitemap when crawling",
                       "default": true
                     },
-                    "includeSubdomains": {
-                      "type": "boolean",
-                      "description": "Include subdomains of the website",
-                      "default": false
-                    },
                     "sitemapOnly": {
                       "type": "boolean",
                       "description": "Only return links found in the website sitemap",
+                      "default": false
+                    },
+                    "includeSubdomains": {
+                      "type": "boolean",
+                      "description": "Include subdomains of the website",
                       "default": false
                     },
                     "limit": {
