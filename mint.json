@@ -122,7 +122,7 @@
     },
     {
       "group": "Beta Features",
-      "pages": ["features/extract"],
+      "pages": ["features/extract", "features/extract-old"],
       "version": "v1"
     },
     {
@@ -187,7 +187,8 @@
         "api-reference/endpoint/crawl-delete",
         "api-reference/endpoint/map",
         "api-reference/endpoint/batch-scrape",
-        "api-reference/endpoint/batch-scrape-get"
+        "api-reference/endpoint/batch-scrape-get",
+        "api-reference/endpoint/extract"
       ],
       "version": "v1"
     },

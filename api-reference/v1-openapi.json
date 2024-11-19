@@ -1303,7 +1303,103 @@
             }
           }
         }
+      },
+      "/extract": {
+      "post": {
+        "summary": "Extract structured data from pages using LLMs",
+        "operationId": "extractData",
+        "tags": ["Extraction"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "urls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "The URLs to extract data from. URLs should be in glob format."
+                    }
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Prompt to guide the extraction process"
+                  },
+                  "schema": {
+                    "type": "object",
+                    "description": "Schema to define the structure of the extracted data",
+                   "properties": {
+                      "property1": {
+                        "type": "string",
+                        "description": "Description of property1"
+                      },
+                      "property2": {
+                        "type": "integer",
+                        "description": "Description of property2"
+                      }
+                    },
+                    "required": ["property1", "property2"]
+                  }
+                },
+                "required": ["urls", "prompt"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful extraction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtractResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid input data."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
+    }
   },
   "components": {
     "securitySchemes": {
@@ -1640,6 +1736,25 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "ExtractResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "<property1>": {
+                "type": "string"
+              },
+              "<property2>": {
+                "type": "number"
+              }
             }
           }
         }

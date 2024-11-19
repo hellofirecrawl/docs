@@ -1,41 +1,36 @@
 ---
-title: 'LLM Extract'
-description: 'Extract structured data from pages via LLMs'
-icon: 'file-export'
+title: 'Extract'
+description: 'Extract structured data from pages using LLMs'
+icon: 'wand-magic-sparkles'
 og:title: "Extract | Firecrawl"
-og:description: "Extract structured data from pages via LLMs"
+og:description: "Extract structured data from pages using LLMs"
 ---
 
-import ExtractCURL from "/snippets/v1/llm-extract/base/curl.mdx";
-import ExtractPython from "/snippets/v1/llm-extract/base/python.mdx";
-import ExtractNode from "/snippets/v1/llm-extract/base/js.mdx";
-import ExtractOutput from "/snippets/v1/llm-extract/base/output.mdx";
-import ExtractNoSchemaCURL from "/snippets/v1/llm-extract/no-schema/curl.mdx";
-import ExtractNoSchemaOutput from "/snippets/v1/llm-extract/no-schema/output.mdx";
+import ExtractCURL from "/snippets/v1/extract/base/curl.mdx";
+import ExtractPython from "/snippets/v1/extract/base/python.mdx";
+import ExtractNode from "/snippets/v1/extract/base/js.mdx";
+import ExtractOutput from "/snippets/v1/extract/base/output.mdx";
+import ExtractNoSchemaCURL from "/snippets/v1/extract/no-schema/curl.mdx";
+import ExtractNoSchemaOutput from "/snippets/v1/extract/no-schema/output.mdx";
 
+## Introducing /extract
 
-## Scrape and extract structured data with Firecrawl
+Efficiently extract structured data from a single or multiple URLs using Large Language Models (LLMs). This endpoint is ideal for:
+- Automating data extraction from web pages
+- Ensuring data consistency with optional schema definitions
+- Reducing manual data handling and enhancing processing efficiency
 
-Firecrawl leverages Large Language Models (LLMs) to efficiently extract structured data from web pages. Here's how:
+## Considerations
 
-1. **Schema Definition:**
-   Define the URL to scrape and the desired data schema using JSON Schema (following OpenAI tool schema). This schema specifies the data structure you expect to extract from the page.
+The `/extract` endpoint streamlines data extraction, offering flexible schema definitions. Optimal results may require prompt adjustments. Your feedback is encouraged to enhance this service.
 
-2. **Scrape Endpoint:**
-   Pass the URL and the schema to the scrape endpoint. Documentation for this endpoint can be found here:
-   [Scrape Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/scrape)
+## Extracting Data
 
-3. **Structured Data Retrieval:**
-   Receive the scraped data in the structured format defined by your schema. You can then use this data as needed in your application or for further processing.
+### /extract endpoint
 
-This method streamlines data extraction, reducing manual handling and enhancing efficiency.
+Used to extract structured data from multiple URLs.
 
-## Extract structured data
-
-### /scrape (with extract) endpoint
-
-Used to extract structured data from scraped pages.
-
+### Usage
 <CodeGroup>
 
 <ExtractPython />
@@ -44,13 +39,17 @@ Used to extract structured data from scraped pages.
 
 </CodeGroup>
 
-Output:
+For more details about the parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/extract).
+
+### Response
+
+Receive the scraped data in the structured format defined by your schema. You can then use this data as needed in your application or for further processing.
 
 <ExtractOutput />
 
-### Extracting without schema (New)
+### Extracting without schema
 
-You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
+You can now extract without a schema by just passing a `prompt` to the endpoint. The LLM chooses the structure of the data.
 
 <CodeGroup>
 
@@ -58,14 +57,6 @@ You can now extract without a schema by just passing a `prompt` to the endpoint.
 
 </CodeGroup>
 
-Output:
+### Response
 
 <ExtractNoSchemaOutput />
-
-### Extract object
-
-The `extract` object accepts the following parameters:
-
-- `schema`: The schema to use for the extraction.
-- `systemPrompt`: The system prompt to use for the extraction.
-- `prompt`: The prompt to use for the extraction without a schema.
