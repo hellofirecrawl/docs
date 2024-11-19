@@ -14,20 +14,24 @@ import ExtractNoSchemaOutput from "/snippets/v1/extract/no-schema/output.mdx";
 
 ## Introducing /extract
 
-Extract structured data from a single or multiple URLs using Large Language Models (LLMs). This endpoint is ideal for:
-- Extracting structured data from websites
-- Useful for data enrichment applications that need to structured data from websites
-- Developing AI applications that need clean data from multiple websites
+Extract structured data from a single or multiple URLs using Large Language Models (LLMs). This new feature allows you to:
+- Extract structured data from websites
+- Connect or build data enrichment applications that need to structured data from websites
+- Develop AI applications that need clean data from multiple websites
 
 ## Considerations
 
-The `/extract` endpoint streamlines data extraction, offering flexible schema definitions. Optimal results may require prompt adjustments. Your feedback is encouraged to enhance this service.
+The `/extract` endpoint provides flexible data extraction with customizable schemas. Results can be improved through prompt tuning. We welcome your feedback.
 
 ## Extracting Data
 
 ### /extract endpoint
 
-Used to extract structured data from multiple URLs. When specifying URLs, you can append `/*` to extract information from the entire website rather than just a single page. For example, `https://firecrawl.dev/*` will attempt to extract data from all pages on the firecrawl.dev domain. The `/*` is still in beta so please let us know if you have any issues by emailing help@firecrawl.dev.
+Used to extract structured data from multiple URLs. 
+
+When specifying URLs, you can append `/*` to extract information from the entire website rather than just a single page. 
+
+For example, `https://firecrawl.dev/*` will attempt to extract data from all pages on the firecrawl.dev domain. The `/*` is still in beta so please let us know if you have any issues by emailing help@firecrawl.dev.
 
 ### Usage
 <CodeGroup>
