@@ -117,12 +117,24 @@
     },
     {
       "group": "Features",
-      "pages": ["features/scrape", "features/crawl", "features/map"],
-      "version": "v1"
-    },
-    {
-      "group": "Beta Features",
-      "pages": ["features/extract", "features/extract-old"],
+      "pages": [
+        {
+          "group": "Scrape",
+          "pages": [
+            "features/scrape",
+            "features/batch-scrape"
+          ]
+        },
+        "features/crawl",
+        "features/map",
+        {
+          "group": "Extract",
+          "pages": [
+            "features/extract",
+            "features/extract-old"
+          ]
+        }
+      ],
       "version": "v1"
     },
     {
@@ -135,7 +147,6 @@
       ],
       "version": "v0"
     },
-    
     {
       "group": "Integrations",
       "pages": [
@@ -148,8 +159,6 @@
         "integrations/camelai"
       ]
     },
-    
- 
     {
       "group": "Contributing",
       "pages": ["contributing/open-source-or-cloud", "contributing/guide", "contributing/self-host"]
