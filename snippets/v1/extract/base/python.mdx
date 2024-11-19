@@ -11,7 +11,7 @@ class ExtractSchema(BaseModel):
     is_open_source: bool
     is_in_yc: bool
 
-data = app.extract_urls([
+data = app.extract([
   'https://docs.firecrawl.dev/', 
   'https://firecrawl.dev/', 
   'https://www.ycombinator.com/companies/*'

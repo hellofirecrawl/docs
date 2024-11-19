@@ -14,7 +14,7 @@ const schema = z.object({
   is_in_yc: z.boolean()
 });
 
-const scrapeResult = await app.extractUrls([
+const scrapeResult = await app.extract([
   "https://docs.firecrawl.dev/", 
   "https://firecrawl.dev/", 
   "https://www.ycombinator.com/companies/*"
