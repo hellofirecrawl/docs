@@ -238,7 +238,24 @@
                             }
                           },
                           "required": ["type"]
-                        }   
+                        },
+                        {
+                          "type": "object",
+                          "title": "Execute JavaScript",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["executeJavascript"],
+                              "description": "Execute JavaScript code on the page"
+                            },
+                            "script": {
+                              "type": "string",
+                              "description": "JavaScript code to execute",
+                              "example": "document.querySelector('.button').click();"
+                            }
+                          },
+                          "required": ["type", "script"]
+                        }
                       ]
                     }
                   },
@@ -590,6 +607,23 @@
                             }
                           },
                           "required": ["type"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Execute JavaScript",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["executeJavascript"],
+                              "description": "Execute JavaScript code on the page"
+                            },
+                            "script": {
+                              "type": "string",
+                              "description": "JavaScript code to execute",
+                              "example": "document.querySelector('.button').click();"
+                            }
+                          },
+                          "required": ["type", "script"]
                         }
                       ]
                     }
