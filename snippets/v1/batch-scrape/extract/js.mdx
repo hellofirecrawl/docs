@@ -16,8 +16,10 @@ const schema = {
 // Scrape multiple websites (synchronous):
 const batchScrapeResult = await app.batchScrapeUrls(['https://docs.firecrawl.dev', 'https://docs.firecrawl.dev/sdks/overview'], { 
   formats: ['extract'],
-  prompt: "Extract the title and description from the page.",
-  schema: schema
+  extract: {
+    prompt: "Extract the title and description from the page.",
+    schema: schema
+  }
 });
 
 if (!batchScrapeResult.success) {
@@ -29,8 +31,10 @@ console.log(batchScrapeResult)
 // Or, you can use the asynchronous method:
 const batchScrapeJob = await app.asyncBulkScrapeUrls(['https://docs.firecrawl.dev', 'https://docs.firecrawl.dev/sdks/overview'], { 
   formats: ['extract'],
-  prompt: "Extract the title and description from the page.",
-  schema: schema
+  extract: {
+    prompt: "Extract the title and description from the page.",
+    schema: schema
+  }
 });
 console.log(batchScrapeJob)
 

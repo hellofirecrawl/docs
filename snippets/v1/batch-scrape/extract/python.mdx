@@ -8,14 +8,16 @@ batch_scrape_result = app.batch_scrape_urls(
     ['https://docs.firecrawl.dev', 'https://docs.firecrawl.dev/sdks/overview'], 
     {
         'formats': ['extract'],
-        'prompt': 'Extract the title and description from the page.',
-        'schema': {
-            'type': 'object',
-            'properties': {
-                'title': {'type': 'string'},
-                'description': {'type': 'string'}
-            },
-            'required': ['title', 'description']
+        'extract': {
+            'prompt': 'Extract the title and description from the page.',
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'title': {'type': 'string'},
+                    'description': {'type': 'string'}
+                },
+                'required': ['title', 'description']
+            }
         }
     }
 )
@@ -26,14 +28,16 @@ batch_scrape_job = app.async_batch_scrape_urls(
     ['https://docs.firecrawl.dev', 'https://docs.firecrawl.dev/sdks/overview'], 
     {
         'formats': ['extract'],
-        'prompt': 'Extract the title and description from the page.',
-        'schema': {
-            'type': 'object',
-            'properties': {
-                'title': {'type': 'string'},
-                'description': {'type': 'string'}
-            },
-            'required': ['title', 'description']
+        'extract': {
+            'prompt': 'Extract the title and description from the page.',
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'title': {'type': 'string'},
+                    'description': {'type': 'string'}
+                },
+                'required': ['title', 'description']
+            }
         }
     }
 )
