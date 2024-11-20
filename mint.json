@@ -191,8 +191,7 @@
         "api-reference/endpoint/crawl-delete",
         "api-reference/endpoint/map",
         "api-reference/endpoint/batch-scrape",
-        "api-reference/endpoint/batch-scrape-get",
-        "api-reference/endpoint/extract"
+        "api-reference/endpoint/batch-scrape-get"
       ],
       "version": "v1"
     },
