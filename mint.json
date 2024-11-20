@@ -120,6 +120,7 @@
       "pages": [
         {
           "group": "Scrape",
+          "icon": "markdown",
           "pages": [
             "features/scrape",
             "features/batch-scrape"
