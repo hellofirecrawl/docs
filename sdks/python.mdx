@@ -13,6 +13,7 @@ import CheckCrawlStatusPythonShort from '/snippets/v1/crawl-status/short/python.
 import CrawlAsyncPythonShort from '/snippets/v1/crawl-async/short/python.mdx'
 import CancelCrawlPythonShort from '/snippets/v1/crawl-delete/short/python.mdx'
 import MapPythonShort from '/snippets/v1/map/short/python.mdx'
+import ExtractPythonShort from '/snippets/v1/extract/short/python.mdx'
 import ScrapeAndCrawlExamplePython from '/snippets/v1/scrape-and-crawl/python.mdx'
 import CrawlWebSocketPythonBase from '/snippets/v1/crawl-websocket/base/python.mdx'
 
@@ -68,6 +69,12 @@ To cancel an asynchronous crawl job, use the `cancel_crawl` method. It takes the
 Use `map_url` to generate a list of URLs from a website. The `params` argument let you customize the mapping process, including options to exclude subdomains or to utilize the sitemap.
 
 <MapPythonShort />
+
+{/* ### Extracting Structured Data from Websites
+
+To extract structured data from websites, use the `extract` method. It takes the URLs to extract data from, a prompt, and a schema as arguments. The schema is a Pydantic model that defines the structure of the extracted data.
+
+<ExtractPythonShort /> */}
 
 ### Crawling a Website with WebSockets
 
