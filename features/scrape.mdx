@@ -155,7 +155,26 @@ It is important to almost always use the `wait` action before/after executing ot
 </CodeGroup>
 For more details about the actions parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
 
+## Location and Language
 
+Specify country and preferred languages to get relevant content based on your target location and language preferences.
+
+### How it works
+
+When you specify the location settings, Firecrawl will use an appropriate proxy if available and emulate the corresponding language and timezone settings. By default, the location is set to 'US' if not specified.
+
+### Usage
+
+To use the location and language settings, include the `location` object in your request body with the following properties:
+
+- `country`: ISO 3166-1 alpha-2 country code (e.g., 'US', 'AU', 'DE', 'JP'). Defaults to 'US'.
+- `languages`: An array of preferred languages and locales for the request in order of priority. Defaults to the language of the specified location.
+
+<CodeGroup>
+<ScrapeLocationPython />
+<ScrapeLocationNode />
+<ScrapeLocationCURL />
+</CodeGroup>
 
 ## Batch scraping multiple URLs
 
@@ -191,23 +210,3 @@ You can then use the job ID to check the status of the batch scrape by calling t
 
 <BatchScrapeAsyncOutput />
 
-## Location and Language
-
-Specify country and preferred languages to get relevant content based on your target location and language preferences.
-
-### How it works
-
-When you specify the location settings, Firecrawl will use an appropriate proxy if available and emulate the corresponding language and timezone settings. By default, the location is set to 'US' if not specified.
-
-### Usage
-
-To use the location and language settings, include the `location` object in your request body with the following properties:
-
-- `country`: ISO 3166-1 alpha-2 country code (e.g., 'US', 'AU', 'DE', 'JP'). Defaults to 'US'.
-- `languages`: An array of preferred languages and locales for the request in order of priority. Defaults to the language of the specified location.
-
-<CodeGroup>
-<ScrapeLocationPython />
-<ScrapeLocationNode />
-<ScrapeLocationCURL />
-</CodeGroup>

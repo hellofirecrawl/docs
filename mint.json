@@ -127,13 +127,7 @@
         },
         "features/crawl",
         "features/map",
-        {
-          "group": "Extract",
-          "pages": [
-            "features/extract",
-            "features/extract-old"
-          ]
-        }
+        "features/extract"
       ],
       "version": "v1"
     },

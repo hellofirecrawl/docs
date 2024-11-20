@@ -1,0 +1,65 @@
+---
+title: 'Extract'
+description: 'Extract structured data from pages using LLMs'
+og:title: "Extract | Firecrawl"
+og:description: "Extract structured data from pages using LLMs"
+---
+
+import ExtractCURL from "/snippets/v1/extract/base/curl.mdx";
+import ExtractPython from "/snippets/v1/extract/base/python.mdx";
+import ExtractNode from "/snippets/v1/extract/base/js.mdx";
+import ExtractOutput from "/snippets/v1/extract/base/output.mdx";
+import ExtractNoSchemaCURL from "/snippets/v1/extract/no-schema/curl.mdx";
+import ExtractNoSchemaOutput from "/snippets/v1/extract/no-schema/output.mdx";
+
+## Introducing /extract
+
+Extract structured data from a single or multiple URLs using Large Language Models (LLMs). This new feature allows you to:
+- Extract structured data from websites
+- Connect or build data enrichment applications that need to structured data from websites
+- Develop AI applications that need clean data from multiple websites
+
+## Considerations
+
+The `/extract` endpoint provides flexible data extraction with customizable schemas. Results can be improved through prompt tuning. We welcome your feedback.
+
+## Extracting Data
+
+### /extract endpoint
+
+Used to extract structured data from multiple URLs. 
+
+When specifying URLs, you can append `/*` to the URL to extract information from the entire website path rather than just a single page. 
+
+For example, `https://firecrawl.dev/*` will attempt to extract data from all pages on the firecrawl.dev domain. The `/*` is still in beta so please let us know if you have any issues by emailing help@firecrawl.dev.
+
+### Usage
+<CodeGroup>
+
+<ExtractPython />
+<ExtractNode />
+<ExtractCURL />
+
+</CodeGroup>
+
+For more details about the parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/extract).
+
+### Response
+
+Receive the scraped data in the structured format defined by your schema. You can then use this data as needed in your application or for further processing.
+
+<ExtractOutput />
+
+### Extracting without schema
+
+You can now extract without a schema by just passing a `prompt` to the endpoint. The LLM chooses the structure of the data.
+
+<CodeGroup>
+
+<ExtractNoSchemaCURL />
+
+</CodeGroup>
+
+### Response
+
+<ExtractNoSchemaOutput />
