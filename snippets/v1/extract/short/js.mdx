@@ -9,7 +9,7 @@ const schema = z.object({
 const scrapeResult = await app.extractUrls([
   "https://firecrawl.dev/*", 
 ], {
-  prompt: "Extract the company mission from the page.",
+  prompt: "Extract firecrawl mission from the page.",
   schema: schema
 });
 

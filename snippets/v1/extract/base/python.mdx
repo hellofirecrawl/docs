@@ -7,16 +7,13 @@ app = FirecrawlApp(api_key='your_api_key')
 
 class ExtractSchema(BaseModel):
     company_mission: str
-    supports_sso: bool
     is_open_source: bool
-    is_in_yc: bool
 
 data = app.extract_urls([
   'https://docs.firecrawl.dev/', 
-  'https://firecrawl.dev/', 
-  'https://www.ycombinator.com/companies/*'
+  'https://firecrawl.dev/'
 ], {
-    'prompt': 'Extract the company mission, whether it supports SSO, whether it is open source, and whether it is in Y Combinator from the page.',
+    'prompt': 'Extract firecrawl mission and whether it is open source from the page.',
     'schema': ExtractSchema.model_json_schema(),
 })
 print(data)
