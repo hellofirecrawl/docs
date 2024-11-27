@@ -12,7 +12,7 @@ const schema = z.object({
   is_open_source: z.boolean()
 });
 
-const scrapeResult = await app.extractUrls([
+const scrapeResult = await app.extract([
   "https://docs.firecrawl.dev/", 
   "https://firecrawl.dev/"
 ], {

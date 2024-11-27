@@ -13,7 +13,7 @@ urls = [
 prompt = 'Extract firecrawl mission from the page.'
 
 # Perform the extraction
-scrape_result = app.extract_urls(urls, {
+scrape_result = app.extract(urls, {
     'prompt': prompt,
     'schema': ExtractSchema.model_json_schema(),
 })
