@@ -1060,7 +1060,7 @@
                   "ignoreSitemap": {
                     "type": "boolean",
                     "description": "Ignore the website sitemap when crawling",
-                    "default": true
+                    "default": false
                   },
                   "limit": {
                     "type": "integer",
