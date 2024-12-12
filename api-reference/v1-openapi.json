@@ -396,6 +396,11 @@
                             "additionalProperties": {
                               "type": "string"
                             }
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "Custom metadata that will be included in all webhook payloads for this crawl",
+                            "additionalProperties": true
                           }
                         },
                         "required": ["url"]
@@ -1097,6 +1102,11 @@
                             "additionalProperties": {
                               "type": "string"
                             }
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "Custom metadata that will be included in all webhook payloads for this crawl",
+                            "additionalProperties": true
                           }
                         },
                         "required": ["url"]
