@@ -64,6 +64,11 @@ You can now extract without a schema by just passing a `prompt` to the endpoint.
 
 <ExtractNoSchemaOutput />
 
+### Improving Results with External Links
+
+If you want to improve the results of the extraction, you can pass an `allowExternalLinks` parameter to the endpoint. This will allow it to attempt to find the data from external links - outside the scope of the provided URLs.
+
+
 ### Billing
 
 While `/extract` is in beta, we are charging 5 credits per URL scraped used to form the final response. This is to prevent abuse. This will be changed in the future.
