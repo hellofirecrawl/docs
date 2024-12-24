@@ -7,14 +7,13 @@ app = FirecrawlApp(
 
 # Crawl a website
 crawl_result = app.crawl_url(
-  'https://firecrawl.dev',
+  url='https://firecrawl.dev',
   params={
     'limit': 100,
     'scrapeOptions': {
       'formats': ['markdown', 'html']
     }
-  },
-  poll_interval=30
+  }
 )
 
 print(crawl_result)
