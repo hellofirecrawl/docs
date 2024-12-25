@@ -6,7 +6,7 @@ app = FirecrawlApp(
 )
 
 # Crawl a website
-crawl_result = app.crawl_url(
+crawl_response = app.crawl_url(
   url='https://firecrawl.dev',
   params={
     'limit': 100,
@@ -16,5 +16,5 @@ crawl_result = app.crawl_url(
   }
 )
 
-print(crawl_result)
+print(crawl_response)
 ```
