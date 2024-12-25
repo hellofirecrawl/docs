@@ -6,12 +6,12 @@ app = FirecrawlApp(
 )
 
 # Scrape a website
-scrape_result = app.scrape_url(
+scrape_response = app.scrape_url(
   url='https://firecrawl.dev',
   params={
     'formats': ['markdown', 'html']
   }
 )
 
-print(scrape_result)
+print(scrape_response)
 ```
