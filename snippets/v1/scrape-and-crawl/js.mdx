@@ -1,30 +1,34 @@
 ```js Node
-import FirecrawlApp, { CrawlParams, CrawlStatusResponse } from '@mendable/firecrawl-js';
+import FirecrawlApp from '@mendable/firecrawl-js';
 
-const app = new FirecrawlApp({apiKey: "fc-YOUR_API_KEY"});
-
-// Scrape a website
-const scrapeResponse = await app.scrapeUrl('https://firecrawl.dev', {
-  formats: ['markdown', 'html'],
+const app = new FirecrawlApp({
+  apiKey: 'fc-YOUR_API_KEY'
 });
 
-if (!scrapeResponse.success) {
-  throw new Error(`Failed to scrape: ${scrapeResponse.error}`)
+async function main() {
+  // Scrape a website
+  const scrapeResponse = await app.scrapeUrl(
+    'https://firecrawl.dev',
+    {
+      formats: ['markdown', 'html'],
+    }
+  );
+
+  console.log(scrapeResponse)
+
+  // Crawl a website
+  const crawlResponse = await app.crawlUrl(
+    'https://firecrawl.dev',
+    {
+      limit: 100,
+      scrapeOptions: {
+        formats: ['markdown', 'html'],
+      },
+    }
+  );
+
+  console.log(crawlResponse)
 }
 
-console.log(scrapeResponse)
-
-// Crawl a website
-const crawlResponse = await app.crawlUrl('https://firecrawl.dev', {
-  limit: 100,
-  scrapeOptions: {
-    formats: ['markdown', 'html'],
-  }
-});
-
-if (!crawlResponse.success) {
-  throw new Error(`Failed to crawl: ${crawlResponse.error}`)
-}
-
-console.log(crawlResponse)
+main();
 ```
