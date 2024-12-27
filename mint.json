@@ -183,15 +183,34 @@
       "version": "v0"
     },
     {
-      "group": "Endpoints",
+      "group": "Scrape Endpoints",
       "pages": [
         "api-reference/endpoint/scrape",
-        "api-reference/endpoint/crawl-post",
-        "api-reference/endpoint/crawl-get",
-        "api-reference/endpoint/crawl-delete",
-        "api-reference/endpoint/map",
         "api-reference/endpoint/batch-scrape",
         "api-reference/endpoint/batch-scrape-get"
+      ],
+      "version": "v1"
+    },
+    {
+      "group": "Crawl Endpoints", 
+      "pages": [
+        "api-reference/endpoint/crawl-post",
+        "api-reference/endpoint/crawl-get",
+        "api-reference/endpoint/crawl-delete"
+      ],
+      "version": "v1"
+    },
+    {
+      "group": "Map Endpoints",
+      "pages": [
+        "api-reference/endpoint/map"
+      ],
+      "version": "v1"
+    },
+    {
+      "group": "Account Endpoints",
+      "pages": [
+        "api-reference/endpoint/credit-usage"
       ],
       "version": "v1"
     },

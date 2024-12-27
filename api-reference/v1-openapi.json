@@ -42,7 +42,15 @@
                     "type": "array",
                     "items": {
                       "type": "string",
-                      "enum": ["markdown", "html", "rawHtml", "links", "screenshot", "extract", "screenshot@fullPage"]
+                      "enum": [
+                        "markdown",
+                        "html",
+                        "rawHtml",
+                        "links",
+                        "screenshot",
+                        "extract",
+                        "screenshot@fullPage"
+                      ]
                     },
                     "description": "Formats to include in the output.",
                     "default": ["markdown"]
@@ -232,7 +240,7 @@
                           "title": "Scrape",
                           "properties": {
                             "type": {
-                              "type": "string", 
+                              "type": "string",
                               "enum": ["scrape"],
                               "description": "Scrape the current page content, returns the url and the html."
                             }
@@ -411,7 +419,15 @@
                     "type": "array",
                     "items": {
                       "type": "string",
-                      "enum": ["markdown", "html", "rawHtml", "links", "screenshot", "extract", "screenshot@fullPage"]
+                      "enum": [
+                        "markdown",
+                        "html",
+                        "rawHtml",
+                        "links",
+                        "screenshot",
+                        "extract",
+                        "screenshot@fullPage"
+                      ]
                     },
                     "description": "Formats to include in the output.",
                     "default": ["markdown"]
@@ -483,7 +499,7 @@
                     "items": {
                       "oneOf": [
                         {
-                          "type": "object", 
+                          "type": "object",
                           "title": "Wait",
                           "properties": {
                             "type": {
@@ -606,7 +622,7 @@
                           "title": "Scrape",
                           "properties": {
                             "type": {
-                              "type": "string", 
+                              "type": "string",
                               "enum": ["scrape"],
                               "description": "Scrape the current page content, returns the url and the html."
                             }
@@ -669,7 +685,7 @@
           }
         },
         "responses": {
-         "200": {
+          "200": {
             "description": "Successful response",
             "content": {
               "application/json": {
@@ -1125,7 +1141,13 @@
                         "type": "array",
                         "items": {
                           "type": "string",
-                          "enum": ["markdown", "html", "rawHtml", "links", "screenshot"]
+                          "enum": [
+                            "markdown",
+                            "html",
+                            "rawHtml",
+                            "links",
+                            "screenshot"
+                          ]
                         },
                         "description": "Formats to include in the output.",
                         "default": ["markdown"]
@@ -1240,111 +1262,110 @@
     },
     "/map": {
       "post": {
-          "summary": "Map multiple URLs based on options",
-          "operationId": "mapUrls",
-          "tags": ["Mapping"],
-          "security": [
-            {
-              "bearerAuth": []
+        "summary": "Map multiple URLs based on options",
+        "operationId": "mapUrls",
+        "tags": ["Mapping"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The base URL to start crawling from"
+                  },
+                  "search": {
+                    "type": "string",
+                    "description": "Search query to use for mapping. During the Alpha phase, the 'smart' part of the search functionality is limited to 1000 search results. However, if map finds more results, there is no limit applied."
+                  },
+                  "ignoreSitemap": {
+                    "type": "boolean",
+                    "description": "Ignore the website sitemap when crawling.",
+                    "default": true
+                  },
+                  "sitemapOnly": {
+                    "type": "boolean",
+                    "description": "Only return links found in the website sitemap",
+                    "default": false
+                  },
+                  "includeSubdomains": {
+                    "type": "boolean",
+                    "description": "Include subdomains of the website",
+                    "default": false
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of links to return",
+                    "default": 5000,
+                    "maximum": 5000
+                  }
+                },
+                "required": ["url"]
+              }
             }
-          ],
-          "requestBody": {
-            "required": true,
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MapResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "url": {
+                    "error": {
                       "type": "string",
-                      "format": "uri",
-                      "description": "The base URL to start crawling from"
-                    },
-                    "search": {
-                      "type": "string",
-                      "description": "Search query to use for mapping. During the Alpha phase, the 'smart' part of the search functionality is limited to 1000 search results. However, if map finds more results, there is no limit applied."
-                    },
-                    "ignoreSitemap": {
-                      "type": "boolean",
-                      "description": "Ignore the website sitemap when crawling.",
-                      "default": true
-                    },
-                    "sitemapOnly": {
-                      "type": "boolean",
-                      "description": "Only return links found in the website sitemap",
-                      "default": false
-                    },
-                    "includeSubdomains": {
-                      "type": "boolean",
-                      "description": "Include subdomains of the website",
-                      "default": false
-                    },
-                    "limit": {
-                      "type": "integer",
-                      "description": "Maximum number of links to return",
-                      "default": 5000,
-                      "maximum": 5000
+                      "example": "Payment required to access this resource."
                     }
-                  },
-                  "required": ["url"]
+                  }
                 }
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Successful response",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MapResponse"
-                  }
-                }
-              }
-            },
-            "402": {
-              "description": "Payment required",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "error": {
-                        "type": "string",
-                        "example": "Payment required to access this resource."
-                      }
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Request rate limit exceeded. Please wait and try again later."
                     }
                   }
                 }
               }
-            },
-            "429": {
-              "description": "Too many requests",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "error": {
-                        "type": "string",
-                        "example": "Request rate limit exceeded. Please wait and try again later."
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Server error",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "error": {
-                        "type": "string",
-                        "example": "An unexpected error occurred on the server."
-                      }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
                     }
                   }
                 }
@@ -1352,8 +1373,9 @@
             }
           }
         }
-      },
-      "/extract": {
+      }
+    },
+    "/extract": {
       "post": {
         "summary": "Extract structured data from pages using LLMs",
         "operationId": "extractData",
@@ -1385,7 +1407,7 @@
                   "schema": {
                     "type": "object",
                     "description": "Schema to define the structure of the extracted data",
-                   "properties": {
+                    "properties": {
                       "property1": {
                         "type": "string",
                         "description": "Description of property1"
@@ -1440,6 +1462,86 @@
                     "error": {
                       "type": "string",
                       "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/team/credit-usage": {
+      "get": {
+        "summary": "Get remaining credits for the authenticated team",
+        "operationId": "getCreditUsage",
+        "tags": ["Billing"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "remaining_credits": {
+                          "type": "number",
+                          "description": "Number of credits remaining for the team",
+                          "example": 1000
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Credit usage information not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Could not find credit usage information"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error while fetching credit usage"
                     }
                   }
                 }
@@ -1506,7 +1608,7 @@
                     }
                   }
                 }
-              },  
+              },
               "metadata": {
                 "type": "object",
                 "properties": {
@@ -1536,7 +1638,6 @@
                     "nullable": true,
                     "description": "The error message of the page"
                   }
-                  
                 }
               },
               "llm_extraction": {
