@@ -1583,10 +1583,6 @@
                     "type": "string",
                     "description": "Time-based search parameter"
                   },
-                  "filter": {
-                    "type": "string",
-                    "description": "Filter parameter for search results"
-                  },
                   "lang": {
                     "type": "string",
                     "description": "Language code for search results",
