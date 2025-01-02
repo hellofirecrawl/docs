@@ -208,6 +208,13 @@
       "version": "v1"
     },
     {
+      "group": "Search Endpoints",
+      "pages": [
+        "api-reference/endpoint/search"
+      ],
+      "version": "v1"
+    },
+    {
       "group": "Account Endpoints",
       "pages": [
         "api-reference/endpoint/credit-usage"

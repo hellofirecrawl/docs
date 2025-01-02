@@ -1550,6 +1550,223 @@
           }
         }
       }
+    },
+    "/search": {
+      "post": {
+        "summary": "Search and optionally scrape search results",
+        "operationId": "searchAndScrape",
+        "tags": ["Search"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The search query"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of results to return",
+                    "default": 5,
+                    "maximum": 10,
+                    "minimum": 1
+                  },
+                  "tbs": {
+                    "type": "string",
+                    "description": "Time-based search parameter"
+                  },
+                  "filter": {
+                    "type": "string",
+                    "description": "Filter parameter for search results"
+                  },
+                  "lang": {
+                    "type": "string",
+                    "description": "Language code for search results",
+                    "default": "en"
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "Country code for search results",
+                    "default": "us"
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "Location parameter for search results"
+                  },
+                  "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in milliseconds",
+                    "default": 60000
+                  },
+                  "scrapeOptions": {
+                    "type": "object",
+                    "description": "Options for scraping search results",
+                    "properties": {
+                      "formats": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "markdown",
+                            "html",
+                            "rawHtml", 
+                            "links",
+                            "screenshot",
+                            "screenshot@fullPage",
+                            "extract"
+                          ]
+                        },
+                        "description": "Formats to include in the output",
+                        "default": []
+                      }
+                    },
+                    "default": {}
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "description": "Title from search result"
+                          },
+                          "description": {
+                            "type": "string", 
+                            "description": "Description from search result"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "URL of the search result"
+                          },
+                          "markdown": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Markdown content if scraping was requested"
+                          },
+                          "html": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "HTML content if requested in formats"
+                          },
+                          "rawHtml": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Raw HTML content if requested in formats"
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Links found if requested in formats"
+                          },
+                          "screenshot": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Screenshot URL if requested in formats"
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "properties": {
+                              "title": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "sourceURL": {
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "type": "integer"
+                              },
+                              "error": {
+                                "type": "string",
+                                "nullable": true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "warning": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Warning message if any issues occurred"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Request timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Request timed out"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
