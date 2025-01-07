@@ -11,6 +11,10 @@ import ExtractNode from "/snippets/v1/extract/base/js.mdx";
 import ExtractOutput from "/snippets/v1/extract/base/output.mdx";
 import ExtractNoSchemaCURL from "/snippets/v1/extract/no-schema/curl.mdx";
 import ExtractNoSchemaOutput from "/snippets/v1/extract/no-schema/output.mdx";
+import CheckExtractJobCURL from "/snippets/v1/extract/status/curl.mdx";
+import ExtractStatusPending from "/snippets/v1/extract/status/pending.mdx";
+import ExtractStatusAsync from "/snippets/v1/extract/async-response/async.mdx";
+import ExtractStatusDone from "/snippets/v1/extract/status/completed.mdx";
 
 ## Introducing /extract (Beta)
 
@@ -44,11 +48,42 @@ For example, `https://firecrawl.dev/*` will attempt to extract data from all pag
 
 For more details about the parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/extract).
 
-### Response
-
-Receive the scraped data in the structured format defined by your schema. You can then use this data as needed in your application or for further processing.
+### Response (sdks)
 
 <ExtractOutput />
+
+### Response (async or not using sdks)
+<ExtractStatusAsync />
+
+
+### Checking extract status
+
+You can use the `/extract/ID` endpoint to check the status of an extract job.
+
+
+
+<Note>This endpoint only works for extract jobs that are in progress or extract jobs that have completed recently (within the last 24 hours). </Note>
+
+<CodeGroup>
+
+<CheckExtractJobCURL />
+
+</CodeGroup>
+
+#### Pending Response
+Extract jobs can have one of the following states:
+- `completed`: The extract job has finished successfully.
+- `pending`: The extract job is still in progress.
+- `failed`: The extract job encountered an error and did not complete.
+- `cancelled`: The extract job was cancelled by the user.
+
+<ExtractStatusPending />
+
+#### Completed Response
+
+<ExtractStatusDone />
+
+
 
 ### Extracting without schema
 
@@ -60,9 +95,6 @@ You can now extract without a schema by just passing a `prompt` to the endpoint.
 
 </CodeGroup>
 
-### Response
-
-<ExtractNoSchemaOutput />
 
 ### Improving Results with External Links
 
