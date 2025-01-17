@@ -1077,7 +1077,7 @@
       "get": {
         "summary": "Get the errors of a crawl job",
         "operationId": "getCrawlErrors",
-        "tags": ["Scraping"],
+        "tags": ["Crawling"],
         "security": [
           {
             "bearerAuth": []
