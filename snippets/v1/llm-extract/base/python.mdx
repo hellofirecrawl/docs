@@ -12,10 +12,10 @@ class ExtractSchema(BaseModel):
     is_in_yc: bool
 
 data = app.scrape_url('https://docs.firecrawl.dev/', {
-    'formats': ['extract'],
-    'extract': {
+    'formats': ['json'],
+    'jsonOptions': {
         'schema': ExtractSchema.model_json_schema(),
     }
 })
-print(data["extract"])
+print(data["json"])
 ```

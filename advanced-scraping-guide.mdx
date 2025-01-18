@@ -97,14 +97,14 @@ When using the `/scrape` endpoint, you can customize the scraping behavior with 
 ### Setting the content formats on response with `formats`
 
 - **Type**: `array`
-- **Enum**: `["markdown", "links", "html", "rawHtml", "screenshot"]`
+- **Enum**: `["markdown", "links", "html", "rawHtml", "screenshot", "json"]`
 - **Description**: Specify the formats to include in the response. Options include:
   - `markdown`: Returns the scraped content in Markdown format.
   - `links`: Includes all hyperlinks found on the page.
   - `html`: Provides the content in HTML format.
   - `rawHtml`: Delivers the raw HTML content, without any processing.
   - `screenshot`: Includes a screenshot of the page as it appears in the browser.
-  - `extract`: Extracts structured information from the page using the LLM.
+  - `json`: Extracts structured information from the page using the LLM.
 - **Default**: `["markdown"]`
 
 ### Getting the full page content as markdown with `onlyMainContent`
@@ -199,8 +199,8 @@ curl -X POST https://api.firecrawl.dev/v0/scrape \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
       "url": "https://firecrawl.dev",
-      "formats": ["markdown", "extract"],
-      "extract": {
+      "formats": ["markdown", "json"],
+      "json": {
         "prompt": "Extract the features of the product"
       }
     }'

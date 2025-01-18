@@ -15,8 +15,8 @@ const schema = z.object({
 });
 
 const scrapeResult = await app.scrapeUrl("https://docs.firecrawl.dev/", {
-  formats: ["extract"],
-  extract: { schema: schema }
+  formats: ["json"],
+  jsonOptions: { schema: schema }
 });
 
 if (!scrapeResult.success) {
