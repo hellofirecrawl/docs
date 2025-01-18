@@ -48,7 +48,6 @@
                         "rawHtml",
                         "links",
                         "screenshot",
-                        "extract",
                         "screenshot@fullPage",
                         "json"
                       ]
@@ -98,24 +97,6 @@
                     "type": "integer",
                     "description": "Timeout in milliseconds for the request",
                     "default": 30000
-                  },
-                  "extract": {
-                    "type": "object",
-                    "description": "Extract object",
-                    "properties": {
-                      "schema": {
-                        "type": "object",
-                        "description": "The schema to use for the extraction (Optional)"
-                      },
-                      "systemPrompt": {
-                        "type": "string",
-                        "description": "The system prompt to use for the extraction (Optional)"
-                      },
-                      "prompt": {
-                        "type": "string",
-                        "description": "The prompt to use for the extraction without a schema (Optional)"
-                      }
-                    }
                   },
                   "jsonOptions": {
                     "type": "object",
@@ -445,7 +426,8 @@
                         "links",
                         "screenshot",
                         "extract",
-                        "screenshot@fullPage"
+                        "screenshot@fullPage",
+                        "json"
                       ]
                     },
                     "description": "Formats to include in the output.",
@@ -494,7 +476,7 @@
                     "description": "Timeout in milliseconds for the request",
                     "default": 30000
                   },
-                  "extract": {
+                  "jsonOptions": {
                     "type": "object",
                     "description": "Extract object",
                     "properties": {
