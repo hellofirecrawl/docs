@@ -1,43 +1,45 @@
 ---
-title: 'LLM Extract'
-description: 'Extract structured data from pages via LLMs'
+title: 'Extract'
+description: 'Extract structured data from pages using LLMs'
 og:title: "Extract | Firecrawl"
-og:description: "Extract structured data from pages via LLMs"
-icon: "file-export"
+og:description: "Extract structured data from pages using LLMs"
+icon: "barcode-read"
+sidebarTitle: "Extract (New)"
 ---
 
-import ExtractCURL from "/snippets/v1/llm-extract/base/curl.mdx";
-import ExtractPython from "/snippets/v1/llm-extract/base/python.mdx";
-import ExtractNode from "/snippets/v1/llm-extract/base/js.mdx";
-import ExtractOutput from "/snippets/v1/llm-extract/base/output.mdx";
-import ExtractNoSchemaCURL from "/snippets/v1/llm-extract/no-schema/curl.mdx";
-import ExtractNoSchemaOutput from "/snippets/v1/llm-extract/no-schema/output.mdx";
+import ExtractCURL from "/snippets/v1/extract/base/curl.mdx";
+import ExtractPython from "/snippets/v1/extract/base/python.mdx";
+import ExtractNode from "/snippets/v1/extract/base/js.mdx";
+import ExtractOutput from "/snippets/v1/extract/base/output.mdx";
+import ExtractNoSchemaCURL from "/snippets/v1/extract/no-schema/curl.mdx";
+import ExtractNoSchemaOutput from "/snippets/v1/extract/no-schema/output.mdx";
+import CheckExtractJobCURL from "/snippets/v1/extract/status/curl.mdx";
+import ExtractStatusPending from "/snippets/v1/extract/status/pending.mdx";
+import ExtractStatusAsync from "/snippets/v1/extract/async-response/async.mdx";
+import ExtractStatusDone from "/snippets/v1/extract/status/completed.mdx";
 
+## Introducing /extract (Beta)
 
-## Scrape and extract structured data with Firecrawl
+Extract structured data from a single, multiple URLs, or entire websites using Large Language Models (LLMs). Our new `/extract` endpoint allows you to:
+- Extract structured data from full websites at once
+- Connect or build data enrichment applications that need structured data from websites
+- Develop AI applications that need clean data from multiple websites
 
-{/* <Warning>Scrape LLM Extract will be deprecated in future versions. Please use the new [Extract](/features/extract) endpoint.</Warning> */}
+## Considerations
 
-Firecrawl leverages Large Language Models (LLMs) to efficiently extract structured data from web pages. Here's how:
+The `/extract` endpoint provides flexible data extraction with customizable schemas. Results can be improved through prompt tuning. It is currently in beta and we welcome your feedback.
 
-1. **Schema Definition:**
-   Define the URL to scrape and the desired data schema using JSON Schema (following OpenAI tool schema). This schema specifies the data structure you expect to extract from the page.
+## Extracting Data
 
-2. **Scrape Endpoint:**
-   Pass the URL and the schema to the scrape endpoint. Documentation for this endpoint can be found here:
-   [Scrape Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/scrape)
+### /extract endpoint
 
-3. **Structured Data Retrieval:**
-   Receive the scraped data in the structured format defined by your schema. You can then use this data as needed in your application or for further processing.
+Used to extract structured data from entire websites.
 
-This method streamlines data extraction, reducing manual handling and enhancing efficiency.
+When specifying URLs, you can append `/*` to the URL to extract information from the entire website path rather than just a single page. 
 
-## Extract structured data
+For example, `https://firecrawl.dev/*` will attempt to extract data from all pages on the firecrawl.dev domain. The `/*` is still in under testing so please let us know if you have any issues by emailing help@firecrawl.dev.
 
-### /scrape (with extract) endpoint
-
-Used to extract structured data from scraped pages.
-
+### Usage
 <CodeGroup>
 
 <ExtractPython />
@@ -46,13 +48,48 @@ Used to extract structured data from scraped pages.
 
 </CodeGroup>
 
-Output:
+For more details about the parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/extract).
+
+### Response (sdks)
 
 <ExtractOutput />
 
-### Extracting without schema (New)
+### Response (async or not using sdks)
+<ExtractStatusAsync />
 
-You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
+
+### Checking extract status
+
+You can use the `/extract/ID` endpoint to check the status of an extract job.
+
+
+
+<Note>This endpoint only works for extract jobs that are in progress or extract jobs that have completed recently (within the last 24 hours). </Note>
+
+<CodeGroup>
+
+<CheckExtractJobCURL />
+
+</CodeGroup>
+
+#### Pending Response
+Extract jobs can have one of the following states:
+- `completed`: The extract job has finished successfully.
+- `pending`: The extract job is still in progress.
+- `failed`: The extract job encountered an error and did not complete.
+- `cancelled`: The extract job was cancelled by the user.
+
+<ExtractStatusPending />
+
+#### Completed Response
+
+<ExtractStatusDone />
+
+
+
+### Extracting without schema
+
+You can now extract without a schema by just passing a `prompt` to the endpoint. The LLM chooses the structure of the data.
 
 <CodeGroup>
 
@@ -60,14 +97,12 @@ You can now extract without a schema by just passing a `prompt` to the endpoint.
 
 </CodeGroup>
 
-Output:
 
-<ExtractNoSchemaOutput />
+### Improving Results with External Links
 
-### Extract object
+If you want to improve the results of the extraction, you can pass an `allowExternalLinks` parameter to the endpoint. This will allow it to attempt to find the data from external links - outside the scope of the provided URLs.
 
-The `extract` object accepts the following parameters:
 
-- `schema`: The schema to use for the extraction.
-- `systemPrompt`: The system prompt to use for the extraction.
-- `prompt`: The prompt to use for the extraction without a schema.
+### Billing
+
+While `/extract` is in beta, we are charging 5 credits per URL scraped used to form the final response. This is to prevent abuse. This will be changed in the future.
