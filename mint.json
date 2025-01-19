@@ -25,6 +25,12 @@
       "to": "#FFBA47"
     }
   },
+  "redirects": [
+  {
+    "source": "features/extract-beta",
+    "destination": "features/extract"
+    }
+  ],
   "topbarLinks": [
     {
       "name": "Status",
@@ -39,6 +45,7 @@
     "type": "github",
     "url": "https://github.com/mendableai/firecrawl"
   },
+  
   "tabs": [
     {
       "name": "SDKs",
