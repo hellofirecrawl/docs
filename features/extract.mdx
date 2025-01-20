@@ -52,7 +52,7 @@ When you use `/*`, Firecrawl will automatically crawl and parse all URLs it can 
 - **urls**: An array of one or more URLs. Supports wildcards (`/*`) for broader crawling.
 - **prompt** (Optional unless no schema): A natural language prompt describing the data you want or specifying how you want that data structured.
 - **schema** (Optional unless no prompt): A more rigid structure if you already know the JSON layout.
-- **allowExternalLinks** (Optional): When `true`, extraction can follow links outside the specified domain.
+- **useWebSearch** (Optional): When `true`, extraction can follow links outside the specified domain.
 
 See [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/extract) for more details.
 
@@ -113,9 +113,9 @@ If you prefer not to define a strict structure, you can simply provide a `prompt
 
 <ExtractNoSchemaOutput />
 
-## Improving Results with External Links
+## Improving Results with Web Search
 
-Setting `allowExternalLinks = true` in your request will expand the crawl beyond the provided URL set. This can capture supporting or related information from linked pages.
+Setting `useWebSearch = true` in your request will expand the crawl beyond the provided URL set. This can capture supporting or related information from linked pages.
 
 ## Known Limitations (Beta)
 
