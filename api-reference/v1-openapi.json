@@ -1587,9 +1587,14 @@
                       }
                     },
                     "required": ["property1", "property2"]
+                  },
+                  "enableWebSearch": {
+                    "type": "boolean",
+                    "description": "When true, the extraction will use web search to find additional data",
+                    "default": false
                   }
                 },
-                "required": ["urls", "prompt"]
+                "required": ["urls"]
               }
             }
           }
