@@ -1592,6 +1592,16 @@
                     "type": "boolean",
                     "description": "When true, the extraction will use web search to find additional data",
                     "default": false
+                  },
+                  "ignoreSitemap": {
+                    "type": "boolean", 
+                    "description": "When true, sitemap.xml files will be ignored during website scanning",
+                    "default": false
+                  },
+                  "includeSubdomains": {
+                    "type": "boolean",
+                    "description": "When true, subdomains of the provided URLs will also be scanned",
+                    "default": true
                   }
                 },
                 "required": ["urls"]
