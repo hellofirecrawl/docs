@@ -159,7 +159,8 @@
         "integrations/dify",
         "integrations/flowise",
         "integrations/langflow",
-        "integrations/camelai"
+        "integrations/camelai",
+        "integrations/ragaas"
       ]
     },
     {
