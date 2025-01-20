@@ -196,7 +196,8 @@
       "pages": [
         "api-reference/endpoint/scrape",
         "api-reference/endpoint/batch-scrape",
-        "api-reference/endpoint/batch-scrape-get"
+        "api-reference/endpoint/batch-scrape-get",
+        "api-reference/endpoint/batch-scrape-get-errors"
       ],
       "version": "v1"
     },
@@ -205,7 +206,8 @@
       "pages": [
         "api-reference/endpoint/crawl-post",
         "api-reference/endpoint/crawl-get",
-        "api-reference/endpoint/crawl-delete"
+        "api-reference/endpoint/crawl-delete",
+        "api-reference/endpoint/crawl-get-errors"
       ],
       "version": "v1"
     },
