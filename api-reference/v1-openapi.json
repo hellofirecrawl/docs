@@ -1062,7 +1062,72 @@
           }
         }
       },
-      "/crawl/{id}/errors": {
+      "delete": {
+        "summary": "Cancel a crawl job",
+        "operationId": "cancelCrawl",
+        "tags": ["Crawling"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful cancellation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Crawl job successfully cancelled."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Crawl job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Crawl job not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An unexpected error occurred on the server."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/crawl/{id}/errors": {
       "parameters": [
         {
           "name": "id",
@@ -1121,71 +1186,6 @@
                     "error": {
                       "type": "string",
                       "example": "Request rate limit exceeded. Please wait and try again later."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "An unexpected error occurred on the server."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-      "delete": {
-        "summary": "Cancel a crawl job",
-        "operationId": "cancelCrawl",
-        "tags": ["Crawling"],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful cancellation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Crawl job successfully cancelled."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Crawl job not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Crawl job not found."
                     }
                   }
                 }
