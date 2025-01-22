@@ -15,6 +15,10 @@ import ExtractNoSchemaCURL from "/snippets/v1/extract/no-schema/curl.mdx";
 import ExtractNoSchemaPython from "/snippets/v1/extract/no-schema/python.mdx";
 import ExtractNoSchemaJS from "/snippets/v1/extract/no-schema/js.mdx";
 import ExtractNoSchemaOutput from "/snippets/v1/extract/no-schema/output.mdx";
+import ExtractWebSearchPython from "/snippets/v1/extract/websearch/python.mdx";
+import ExtractWebSearchJS from "/snippets/v1/extract/websearch/js.mdx";
+import ExtractWebSearchCURL from "/snippets/v1/extract/websearch/curl.mdx";
+import ExtractWebSearchOutput from "/snippets/v1/extract/websearch/output.mdx";
 import CheckExtractJobCURL from "/snippets/v1/extract/status/curl.mdx";
 import CheckExtractJobJS from "/snippets/v1/extract/status/js.mdx";
 import CheckExtractJobPython from "/snippets/v1/extract/status/python.mdx";
@@ -56,17 +60,17 @@ When you use `/*`, Firecrawl will automatically crawl and parse all URLs it can 
 
 See [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/extract) for more details.
 
-
 ### Response (sdks)
 
 <ExtractOutput />
 
 ## Asynchronous Extraction & Status Checking
+
 When you submit an extraction job—either directly via the API or through the SDK's asynchronous methods—you'll receive a Job ID. You can use this ID to:
 
 - Check Job Status: Send a request to the /extract/{ID} endpoint to see if the job is still running or has finished.
 - Automatically Poll (Default SDK Behavior): If you use the default extract method (Python/Node), the SDK automatically polls this endpoint for you and returns the final results once the job completes.
-- Manually Poll (Async SDK Methods): If you use the asynchronous methods—async_extract (Python) or asyncExtract (Node)—the SDK immediately returns a Job ID that you can track. Use get_extract_status (Python) or getExtractStatus (Node) to check the job’s progress on your own schedule.
+- Manually Poll (Async SDK Methods): If you use the asynchronous methods—async_extract (Python) or asyncExtract (Node)—the SDK immediately returns a Job ID that you can track. Use get_extract_status (Python) or getExtractStatus (Node) to check the job's progress on your own schedule.
 
 <Note>
   This endpoint only works for jobs in progress or recently completed (within 24
@@ -76,7 +80,6 @@ When you submit an extraction job—either directly via the API or through the S
 Below are code examples for checking an extraction job's status using Python, Node.js, and cURL:
 
 <CodeGroup>
-
 
 <CheckExtractJobPython />
 <CheckExtractJobJS />
@@ -116,6 +119,22 @@ If you prefer not to define a strict structure, you can simply provide a `prompt
 ## Improving Results with Web Search
 
 Setting `enableWebSearch = true` in your request will expand the crawl beyond the provided URL set. This can capture supporting or related information from linked pages.
+
+Here's an example that extracts information about dash cams, enriching the results with data from related pages:
+
+<CodeGroup>
+
+<ExtractWebSearchPython />
+<ExtractWebSearchJS />
+<ExtractWebSearchCURL />
+
+</CodeGroup>
+
+### Example Response with Web Search
+
+<ExtractWebSearchOutput />
+
+The response includes additional context gathered from related pages, providing more comprehensive and accurate information.
 
 ## Known Limitations (Beta)
 
