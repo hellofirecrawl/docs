@@ -1007,6 +1007,11 @@
                     "description": "Ignore the website sitemap when crawling",
                     "default": true
                   },
+                  "ignoreQueryParameters": {
+                    "type": "boolean",
+                    "description": "Do not re-scrape the same path with different (or none) query parameters",
+                    "default": false
+                  },
                   "limit": {
                     "type": "integer",
                     "description": "Maximum number of pages to crawl. Default limit is 10000.",
