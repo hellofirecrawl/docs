@@ -1079,13 +1079,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "message": {
+                    "status": {
                       "type": "string",
-                      "example": "Crawl job successfully cancelled."
+                      "enum": ["cancelled"],
+                      "example": "cancelled"
                     }
                   }
                 }
