@@ -5,7 +5,7 @@ og:title: "Rate Limits | Firecrawl"
 og:description: "Rate limits for different pricing plans and API requests"
 ---
 
-## Current Plans
+## Standard Plans
 
 | Plan       | /scrape (requests/min) | /crawl (requests/min) | /search (requests/min) |
 |------------|------------------------|-----------------------|------------------------|
@@ -27,6 +27,19 @@ These rate limits are enforced to ensure fair usage and availability of the API 
 
 Batch endpoints follow the /crawl rate limit.
 
+## Extract
+
+| Plan      | /extract (requests/min) |
+|-----------|------------------------|
+| Free      | 10                     |
+| Hobby     | 20                     |
+| Standard  | 100                    |
+| Growth    | 1000                   |
+| Enterprise | Custom                  |
+
+|        | /extract/status (requests/min) |
+|--------|--------------------------------|
+| Free | 500                       |
 
 ## Legacy Plans
 

@@ -1658,6 +1658,18 @@
       }
     },
     "/extract/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "The ID of the extract job",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ],
       "get": {
         "summary": "Get the status of an extract job",
         "operationId": "getExtractStatus",
