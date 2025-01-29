@@ -1,13 +1,18 @@
 ```js Node
-import FirecrawlApp, { MapResponse } from '@mendable/firecrawl-js';
+import FirecrawlApp from '@mendable/firecrawl-js';
 
-const app = new FirecrawlApp({apiKey: "fc-YOUR_API_KEY"});
+const app = new FirecrawlApp({
+  apiKey: 'fc-YOUR_API_KEY'
+});
 
-const mapResult = await app.mapUrl('https://firecrawl.dev') as MapResponse;
+async function main() {
+  // Map a website
+  const mapResponse = await app.mapUrl(
+    'https://firecrawl.dev'
+  );
 
-if (!mapResult.success) {
-    throw new Error(`Failed to map: ${mapResult.error}`)
+  console.log(mapResponse);
 }
 
-console.log(mapResult)
+main();
 ```
