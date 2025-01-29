@@ -4,7 +4,7 @@ description: "Extract structured data from pages using LLMs"
 og:title: "Extract | Firecrawl"
 og:description: "Extract structured data from pages using LLMs"
 icon: "barcode-read"
-sidebarTitle: "Extract (New)"
+sidebarTitle: "Extract (Open Beta)"
 ---
 
 import ExtractCURL from "/snippets/v1/extract/base/curl.mdx";
@@ -26,132 +26,132 @@ import ExtractStatusPending from "/snippets/v1/extract/status/pending.mdx";
 import ExtractStatusAsync from "/snippets/v1/extract/async-response/async.mdx";
 import ExtractStatusDone from "/snippets/v1/extract/status/completed.mdx";
 
-## Introducing `/extract` (Open Beta)
+## What is Extract? (Open Beta)
 
-The `/extract` endpoint simplifies collecting structured data from any number of URLs or entire domains. Provide a list of URLs, optionally with wildcards (e.g., `example.com/*`), and a prompt or schema describing the information you want. Firecrawl handles the details of crawling, parsing, and collating large or small datasets.
+The Extract endpoint lets you pull structured data from websites automatically. Think of it like having an assistant who reads web pages and organizes the information exactly how you want it.
 
-## Using `/extract`
+### Quick Example: Company Information
 
-You can extract structured data from one or multiple URLs, including wildcards:
-
-- **Single Page**  
-  Example: `https://firecrawl.dev/some-page`
-- **Multiple Pages / Full Domain**  
-  Example: `https://firecrawl.dev/*`
-
-When you use `/*`, Firecrawl will automatically crawl and parse all URLs it can discover in that domain, then extract the requested data. This feature is experimental; email [help@firecrawl.dev](mailto:help@firecrawl.dev) if you have issues.
-
-### Example Usage
+Let's say you want to get information about a company from their website. Here's how simple it is:
 
 <CodeGroup>
-
-<ExtractPython />
-<ExtractNode />
-<ExtractCURL />
-
-</CodeGroup>
-
-**Key Parameters:**
-
-- **urls**: An array of one or more URLs. Supports wildcards (`/*`) for broader crawling.
-- **prompt** (Optional unless no schema): A natural language prompt describing the data you want or specifying how you want that data structured.
-- **schema** (Optional unless no prompt): A more rigid structure if you already know the JSON layout.
-- **enableWebSearch** (Optional): When `true`, extraction can follow links outside the specified domain.
-
-See [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/extract) for more details.
-
-### Response (sdks)
-
-<ExtractOutput />
-
-## Asynchronous Extraction & Status Checking
-
-When you submit an extraction job—either directly via the API or through the SDK's asynchronous methods—you'll receive a Job ID. You can use this ID to:
-
-- Check Job Status: Send a request to the /extract/{ID} endpoint to see if the job is still running or has finished.
-- Automatically Poll (Default SDK Behavior): If you use the default extract method (Python/Node), the SDK automatically polls this endpoint for you and returns the final results once the job completes.
-- Manually Poll (Async SDK Methods): If you use the asynchronous methods—async_extract (Python) or asyncExtract (Node)—the SDK immediately returns a Job ID that you can track. Use get_extract_status (Python) or getExtractStatus (Node) to check the job's progress on your own schedule.
-
-<Note>
-  This endpoint only works for jobs in progress or recently completed (within 24
-  hours).
-</Note>
-
-Below are code examples for checking an extraction job's status using Python, Node.js, and cURL:
-
-<CodeGroup>
-
-<CheckExtractJobPython />
-<CheckExtractJobJS />
-<CheckExtractJobCURL />
-
-</CodeGroup>
-
-### Possible States
-
-- **completed**: The extraction finished successfully.
-- **pending**: Firecrawl is still processing your request.
-- **failed**: An error occurred; data was not fully extracted.
-- **cancelled**: The job was cancelled by the user.
-
-#### Pending Example
-
-<ExtractStatusPending />
-
-#### Completed Example
-
-<ExtractStatusDone />
-
-## Extracting without a Schema
-
-If you prefer not to define a strict structure, you can simply provide a `prompt`. The underlying model will choose a structure for you, which can be useful for more exploratory or flexible requests.
-
-<CodeGroup>
-
 <ExtractNoSchemaPython />
 <ExtractNoSchemaJS />
 <ExtractNoSchemaCURL />
-
 </CodeGroup>
+
+You'll get clean, structured data back:
 
 <ExtractNoSchemaOutput />
 
-## Improving Results with Web Search
+## Basic Usage
 
-Setting `enableWebSearch = true` in your request will expand the crawl beyond the provided URL set. This can capture supporting or related information from linked pages.
+### 1. Single Page Extraction
+Extract data from a single webpage:
+```bash
+https://firecrawl.dev/about
+```
 
-Here's an example that extracts information about dash cams, enriching the results with data from related pages:
+### 2. Multiple Pages
+Extract from multiple specific pages:
+```bash
+["https://firecrawl.dev/about", "https://firecrawl.dev/pricing"]
+```
+
+### 3. Full Website Extraction
+Extract from an entire website using wildcards:
+```bash
+"https://firecrawl.dev/*"  # Gets all accessible pages
+```
+
+## Getting Started
+
+Let's look at a complete example with both prompt and schema:
 
 <CodeGroup>
+<ExtractPython />
+<ExtractNode />
+<ExtractCURL />
+</CodeGroup>
 
+You'll get structured data like this:
+
+<ExtractOutput />
+
+## Two Ways to Extract
+
+### 1. Using Natural Language (Easiest)
+Just describe what you want in plain English with a prompt:
+
+<CodeGroup>
+<ExtractNoSchemaPython />
+<ExtractNoSchemaJS />
+<ExtractNoSchemaCURL />
+</CodeGroup>
+
+### 2. Using a Schema (More Control)
+Define exactly what data you want and how it should be structured:
+
+```json
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "company_name": { "type": "string" },
+      "employee_count": { "type": "number" },
+      "has_free_trial": { "type": "boolean" }
+    }
+  }
+}
+```
+
+## Checking Extraction Status
+
+When extracting from large sites, you can check the progress:
+
+<CodeGroup>
+<CheckExtractJobPython />
+<CheckExtractJobJS />
+<CheckExtractJobCURL />
+</CodeGroup>
+
+You'll see one of these states:
+- **completed** - Extraction is done
+- **pending** - Still working
+- **failed** - Something went wrong
+- **cancelled** - Job was stopped
+
+## Advanced Features
+
+### Web Search Enhancement
+
+Want more complete data? Enable web search to gather information from related pages:
+
+<CodeGroup>
 <ExtractWebSearchPython />
 <ExtractWebSearchJS />
 <ExtractWebSearchCURL />
-
 </CodeGroup>
 
-### Example Response with Web Search
-
+Example of enriched data:
 <ExtractWebSearchOutput />
 
-The response includes additional context gathered from related pages, providing more comprehensive and accurate information.
+## Things to Know (Beta Limitations)
 
-## Known Limitations (Beta)
+1. **Size Limits**
+   - ✅ Works great with: Small to medium websites
+   - ❌ Not yet ready for: Massive sites (like "all Amazon products")
 
-1. **Large-Scale Site Coverage**  
-   Full coverage of massive sites (e.g., "all products on Amazon") in a single request is not yet supported.
+2. **Complex Queries**
+   - ✅ Works great with: "Find current pricing tiers"
+   - ❌ Not yet ready for: "Find all posts from 2025"
 
-2. **Complex Logical Queries**  
-   Requests like "find every post from 2025" may not reliably return all expected data. More advanced query capabilities are in progress.
+3. **Data Consistency**
+   - Results may vary slightly between runs
+   - Core information remains consistent
 
-3. **Occasional Inconsistencies**  
-   Results might differ across runs, particularly for very large or dynamic sites. Usually it captures core details, but some variation is possible.
+## Need Help?
 
-4. **Beta State**  
-   Since `/extract` is still in Beta, features and performance will continue to evolve. We welcome bug reports and feedback to help us improve.
-
-## Billing and Usage Tracking
-
-You can check our the pricing for /extract on the [Extract landing page pricing page](https://www.firecrawl.dev/extract#pricing) and monitor usage via the [Extract page on the dashboard](https://www.firecrawl.dev/app/extract).
-
-Have feedback or need help? Email [help@firecrawl.dev](mailto:help@firecrawl.dev).
+- Email: [help@firecrawl.dev](mailto:help@firecrawl.dev)
+- Pricing: [Extract Pricing Page](https://www.firecrawl.dev/extract#pricing)
+- Usage Stats: [Dashboard](https://www.firecrawl.dev/app/extract)

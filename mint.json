@@ -6,7 +6,10 @@
     "light": "/logo/light.svg",
     "href": "https://firecrawl.dev"
   },
-  "versions": ["v1", "v0"],
+  "versions": [
+    "v1",
+    "v0"
+  ],
   "metadata": {
     "og:title": "Firecrawl Docs",
     "og:description": "Firecrawl allows you turn websites to LLM-ready data in seconds.",
@@ -26,9 +29,9 @@
     }
   },
   "redirects": [
-  {
-    "source": "features/extract-beta",
-    "destination": "features/extract"
+    {
+      "source": "features/extract-beta",
+      "destination": "features/extract"
     }
   ],
   "topbarLinks": [
@@ -45,7 +48,6 @@
     "type": "github",
     "url": "https://github.com/mendableai/firecrawl"
   },
-  
   "tabs": [
     {
       "name": "SDKs",
@@ -108,7 +110,11 @@
         "v1-welcome",
         "rate-limits",
         "integrations",
-        "advanced-scraping-guide"
+        "advanced-scraping-guide",
+        "quickstart",
+        "introduction",
+        "snippets/welcome-snippet",
+        "snippets/v1/scrape-and-crawl/python"
       ],
       "version": "v1"
     },
@@ -131,7 +137,10 @@
           "pages": [
             "features/scrape",
             "features/batch-scrape",
-            "features/llm-extract"
+            "features/llm-extract",
+            "features/crawl",
+            "features/extract",
+            "features/scrape"
           ]
         },
         "features/crawl",
@@ -165,30 +174,50 @@
     },
     {
       "group": "Contributing",
-      "pages": ["contributing/open-source-or-cloud", "contributing/guide", "contributing/self-host"]
+      "pages": [
+        "contributing/open-source-or-cloud",
+        "contributing/guide",
+        "contributing/self-host"
+      ]
     },
     {
       "group": "Using the API",
-      "pages": ["api-reference/introduction"],
+      "pages": [
+        "api-reference/introduction"
+      ],
       "version": "v1"
     },
     {
       "group": "Using the API",
-      "pages": ["v0/api-reference/introduction"],
+      "pages": [
+        "v0/api-reference/introduction"
+      ],
       "version": "v0"
     },
     {
       "group": "Overall",
-      "pages": ["sdks/overview"]
+      "pages": [
+        "sdks/overview"
+      ]
     },
     {
       "group": "SDKs",
-      "pages": ["sdks/python", "sdks/node", "sdks/go", "sdks/rust"],
+      "pages": [
+        "sdks/python",
+        "sdks/node",
+        "sdks/go",
+        "sdks/rust"
+      ],
       "version": "v1"
     },
     {
       "group": "SDKs",
-      "pages": ["v0/sdks/python", "v0/sdks/node", "v0/sdks/go", "v0/sdks/rust"],
+      "pages": [
+        "v0/sdks/python",
+        "v0/sdks/node",
+        "v0/sdks/go",
+        "v0/sdks/rust"
+      ],
       "version": "v0"
     },
     {
@@ -202,7 +231,7 @@
       "version": "v1"
     },
     {
-      "group": "Crawl Endpoints", 
+      "group": "Crawl Endpoints",
       "pages": [
         "api-reference/endpoint/crawl-post",
         "api-reference/endpoint/crawl-get",

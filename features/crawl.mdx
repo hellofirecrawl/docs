@@ -1,9 +1,9 @@
 ---
 title: 'Crawl'
-description: 'Firecrawl can recursively search through a urls subdomains, and gather the content'
+description: 'Automatically crawl and extract content from entire websites'
 og:title: "Crawl | Firecrawl"
 icon: "spider"
-og:description: "Firecrawl can recursively search through a urls subdomains, and gather the content"
+og:description: "Learn how to crawl websites and extract data automatically with Firecrawl"
 ---
 
 import InstallationPython from "/snippets/v1/installation/python.mdx";
@@ -27,133 +27,126 @@ import CrawlWebSocketPython from "/snippets/v1/crawl-websocket/base/python.mdx";
 import CrawlWebSocketNode from "/snippets/v1/crawl-websocket/base/js.mdx";
 import CrawlWebhookCURL from "/snippets/v1/crawl-webhook/base/curl.mdx";
 
-Firecrawl thoroughly crawls websites, ensuring comprehensive data extraction while bypassing any web blocker mechanisms. Here's how it works:
+## What is Website Crawling?
 
-1. **URL Analysis:**
-   Begins with a specified URL, identifying links by looking at the sitemap and then crawling the website. If no sitemap is found, it will crawl the website following the links.
+Website crawling is the automated process of systematically browsing through a website's pages to collect data. With Firecrawl, you can:
 
-2. **Recursive Traversal:**
-   Recursively follows each link to uncover all subpages.
+1. Start with any URL on a website
+2. Automatically discover and visit all linked pages
+3. Extract clean, structured content from each page
+4. Get the data in formats ready for your applications
 
-3. **Content Scraping:**
-   Gathers content from every visited page while handling any complexities like JavaScript rendering or rate limits.
-
-4. **Result Compilation:**
-   Converts collected data into clean markdown or structured output, perfect for LLM processing or any other task.
-
-This method guarantees an exhaustive crawl and data collection from any starting URL.
-
-
-## Crawling
-
-
-### /crawl endpoint
-
-Used to crawl a URL and all accessible subpages. This submits a crawl job and returns a job ID to check the status of the crawl.
-
-
-<Warning>By default - Crawl will ignore sublinks of a page if they aren't children of the url you provide. So, the website.com/other-parent/blog-1 wouldn't be returned if you crawled website.com/blogs/. If you want website.com/other-parent/blog-1, use the `allowBackwardLinks` parameter</Warning>
-
+## Getting Started
 
 ### Installation 
 
-<CodeGroup>
+First, install Firecrawl in your preferred language:
 
+<CodeGroup>
 <InstallationPython />
 <InstallationNode />
 <InstallationGo />
 <InstallationRust />
-
 </CodeGroup>
 
-### Usage
+### Basic Crawling
+
+Here's a simple example to crawl a website and get its content:
 
 <CodeGroup>
-
 <CrawlPython />
 <CrawlNode />
 <CrawlGo />
 <CrawlRust />
 <CrawlCURL />
-
 </CodeGroup>
 
-### Response
+<Note>
+By default, Firecrawl only crawls pages within the same directory path as your starting URL. For example, if you start at `website.com/blog/`, it won't crawl `website.com/products/`. Use `allowBackwardLinks: true` to crawl the entire site.
+</Note>
 
-If you're using cURL or `async crawl` functions on SDKs, this will return an `ID` where you can use to check the status of the crawl.
+### Checking Crawl Progress
 
-<AsyncCrawlOutput />
-
-### Check Crawl Job
-
-Used to check the status of a crawl job and get its result.
-
-<Note>This endpoint only works for crawls that are in progress or crawls that have completed recently. </Note>
-
+When you start a crawl, you'll get a crawl ID. Use this to check the status of your crawl:
 
 <CodeGroup>
-
 <CheckCrawlJobPython />
 <CheckCrawlJobNode />
 <CheckCrawlJobGo />
 <CheckCrawlJobRust />
 <CheckCrawlJobCURL />
-
 </CodeGroup>
 
-#### Response Handling
+The response will show you:
+- How many pages have been crawled
+- The content from each page
+- Whether the crawl is still in progress
 
-The response varies based on the crawl's status.
+## Advanced Features 
 
-For not completed or large responses exceeding 10MB, a `next` URL parameter is provided. You must request this URL to retrieve the next 10MB of data. If the `next` parameter is absent, it indicates the end of the crawl data.
+### Real-time Updates with WebSocket
 
-The skip parameter sets the maximum number of results returned for each chunk of results returned. 
-
-<Info>
-The skip and next parameter are only relavent when hitting the api directly. If you're using the SDK, we handle this for you and will return all the results at once.
-</Info>
-
+Get instant updates as pages are crawled using WebSockets:
 
 <CodeGroup>
-  <CheckCrawlJobOutputScraping />
-  <CheckCrawlJobOutputCompleted />
+<CrawlWebSocketPython />
+<CrawlWebSocketNode />
 </CodeGroup>
 
-## Crawl WebSocket
+### Webhook Integration
 
-Firecrawl's WebSocket-based method, `Crawl URL and Watch`, enables real-time data extraction and monitoring. Start a crawl with a URL and customize it with options like page limits, allowed domains, and output formats, ideal for immediate data processing needs.
-
-<CodeGroup>
-  <CrawlWebSocketPython />
-  <CrawlWebSocketNode />
-</CodeGroup>
-
-## Crawl Webhook
-
-You can now pass a `webhook` parameter to the `/crawl` endpoint. This will send a POST request to the URL you specify when the crawl is started, updated and completed.
-
-The webhook will now trigger for every page crawled and not just the whole result at the end.
+Receive notifications about crawl progress to your server:
 
 <CrawlWebhookCURL />
 
-### Webhook Events
+Webhook events include:
+- `crawl.started`: When crawling begins
+- `crawl.page`: Each time a page is crawled
+- `crawl.completed`: When crawling finishes (Beta)
+- `crawl.failed`: If an error occurs
 
-There are now 4 types of events:
+<Note>
+In rare cases, you might receive the `crawl.completed` event while some final `crawl.page` events are still processing.
+</Note>
 
-- `crawl.started` - Triggered when the crawl is started.
-- `crawl.page` - Triggered for every page crawled.
-- `crawl.completed` - Triggered when the crawl is completed to let you know it's done (Beta)**
-- `crawl.failed` - Triggered when the crawl fails.
+## Response Handling
 
-### Webhook Response
+### For Ongoing Crawls
+<CheckCrawlJobOutputScraping />
 
-- `success` - If the webhook was successful in crawling the page correctly.
-- `type` - The type of event that occurred.
-- `id` - The ID of the crawl.
-- `data` - The data that was scraped (Array). This will only be non empty on `crawl.page` and will contain 1 item if the page was scraped successfully. The response is the same as the `/scrape` endpoint.
-- `error` - If the webhook failed, this will contain the error message.
+### For Completed Crawls
+<CheckCrawlJobOutputCompleted />
 
-**Beta consideration
+<Info>
+When using our SDKs, pagination with `next` and `skip` parameters is handled automatically. You'll just get all results at once.
+</Info>
 
-- There is a very tiny chance that the `crawl.completed` event may be triggered while the final `crawl.page` events are still being processed. We're working on a fix for this.
+## Common Use Cases
 
+1. **Documentation Sites**
+   ```js
+   // Crawl all documentation pages
+   await app.crawlUrl('docs.example.com', {
+     includePaths: ['/docs/*'],
+     excludePaths: ['/docs/archived/*']
+   });
+   ```
+
+2. **Blog Archives**
+   ```js
+   // Crawl blog posts from specific years
+   await app.crawlUrl('blog.example.com', {
+     includePaths: ['/2023/*', '/2024/*']
+   });
+   ```
+
+3. **Product Catalogs**
+   ```js
+   // Crawl product pages with screenshots
+   await app.crawlUrl('store.example.com', {
+     includePaths: ['/products/*'],
+     scrapeOptions: {
+       formats: ['markdown', 'screenshot']
+     }
+   });
+   ```

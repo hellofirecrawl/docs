@@ -34,179 +34,148 @@ import ScrapeLocationPython from "/snippets/v1/scrape/location/python.mdx";
 import ScrapeLocationNode from "/snippets/v1/scrape/location/js.mdx";
 import ScrapeLocationCURL from "/snippets/v1/scrape/location/curl.mdx";
 
-Firecrawl converts web pages into markdown, ideal for LLM applications.
+## Getting Started with Scraping
 
-- It manages complexities: proxies, caching, rate limits, js-blocked content
-- Handles dynamic content: dynamic websites, js-rendered sites, PDFs, images
-- Outputs clean markdown, structured data, screenshots or html.
+<Info>
+Firecrawl makes it easy to scrape web content by handling all the complex parts for you. Just provide a URL, and get back clean, usable data.
+</Info>
 
-For details, see the [Scrape Endpoint API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+### Quick Example
 
-
-## Scraping a URL with Firecrawl
-
-### /scrape endpoint
-
-Used to scrape a URL and get its content.
-
-### Installation 
+Here's a simple example to get started:
 
 <CodeGroup>
+```python Python
+from firecrawl import FirecrawlApp
 
-  <InstallationPython />
+app = FirecrawlApp(api_key="YOUR_API_KEY")
+result = app.scrape_url("https://example.com") 
+print(result['markdown']) # Get the clean markdown content
+```
 
-  <InstallationNode />
+```javascript JavaScript
+import FirecrawlApp from '@mendable/firecrawl-js';
 
-  <InstallationGo />
-  
-  <InstallationRust />
+const app = new FirecrawlApp({apiKey: "YOUR_API_KEY"});
+const result = await app.scrapeUrl('https://example.com');
+console.log(result.markdown); // Get the clean markdown content
+```
 
+```bash cURL
+curl -X POST https://api.firecrawl.dev/v1/scrape \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{"url": "https://example.com"}'
+```
 </CodeGroup>
 
-### Usage
+## Installation
 
 <CodeGroup>
-
-  <ScrapePython />
-
-  <ScrapeNode />
-
-  <ScrapeGo />
-
-  <ScrapeRust />
-
-  <ScrapeCURL />
-
+<InstallationPython />
+<InstallationNode />
+<InstallationGo />
+<InstallationRust />
 </CodeGroup>
 
-For more details about the parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
+## Basic Scraping
 
-### Response
+The `/scrape` endpoint lets you extract content from any webpage in multiple formats. By default, it returns clean markdown perfect for LLM applications.
 
-SDKs will return the data object directly. cURL will return the payload exactly as shown below.
+### Example Usage
+
+<CodeGroup>
+<ScrapePython />
+<ScrapeNode />
+<ScrapeGo />
+<ScrapeRust />
+<ScrapeCURL />
+</CodeGroup>
+
+### Response Format
 
 <ScrapeResponse />
 
-## Extract structured data
+## Common Use Cases
 
-### /scrape (with extract) endpoint
+### 1. Getting Structured Data (Extract)
 
-Used to extract structured data from scraped pages.
+Extract specific information from a webpage in a structured format:
 
 <CodeGroup>
-
 <ExtractPython />
 <ExtractNode />
 <ExtractCURL />
-
 </CodeGroup>
 
 Output:
-
 <ExtractOutput />
 
-### Extracting without schema (New)
-
-You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
+<Tip>
+Need a simpler way? You can extract data without defining a schema by just providing a prompt:
+</Tip>
 
 <CodeGroup>
-
 <ExtractNoSchemaCURL />
-
 </CodeGroup>
 
 Output:
-
 <ExtractNoSchemaOutput />
 
-### Extract object
+### 2. Batch Scraping Multiple URLs
 
-The `extract` object accepts the following parameters:
+Process multiple URLs at once:
 
-- `schema`: The schema to use for the extraction.
-- `systemPrompt`: The system prompt to use for the extraction.
-- `prompt`: The prompt to use for the extraction without a schema.
-
-
-
-## Interacting with the page with Actions
-
-Firecrawl allows you to perform various actions on a web page before scraping its content. This is particularly useful for interacting with dynamic content, navigating through pages, or accessing content that requires user interaction.
-
-Here is an example of how to use actions to navigate to google.com, search for Firecrawl, click on the first result, and take a screenshot.
-
-It is important to almost always use the `wait` action before/after executing other actions to give enough time for the page to load.
-
-### Example
 <CodeGroup>
+<BatchScrapePython />
+<BatchScrapeNode />
+<BatchScrapeCURL />
+</CodeGroup>
 
+<Accordion title="Response Examples">
+Synchronous Response:
+<BatchScrapeOutput />
+
+Asynchronous Response:
+<BatchScrapeAsyncOutput />
+</Accordion>
+
+## Advanced Features
+
+<AccordionGroup>
+
+<Accordion title="Interactive Actions">
+Interact with web pages before scraping (e.g., clicking buttons, filling forms):
+
+<CodeGroup>
 <ScrapeActionsPython />
-<ScrapeActionsNode /> 
+<ScrapeActionsNode />
 <ScrapeActionsCURL />
-
 </CodeGroup>
-### Output
 
-<CodeGroup>
-
+Example Output:
 <ScrapeActionsOutput />
+</Accordion>
 
-
-</CodeGroup>
-For more details about the actions parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
-
-## Location and Language
-
-Specify country and preferred languages to get relevant content based on your target location and language preferences.
-
-### How it works
-
-When you specify the location settings, Firecrawl will use an appropriate proxy if available and emulate the corresponding language and timezone settings. By default, the location is set to 'US' if not specified.
-
-### Usage
-
-To use the location and language settings, include the `location` object in your request body with the following properties:
-
-- `country`: ISO 3166-1 alpha-2 country code (e.g., 'US', 'AU', 'DE', 'JP'). Defaults to 'US'.
-- `languages`: An array of preferred languages and locales for the request in order of priority. Defaults to the language of the specified location.
+<Accordion title="Location & Language Settings">
+Customize the scraping location and language:
 
 <CodeGroup>
 <ScrapeLocationPython />
 <ScrapeLocationNode />
 <ScrapeLocationCURL />
 </CodeGroup>
+</Accordion>
 
-## Batch scraping multiple URLs
+</AccordionGroup>
 
-You can now batch scrape multiple URLs at the same time. It takes the starting URLs and optional parameters as arguments. The params argument allows you to specify additional options for the batch scrape job, such as the output formats.
+## Additional Resources
 
-### How it works
-
-It is very similar to how the `/crawl` endpoint works. It submits a batch scrape job and returns a job ID to check the status of the batch scrape. 
-
-The sdk provides 2 methods, synchronous and asynchronous. The synchronous method will return the results of the batch scrape job, while the asynchronous method will return a job ID that you can use to check the status of the batch scrape.
-
-### Usage
-
-<CodeGroup>
-
-<BatchScrapePython />
-<BatchScrapeNode />
-<BatchScrapeCURL />
-
-</CodeGroup>
-
-### Response
-
-If you’re using the sync methods from the SDKs, it will return the results of the batch scrape job. Otherwise, it will return a job ID that you can use to check the status of the batch scrape.
-
-#### Synchronous
-
-<BatchScrapeOutput />
-
-#### Asynchronous
-
-You can then use the job ID to check the status of the batch scrape by calling the `/batch/scrape/{id}` endpoint. This endpoint is meant to be used while the job is still running or right after it has completed **as batch scrape jobs expire after 24 hours**.
-
-<BatchScrapeAsyncOutput />
-
+<CardGroup cols={2}>
+<Card title="API Reference" icon="book" href="/api-reference/endpoint/scrape">
+Detailed API documentation with all available parameters
+</Card>
+<Card title="Advanced Guide" icon="graduation-cap" href="/advanced-scraping-guide">
+Learn advanced scraping techniques and options
+</Card>
+</CardGroup>
