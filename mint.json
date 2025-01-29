@@ -256,5 +256,8 @@
     "x": "https://x.com/firecrawl_dev",
     "github": "https://github.com/mendableai/firecrawl",
     "linkedin": "https://www.linkedin.com/company/firecrawl"
+  },
+  "feedback": {
+    "thumbsRating": true
   }
 }
