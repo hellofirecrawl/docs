@@ -1477,6 +1477,10 @@
                     "description": "Maximum number of links to return",
                     "default": 5000,
                     "maximum": 5000
+                  },
+                  "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in milliseconds. There is no timeout by default."
                   }
                 },
                 "required": ["url"]
