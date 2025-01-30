@@ -414,6 +414,19 @@
                             "type": "object",
                             "description": "Custom metadata that will be included in all webhook payloads for this crawl",
                             "additionalProperties": true
+                          },
+                          "events": {
+                            "type": "array",
+                            "description": "Type of events that should be sent to the webhook URL. (default: all)",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "completed",
+                                "page",
+                                "failed",
+                                "started"
+                              ]
+                            }
                           }
                         },
                         "required": ["url"]
@@ -1309,6 +1322,19 @@
                             "type": "object",
                             "description": "Custom metadata that will be included in all webhook payloads for this crawl",
                             "additionalProperties": true
+                          },
+                          "events": {
+                            "type": "array",
+                            "description": "Type of events that should be sent to the webhook URL. (default: all)",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "completed",
+                                "page",
+                                "failed",
+                                "started"
+                              ]
+                            }
                           }
                         },
                         "required": ["url"]
