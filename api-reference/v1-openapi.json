@@ -39,31 +39,64 @@
                     "description": "The URL to scrape"
                   },
                   "formats": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/formats"
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "markdown",
+                        "html",
+                        "rawHtml",
+                        "links",
+                        "screenshot",
+                        "screenshot@fullPage",
+                        "json"
+                      ]
+                    },
+                    "description": "Formats to include in the output.",
+                    "default": ["markdown"]
                   },
                   "onlyMainContent": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/onlyMainContent"
+                    "type": "boolean",
+                    "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                    "default": true
                   },
                   "includeTags": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/includeTags"
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Tags to include in the output."
                   },
                   "excludeTags": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/excludeTags"
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Tags to exclude from the output."
                   },
                   "headers": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/headers"
+                    "type": "object",
+                    "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
                   },
                   "waitFor": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/waitFor"
+                    "type": "integer",
+                    "description": "Specify a delay in milliseconds before fetching the content, allowing the page sufficient time to load.",
+                    "default": 0
                   },
                   "mobile": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/mobile"
+                    "type": "boolean",
+                    "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                    "default": false
                   },
                   "skipTlsVerification": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/skipTlsVerification"
+                    "type": "boolean",
+                    "description": "Skip TLS certificate verification when making requests",
+                    "default": false
                   },
                   "timeout": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/timeout"
+                    "type": "integer",
+                    "description": "Timeout in milliseconds for the request",
+                    "default": 30000
                   },
                   "jsonOptions": {
                     "type": "object",
@@ -84,7 +117,155 @@
                     }
                   },
                   "actions": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/actions"
+                    "type": "array",
+                    "description": "Actions to perform on the page before grabbing the content",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "title": "Wait",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["wait"],
+                              "description": "Wait for a specified amount of milliseconds"
+                            },
+                            "milliseconds": {
+                              "type": "integer",
+                              "minimum": 1,
+                              "description": "Number of milliseconds to wait"
+                            },
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector to find the element by",
+                              "example": "#my-element"
+                            }
+                          },
+                          "required": ["type"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Screenshot",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["screenshot"],
+                              "description": "Take a screenshot"
+                            },
+                            "fullPage": {
+                              "type": "boolean",
+                              "description": "Should the screenshot be full-page or viewport sized?",
+                              "default": false
+                            }
+                          },
+                          "required": ["type"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Click",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["click"],
+                              "description": "Click on an element"
+                            },
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector to find the element by",
+                              "example": "#load-more-button"
+                            }
+                          },
+                          "required": ["type", "selector"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Write text",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["write"],
+                              "description": "Write text into an input field, text area, or contenteditable element. Note: You must first focus the element using a 'click' action before writing. The text will be typed character by character to simulate keyboard input."
+                            },
+                            "text": {
+                              "type": "string",
+                              "description": "Text to type",
+                              "example": "Hello, world!"
+                            }
+                          },
+                          "required": ["type", "text"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Press a key",
+                          "description": "Press a key on the page. See https://asawicki.info/nosense/doc/devices/keyboard/key_codes.html for key codes.",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["press"],
+                              "description": "Press a key on the page"
+                            },
+                            "key": {
+                              "type": "string",
+                              "description": "Key to press",
+                              "example": "Enter"
+                            }
+                          },
+                          "required": ["type", "key"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Scroll",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["scroll"],
+                              "description": "Scroll the page or a specific element"
+                            },
+                            "direction": {
+                              "type": "string",
+                              "enum": ["up", "down"],
+                              "description": "Direction to scroll",
+                              "default": "down"
+                            },
+                            "selector": {
+                              "type": "string",
+                              "description": "Query selector for the element to scroll",
+                              "example": "#my-element"
+                            }
+                          },
+                          "required": ["type"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Scrape",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["scrape"],
+                              "description": "Scrape the current page content, returns the url and the html."
+                            }
+                          },
+                          "required": ["type"]
+                        },
+                        {
+                          "type": "object",
+                          "title": "Execute JavaScript",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["executeJavascript"],
+                              "description": "Execute JavaScript code on the page"
+                            },
+                            "script": {
+                              "type": "string",
+                              "description": "JavaScript code to execute",
+                              "example": "document.querySelector('.button').click();"
+                            }
+                          },
+                          "required": ["type", "script"]
+                        }
+                      ]
+                    }
                   },
                   "location": {
                     "type": "object",
@@ -107,10 +288,13 @@
                     }
                   },
                   "removeBase64Images": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/removeBase64Images"
+                    "type": "boolean",
+                    "description": "Removes all base 64 images from the output, which may be overwhelmingly long. The image's alt text remains in the output, but the URL is replaced with a placeholder."
                   },
                   "blockAds": {
-                    "$ref": "#/components/schemas/ScrapeOptions/properties/blockAds"
+                    "type": "boolean",
+                    "description": "Enables ad-blocking and cookie popup blocking.",
+                    "default": true
                   }
                 },
                 "required": ["url"]
@@ -517,9 +701,6 @@
                     "type": "boolean",
                     "default": false,
                     "description": "If invalid URLs are specified in the urls array, they will be ignored. Instead of them failing the entire request, a batch scrape using the remaining valid URLs will be created, and the invalid URLs will be returned in the invalidURLs field of the response."
-                  },
-                  "scrapeOptions": {
-                    "$ref": "#/components/schemas/ScrapeOptions"
                   }
                 },
                 "required": ["url"]
@@ -1161,7 +1342,67 @@
                     ]
                   },
                   "scrapeOptions": {
-                    "$ref": "#/components/schemas/ScrapeOptions"
+                    "type": "object",
+                    "properties": {
+                      "formats": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "markdown",
+                            "html",
+                            "rawHtml",
+                            "links",
+                            "screenshot"
+                          ]
+                        },
+                        "description": "Formats to include in the output.",
+                        "default": ["markdown"]
+                      },
+                      "headers": {
+                        "type": "object",
+                        "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
+                      },
+                      "includeTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Tags to include in the output."
+                      },
+                      "excludeTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Tags to exclude from the output."
+                      },
+                      "onlyMainContent": {
+                        "type": "boolean",
+                        "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                        "default": true
+                      },
+                      "removeBase64Images": {
+                        "type": "boolean",
+                        "description": "Remove base64 encoded images from the output",
+                        "default": true
+                      },
+                      "blockAds": {
+                        "type": "boolean",
+                        "description": "Enables ad-blocking and cookie popup blocking.",
+                        "default": true
+                      },
+                      "mobile": {
+                        "type": "boolean",
+                        "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                        "default": false
+                      },
+                      "waitFor": {
+                        "type": "integer",
+                        "description": "Wait x amount of milliseconds for the page to load to fetch content",
+                        "default": 123
+                      }
+                    }
                   }
                 },
                 "required": ["url"]
@@ -1408,9 +1649,6 @@
                     "type": "boolean",
                     "description": "When true, subdomains of the provided URLs will also be scanned",
                     "default": true
-                  },
-                  "scrapeOptions": {
-                    "$ref": "#/components/schemas/ScrapeOptions"
                   }
                 },
                 "required": ["urls"]
@@ -1632,7 +1870,28 @@
                     "default": 60000
                   },
                   "scrapeOptions": {
-                    "$ref": "#/components/schemas/ScrapeOptions"
+                    "type": "object",
+                    "description": "Options for scraping search results",
+                    "properties": {
+                      "formats": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "markdown",
+                            "html",
+                            "rawHtml", 
+                            "links",
+                            "screenshot",
+                            "screenshot@fullPage",
+                            "extract"
+                          ]
+                        },
+                        "description": "Formats to include in the output",
+                        "default": []
+                      }
+                    },
+                    "default": {}
                   }
                 },
                 "required": ["query"]
@@ -2182,231 +2441,6 @@
           "expiresAt": {
             "type": "string",
             "format": "date-time"
-          }
-        }
-      },
-      "ScrapeOptions": {
-        "type": "object",
-        "properties": {
-          "formats": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "markdown",
-                "html",
-                "rawHtml",
-                "links",
-                "screenshot",
-                "screenshot@fullPage",
-                "json"
-              ]
-            },
-            "description": "Formats to include in the output.",
-            "default": ["markdown"]
-          },
-          "onlyMainContent": {
-            "type": "boolean",
-            "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
-            "default": true
-          },
-          "includeTags": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Tags to include in the output."
-          },
-          "excludeTags": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Tags to exclude from the output."
-          },
-          "headers": {
-            "type": "object",
-            "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc."
-          },
-          "waitFor": {
-            "type": "integer",
-            "description": "Specify a delay in milliseconds before fetching the content, allowing the page sufficient time to load.",
-            "default": 0
-          },
-          "mobile": {
-            "type": "boolean",
-            "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
-            "default": false
-          },
-          "skipTlsVerification": {
-            "type": "boolean",
-            "description": "Skip TLS certificate verification when making requests",
-            "default": false
-          },
-          "timeout": {
-            "type": "integer",
-            "description": "Timeout in milliseconds for the request",
-            "default": 30000
-          },
-          "removeBase64Images": {
-            "type": "boolean",
-            "description": "Removes all base 64 images from the output, which may be overwhelmingly long. The image's alt text remains in the output, but the URL is replaced with a placeholder."
-          },
-          "blockAds": {
-            "type": "boolean",
-            "description": "Enables ad-blocking and cookie popup blocking.",
-            "default": true
-          },
-          "actions": {
-            "type": "array",
-            "description": "Actions to perform on the page before grabbing the content",
-            "items": {
-              "oneOf": [
-                {
-                  "type": "object",
-                  "title": "Wait",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["wait"],
-                      "description": "Wait for a specified amount of milliseconds"
-                    },
-                    "milliseconds": {
-                      "type": "integer",
-                      "minimum": 1,
-                      "description": "Number of milliseconds to wait"
-                    },
-                    "selector": {
-                      "type": "string",
-                      "description": "Query selector to find the element by",
-                      "example": "#my-element"
-                    }
-                  },
-                  "required": ["type"]
-                },
-                {
-                  "type": "object",
-                  "title": "Screenshot",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["screenshot"],
-                      "description": "Take a screenshot"
-                    },
-                    "fullPage": {
-                      "type": "boolean",
-                      "description": "Should the screenshot be full-page or viewport sized?",
-                      "default": false
-                    }
-                  },
-                  "required": ["type"]
-                },
-                {
-                  "type": "object",
-                  "title": "Click",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["click"],
-                      "description": "Click on an element"
-                    },
-                    "selector": {
-                      "type": "string",
-                      "description": "Query selector to find the element by",
-                      "example": "#load-more-button"
-                    }
-                  },
-                  "required": ["type", "selector"]
-                },
-                {
-                  "type": "object",
-                  "title": "Write text",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["write"],
-                      "description": "Write text into an input field, text area, or contenteditable element. Note: You must first focus the element using a 'click' action before writing. The text will be typed character by character to simulate keyboard input."
-                    },
-                    "text": {
-                      "type": "string",
-                      "description": "Text to type",
-                      "example": "Hello, world!"
-                    }
-                  },
-                  "required": ["type", "text"]
-                },
-                {
-                  "type": "object",
-                  "title": "Press a key",
-                  "description": "Press a key on the page. See https://asawicki.info/nosense/doc/devices/keyboard/key_codes.html for key codes.",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["press"],
-                      "description": "Press a key on the page"
-                    },
-                    "key": {
-                      "type": "string",
-                      "description": "Key to press",
-                      "example": "Enter"
-                    }
-                  },
-                  "required": ["type", "key"]
-                },
-                {
-                  "type": "object",
-                  "title": "Scroll",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["scroll"],
-                      "description": "Scroll the page or a specific element"
-                    },
-                    "direction": {
-                      "type": "string",
-                      "enum": ["up", "down"],
-                      "description": "Direction to scroll",
-                      "default": "down"
-                    },
-                    "selector": {
-                      "type": "string",
-                      "description": "Query selector for the element to scroll",
-                      "example": "#my-element"
-                    }
-                  },
-                  "required": ["type"]
-                },
-                {
-                  "type": "object",
-                  "title": "Scrape",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["scrape"],
-                      "description": "Scrape the current page content, returns the url and the html."
-                    }
-                  },
-                  "required": ["type"]
-                },
-                {
-                  "type": "object",
-                  "title": "Execute JavaScript",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["executeJavascript"],
-                      "description": "Execute JavaScript code on the page"
-                    },
-                    "script": {
-                      "type": "string",
-                      "description": "JavaScript code to execute",
-                      "example": "document.querySelector('.button').click();"
-                    }
-                  },
-                  "required": ["type", "script"]
-                }
-              ]
-            }
           }
         }
       }
