@@ -1649,6 +1649,11 @@
                     "type": "boolean",
                     "description": "When true, subdomains of the provided URLs will also be scanned",
                     "default": true
+                  },
+                  "showSources": {
+                    "type": "boolean",
+                    "description": "When true, the sources used to extract the data will be included in the response as `sources` key",
+                    "default": false
                   }
                 },
                 "required": ["urls"]
