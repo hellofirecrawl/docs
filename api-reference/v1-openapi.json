@@ -295,11 +295,6 @@
                     "type": "boolean",
                     "description": "Enables ad-blocking and cookie popup blocking.",
                     "default": true
-                  },
-                  "proxy": {
-                    "type": "string",
-                    "enum": ["basic", "proxy"],
-                    "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
                   }
                 },
                 "required": ["url"]
@@ -701,11 +696,6 @@
                     "type": "boolean",
                     "description": "Enables ad-blocking and cookie popup blocking.",
                     "default": true
-                  },
-                  "proxy": {
-                    "type": "string",
-                    "enum": ["basic", "proxy"],
-                    "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
                   },
                   "ignoreInvalidURLs": {
                     "type": "boolean",
@@ -1406,11 +1396,6 @@
                         "type": "boolean",
                         "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
                         "default": false
-                      },
-                      "proxy": {
-                        "type": "string",
-                        "enum": ["basic", "proxy"],
-                        "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
                       },
                       "waitFor": {
                         "type": "integer",
