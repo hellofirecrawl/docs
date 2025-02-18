@@ -298,7 +298,7 @@
                   },
                   "proxy": {
                     "type": "string",
-                    "enum": ["basic", "proxy"],
+                    "enum": ["basic", "stealth"],
                     "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
                   }
                 },
@@ -704,7 +704,7 @@
                   },
                   "proxy": {
                     "type": "string",
-                    "enum": ["basic", "proxy"],
+                    "enum": ["basic", "stealth"],
                     "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
                   },
                   "ignoreInvalidURLs": {
@@ -1409,7 +1409,7 @@
                       },
                       "proxy": {
                         "type": "string",
-                        "enum": ["basic", "proxy"],
+                        "enum": ["basic", "stealth"],
                         "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
                       },
                       "waitFor": {
