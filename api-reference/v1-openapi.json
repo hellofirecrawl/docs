@@ -1070,6 +1070,9 @@
                     "type": "boolean",
                     "description": "When true, the sources used to extract the data will be included in the response as `sources` key",
                     "default": false
+                  },
+                  "scrapeOptions": {
+                    "$ref": "#/components/schemas/ScrapeOptions"
                   }
                 },
                 "required": ["urls"]
