@@ -150,7 +150,7 @@
                             "type": {
                               "type": "string",
                               "enum": ["screenshot"],
-                              "description": "Take a screenshot"
+                              "description": "Take a screenshot. The links will be in the response's `actions.screenshots` array."
                             },
                             "fullPage": {
                               "type": "boolean",
@@ -551,7 +551,7 @@
                             "type": {
                               "type": "string",
                               "enum": ["screenshot"],
-                              "description": "Take a screenshot"
+                              "description": "Take a screenshot. The links will be in the response's `actions.screenshots` array."
                             },
                             "fullPage": {
                               "type": "boolean",
