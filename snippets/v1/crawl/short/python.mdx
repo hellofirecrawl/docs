@@ -1,11 +1,14 @@
 ```python Python
-crawl_status = app.crawl_url(
-  'https://firecrawl.dev', 
+# Crawl a website
+crawl_response = app.crawl_url(
+  url='https://firecrawl.dev',
   params={
-    'limit': 100, 
-    'scrapeOptions': {'formats': ['markdown', 'html']}
-  }, 
-  poll_interval=30
+    'limit': 100,
+    'scrapeOptions': {
+      'formats': ['markdown', 'html']
+    }
+  }
 )
-print(crawl_status)
+
+print(crawl_response)
 ```
