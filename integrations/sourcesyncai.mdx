@@ -1,23 +1,23 @@
 ---
-title: 'RAGaaS'
-description: 'Firecrawl integrates with RAGaaS for web scraping capabilities.'
-og:title: "RAGaaS | Firecrawl"
-og:description: "Firecrawl integrates with RAGaaS for web scraping capabilities."
+title: 'SourceSync.ai'
+description: 'Firecrawl integrates with SourceSync.ai for web scraping capabilities.'
+og:title: "SourceSync.ai | Firecrawl"
+og:description: "Firecrawl integrates with SourceSync.ai for web scraping capabilities."
 ---
 
-[RAGaaS](https://ragaas.dev) is a Retrieval Augmented Generation as a Service platform that helps you build AI applications with your own data. This guide explains how to use Firecrawl with RAGaaS for web scraping capabilities.
+[SourceSync.ai](https://sourcesync.ai) is a Retrieval Augmented Generation as a Service platform that helps you build AI applications with your own data. This guide explains how to use Firecrawl with SourceSync.ai for web scraping capabilities.
 
 ## Setup
 
 1. First, obtain your Firecrawl API key from your [Firecrawl dashboard](https://www.firecrawl.dev/app)
 
-2. Configure your RAGaaS namespace to use Firecrawl as the web scraping provider:
+2. Configure your SourceSync.ai namespace to use Firecrawl as the web scraping provider:
 
 <CodeGroup>
 
 ```bash cURL
-curl -X PATCH https://api.ragaas.dev/v1/namespaces/YOUR_NAMESPACE_ID \
-  -H "Authorization: Bearer YOUR_RAGAAS_API_KEY" \
+curl -X PATCH https://api.sourcesync.ai/v1/namespaces/YOUR_NAMESPACE_ID \
+  -H "Authorization: Bearer YOUR_SOURCE_SYNC_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "webScraperConfig": {
@@ -29,11 +29,11 @@ curl -X PATCH https://api.ragaas.dev/v1/namespaces/YOUR_NAMESPACE_ID \
 
 ```javascript JavaScript
 const response = await fetch(
-  'https://api.ragaas.dev/v1/namespaces/YOUR_NAMESPACE_ID',
+  'https://api.sourcesync.ai/v1/namespaces/YOUR_NAMESPACE_ID',
   {
     method: 'PATCH',
     headers: {
-      Authorization: `Bearer ${RAGAAS_API_KEY}`,
+      Authorization: `Bearer ${SOURCE_SYNC_API_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -50,9 +50,9 @@ const response = await fetch(
 import requests
 
 response = requests.patch(
-    'https://api.ragaas.dev/v1/namespaces/YOUR_NAMESPACE_ID',
+    'https://api.sourcesync.ai/v1/namespaces/YOUR_NAMESPACE_ID',
     headers={
-        'Authorization': f'Bearer {RAGAAS_API_KEY}',
+        'Authorization': f'Bearer {SOURCE_SYNC_API_KEY}',
         'Content-Type': 'application/json',
     },
     json={
@@ -68,7 +68,7 @@ response = requests.patch(
 
 ## Usage
 
-Once configured, you can use RAGaaS's web scraping endpoints with Firecrawl's capabilities. Here are the main ingestion methods:
+Once configured, you can use SourceSync.ai's web scraping endpoints with Firecrawl's capabilities. Here are the main ingestion methods:
 
 ### URL List Ingestion
 
@@ -77,8 +77,8 @@ Scrape specific URLs:
 <CodeGroup>
 
 ```bash cURL
-curl -X POST https://api.ragaas.dev/v1/ingest/urls \
-  -H "Authorization: Bearer YOUR_RAGAAS_API_KEY" \
+curl -X POST https://api.sourcesync.ai/v1/ingest/urls \
+  -H "Authorization: Bearer YOUR_SOURCE_SYNC_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "namespaceId": "YOUR_NAMESPACE_ID",
@@ -99,10 +99,10 @@ curl -X POST https://api.ragaas.dev/v1/ingest/urls \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.ragaas.dev/v1/ingest/urls', {
+const response = await fetch('https://api.sourcesync.ai/v1/ingest/urls', {
   method: 'POST',
   headers: {
-    Authorization: `Bearer ${RAGAAS_API_KEY}`,
+    Authorization: `Bearer ${SOURCE_SYNC_API_KEY}`,
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
@@ -123,9 +123,9 @@ const response = await fetch('https://api.ragaas.dev/v1/ingest/urls', {
 
 ```python Python
 response = requests.post(
-    'https://api.ragaas.dev/v1/ingest/urls',
+    'https://api.sourcesync.ai/v1/ingest/urls',
     headers={
-        'Authorization': f'Bearer {RAGAAS_API_KEY}',
+        'Authorization': f'Bearer {SOURCE_SYNC_API_KEY}',
         'Content-Type': 'application/json',
     },
     json={
@@ -153,8 +153,8 @@ Crawl an entire website with custom rules:
 <CodeGroup>
 
 ```bash cURL
-curl -X POST https://api.ragaas.dev/v1/ingest/website \
-  -H "Authorization: Bearer YOUR_RAGAAS_API_KEY" \
+curl -X POST https://api.sourcesync.ai/v1/ingest/website \
+  -H "Authorization: Bearer YOUR_SOURCE_SYNC_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "namespaceId": "YOUR_NAMESPACE_ID",
@@ -176,10 +176,10 @@ curl -X POST https://api.ragaas.dev/v1/ingest/website \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.ragaas.dev/v1/ingest/website', {
+const response = await fetch('https://api.sourcesync.ai/v1/ingest/website', {
   method: 'POST',
   headers: {
-    Authorization: `Bearer ${RAGAAS_API_KEY}`,
+    Authorization: `Bearer ${SOURCE_SYNC_API_KEY}`,
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
@@ -204,9 +204,9 @@ const response = await fetch('https://api.ragaas.dev/v1/ingest/website', {
 
 ```python Python
 response = requests.post(
-    'https://api.ragaas.dev/v1/ingest/website',
+    'https://api.sourcesync.ai/v1/ingest/website',
     headers={
-        'Authorization': f'Bearer {RAGAAS_API_KEY}',
+        'Authorization': f'Bearer {SOURCE_SYNC_API_KEY}',
         'Content-Type': 'application/json',
     },
     json={
@@ -238,8 +238,8 @@ Process all URLs from a sitemap:
 <CodeGroup>
 
 ```bash cURL
-curl -X POST https://api.ragaas.dev/v1/ingest/sitemap \
-  -H "Authorization: Bearer YOUR_RAGAAS_API_KEY" \
+curl -X POST https://api.sourcesync.ai/v1/ingest/sitemap \
+  -H "Authorization: Bearer YOUR_SOURCE_SYNC_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "namespaceId": "YOUR_NAMESPACE_ID",
@@ -257,10 +257,10 @@ curl -X POST https://api.ragaas.dev/v1/ingest/sitemap \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.ragaas.dev/v1/ingest/sitemap', {
+const response = await fetch('https://api.sourcesync.ai/v1/ingest/sitemap', {
   method: 'POST',
   headers: {
-    Authorization: `Bearer ${RAGAAS_API_KEY}`,
+    Authorization: `Bearer ${SOURCE_SYNC_API_KEY}`,
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
@@ -281,9 +281,9 @@ const response = await fetch('https://api.ragaas.dev/v1/ingest/sitemap', {
 
 ```python Python
 response = requests.post(
-    'https://api.ragaas.dev/v1/ingest/sitemap',
+    'https://api.sourcesync.ai/v1/ingest/sitemap',
     headers={
-        'Authorization': f'Bearer {RAGAAS_API_KEY}',
+        'Authorization': f'Bearer {SOURCE_SYNC_API_KEY}',
         'Content-Type': 'application/json',
     },
     json={
@@ -306,7 +306,7 @@ response = requests.post(
 
 ## Features
 
-When using Firecrawl with RAGaaS, you get access to:
+When using Firecrawl with SourceSync.ai, you get access to:
 
 - JavaScript rendering support
 - Automatic rate limiting
@@ -316,11 +316,11 @@ When using Firecrawl with RAGaaS, you get access to:
 
 ## Resources
 
-- [RAGaaS Documentation](https://ragaas.dev)
-- [Web Scraping Guide](https://ragaas.dev/web-scraping)
-- [API Reference](https://ragaas.dev/api-reference/data-ingestion#ingest-urls)
+- [SourceSync.ai Documentation](https://sourcesync.ai)
+- [Web Scraping Guide](https://sourcesync.ai/web-scraping)
+- [API Reference](https://sourcesync.ai/api-reference/data-ingestion#ingest-urls)
 
 For additional support:
 
-- Email: [support@ragaas.dev](mailto:support@ragaas.dev)
+- Email: [support@sourcesync.ai](mailto:support@sourcesync.ai)
 - Discord: [Join our community](https://discord.gg/Fx3GnFKnRT)
