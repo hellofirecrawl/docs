@@ -160,7 +160,7 @@
         "integrations/flowise",
         "integrations/langflow",
         "integrations/camelai",
-        "integrations/ragaas"
+        "integrations/sourcesyncai"
       ]
     },
     {
