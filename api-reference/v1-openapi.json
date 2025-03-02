@@ -1355,6 +1355,9 @@
                         },
                         "maxDepth": {
                           "type": "integer"
+                        },
+                        "totalUrls": {
+                          "type": "integer"
                         }
                       }
                     }
