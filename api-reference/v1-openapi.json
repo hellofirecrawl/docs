@@ -1681,6 +1681,172 @@
           }
         }
       }
+    },
+    "/llmstxt": {
+      "post": {
+        "summary": "Generate LLMs.txt for a website",
+        "operationId": "generateLLMsTxt",
+        "tags": ["LLMs.txt"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The URL to generate LLMs.txt from"
+                  },
+                  "maxUrls": {
+                    "type": "integer",
+                    "description": "Maximum number of URLs to analyze",
+                    "default": 2
+                  },
+                  "showFullText": {
+                    "type": "boolean",
+                    "description": "Include full text content in the response",
+                    "default": false
+                  }
+                },
+                "required": ["url"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "LLMs.txt generation job started successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "ID of the LLMs.txt generation job"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid parameters provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llmstxt/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "The ID of the LLMs.txt generation job",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get the status and results of an LLMs.txt generation job",
+        "operationId": "getLLMsTxtStatus",
+        "tags": ["LLMs.txt"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["processing", "completed", "failed"]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "llmstxt": {
+                          "type": "string",
+                          "description": "The generated LLMs.txt content"
+                        },
+                        "llmsfulltxt": {
+                          "type": "string",
+                          "description": "The full text content when showFullText is true"
+                        }
+                      }
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "When the generated content will expire"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "LLMs.txt generation job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "LLMs.txt generation job not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
