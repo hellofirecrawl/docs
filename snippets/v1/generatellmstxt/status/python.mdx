@@ -4,6 +4,14 @@ from firecrawl import FirecrawlApp
 # Initialize the client
 firecrawl = FirecrawlApp(api_key="your_api_key")
 
+# Create async job
+job = firecrawl.async_generate_llms_text(
+    url="https://example.com",
+)
+
+if job['success']:
+    job_id = job['id']
+
 # Check LLMs.txt generation status
 status = firecrawl.check_generate_llms_text_status("job_id")
 

@@ -1,10 +1,10 @@
 ---
-title: "Generate LLMs.txt with API"
+title: "Generate LLMstxt Endpoint"
 description: "Generate LLMs.txt files from any website for LLM training and analysis"
 og:title: "LLMs.txt Generator | Firecrawl"
 og:description: "Transform websites into clean, LLM-ready text files"
 icon: "file-text"
-sidebarTitle: "Generate with API"
+sidebarTitle: "Generate LLMstxt Endpoint (Alpha)"
 ---
 
 import GenerateLLMsTxtCURL from "/snippets/v1/generatellmstxt/base/curl.mdx";
@@ -16,7 +16,7 @@ import CheckStatusNode from "/snippets/v1/generatellmstxt/status/js.mdx";
 import StatusPending from "/snippets/v1/generatellmstxt/status/pending.mdx";
 import StatusCompleted from "/snippets/v1/generatellmstxt/status/completed.mdx";
 
-## Introducing LLMs.txt Generator (Alpha) 📃
+## Introducing LLMs.txt Generator Endpoint (Alpha) 📃
 
 The `/llmstxt` endpoint allows you to transform any website into clean, [LLM-ready text files](https://www.firecrawl.dev/blog/How-to-Create-an-llms-txt-File-for-Any-Website). Simply provide a URL, and Firecrawl will crawl the site and generate both `llms.txt` and `llms-full.txt` files that can be used for training or analysis with any LLM.
 
@@ -49,7 +49,7 @@ See [API Reference](/api-reference/endpoint/llmstxt) for more details.
 
 ## Checking Generation Status
 
-LLMs.txt generation runs asynchronously. Monitor the status with:
+LLMs.txt generation runs asynchronously. Make the aync call and monitor the status with:
 
 <CodeGroup>
 
