@@ -141,6 +141,20 @@
       "version": "v1"
     },
     {
+      "group": "Alpha Features",
+      "pages": [
+        {
+          "group": "LLMs.txt API",
+          "icon": "text",
+          "pages": [
+            "features/alpha/llmstxt",
+            "features/alpha/llmstxt-npx"
+          ]
+        }
+      ],
+      "version": "v1"
+    },
+    {
       "group": "Features",
       "pages": [
         "v0/features/scrape",
