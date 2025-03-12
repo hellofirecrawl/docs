@@ -753,8 +753,12 @@
                   },
                   "maxDepth": {
                     "type": "integer",
-                    "description": "Maximum depth to crawl relative to the entered URL.",
-                    "default": 2
+                    "description": "Maximum depth to crawl relative to the base URL. Basically, the max number of slashes the pathname of a scraped URL may contain.",
+                    "default": 10
+                  },
+                  "maxDiscoveryDepth": {
+                    "type": "integer",
+                    "description": "Maximum depth to crawl based on discovery order. The root site and sitemapped pages has a discovery depth of 0. For example, if you set it to 1, and you set ignoreSitemap, you will only crawl the entered URL and all URLs that are linked on that page."
                   },
                   "ignoreSitemap": {
                     "type": "boolean",
