@@ -14,12 +14,20 @@ og:description: "Rate limits for different pricing plans and API requests"
 | Standard        | 500                    | 500                | 50                    | 250                    |
 | Growth | 5000                   | 5000               | 250                   | 2500                   |
 
+## Concurrent Requests
+
+| Plan       | Concurrent Browsers |
+|------------|-----------------------------|
+| Free       | 2                           |
+| Hobby      | 4                           |
+| Standard   | 10                          |
+| Growth     | 100                         |
 
 
 
 |        | /crawl/status (requests/min) |
 |------------|-----------------------------|
-| Default    | 150                         |
+| Default    | 1500                         |
 
 These rate limits are enforced to ensure fair usage and availability of the API for all users. If you require higher limits, please contact us at [hello@firecrawl.com](mailto:hello@firecrawl.com) to discuss custom plans.
 
