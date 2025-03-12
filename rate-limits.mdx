@@ -10,9 +10,9 @@ og:description: "Rate limits for different pricing plans and API requests"
 | Plan       | /scrape (requests/min) | /map (requests/min) | /crawl (requests/min) | /search (requests/min) |
 |------------|------------------------|--------------------|-----------------------|------------------------|
 | Free       | 10                     | 10                 | 1                     | 5                      |
-| Hobby      | 20                    | 20                 | 3                     | 10                     |
-| Standard        | 100                    | 100                | 10                    | 50                     |
-| Growth | 1000                   | 1000               | 50                  | 500                   |
+| Hobby      | 100                    | 100                | 15                    | 50                     |
+| Standard        | 500                    | 500                | 50                    | 250                    |
+| Growth | 5000                   | 5000               | 250                   | 2500                   |
 
 
 
@@ -32,9 +32,9 @@ Batch endpoints follow the /crawl rate limit.
 | Plan      | /extract (requests/min) |
 |-----------|------------------------|
 | Free      | 10                     |
-| Hobby     | 20                     |
-| Standard  | 100                    |
-| Growth    | 1000                   |
+| Hobby     | 100                    |
+| Standard  | 500                    |
+| Growth    | 5000                   |
 | Enterprise | Custom                  |
 
 |        | /extract/status (requests/min) |
@@ -45,8 +45,8 @@ Batch endpoints follow the /crawl rate limit.
 
 | Plan             | /scrape (requests/min) | /crawl (concurrent req) | /search (requests/min) |
 |------------------|------------------------|-------------------------|------------------------|
-| Starter          | 20                     | 3                       | 20                     |
-| Standard Legacy  | 40                     | 40                      | 40                     |
-| Scaled Legacy    | 50                    | 20                     | 50                    |
+| Starter          | 100                    | 15                      | 100                    |
+| Standard Legacy  | 200                    | 200                     | 200                    |
+| Scaled Legacy    | 250                    | 100                    | 250                    |
 
 If you require higher limits, please contact us at [hello@firecrawl.com](mailto:hello@firecrawl.com) to discuss custom plans.
