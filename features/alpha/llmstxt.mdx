@@ -42,7 +42,7 @@ The LLMs.txt Generator:
 **Key Parameters:**
 
 - **url**: The website URL to generate LLMs.txt files from
-- **maxUrls** (Optional): Maximum number of pages to crawl (1-1000, default: 20)
+- **maxUrls** (Optional): Maximum number of pages to crawl (1-100, default: 10)
 - **showFullText** (Optional): Generate llms-full.txt in addition to llms.txt (default: false)
 
 See [API Reference](/api-reference/endpoint/llmstxt) for more details.
@@ -82,10 +82,9 @@ As an Alpha feature, the output format and processing may evolve based on feedba
 
 ## Billing and Usage
 
-Billing is based on API calls and URLs processed:
+Billing is based on the number of URLs processed:
 
-- Base cost: 1 credit per API call
-- Additional: 1 credit per URL processed
+- Base cost: 1 credit per URL processed
 - Control URL costs with `maxUrls` parameter
 
 Have feedback or need help? Email [help@firecrawl.dev](mailto:help@firecrawl.dev).
