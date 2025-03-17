@@ -143,7 +143,8 @@
           "icon": "text",
           "pages": [
             "features/alpha/llmstxt",
-            "features/alpha/llmstxt-npx"
+            "features/alpha/llmstxt-npx",
+            "features/alpha/deep-research"
           ]
         }
       ],
