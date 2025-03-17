@@ -6,7 +6,7 @@
     "light": "/logo/light.svg",
     "href": "https://firecrawl.dev"
   },
-  "versions": ["v1", "v0"],
+  "versions": ["v1"],
   "metadata": {
     "og:title": "Firecrawl Docs",
     "og:description": "Firecrawl allows you turn websites to LLM-ready data in seconds.",
@@ -53,11 +53,6 @@
       "version": "v1"
     },
     {
-      "name": "SDKs",
-      "url": "v0/sdks",
-      "version": "v0"
-    },
-    {
       "name": "Learn",
       "url": "https://www.firecrawl.dev/blog/category/tutorials"
     },
@@ -65,11 +60,6 @@
       "name": "API Reference",
       "url": "api-reference",
       "version": "v1"
-    },
-    {
-      "name": "API Reference",
-      "url": "v0/api-reference",
-      "version": "v0"
     }
   ],
   "anchors": [
@@ -106,16 +96,6 @@
         "advanced-scraping-guide"
       ],
       "version": "v1"
-    },
-    {
-      "group": "Get Started",
-      "pages": [
-        "v0/introduction",
-        "v0/advanced-scraping-guide",
-        "rate-limits",
-        "integrations"
-      ],
-      "version": "v0"
     },
     {
       "group": "Features",
@@ -157,16 +137,6 @@
       "version": "v1"
     },
     {
-      "group": "Features",
-      "pages": [
-        "v0/features/scrape",
-        "v0/features/crawl",
-        "v0/features/extract",
-        "features/search"
-      ],
-      "version": "v0"
-    },
-    {
       "group": "Integrations",
       "pages": [
         "integrations/langchain",
@@ -189,11 +159,6 @@
       "version": "v1"
     },
     {
-      "group": "Using the API",
-      "pages": ["v0/api-reference/introduction"],
-      "version": "v0"
-    },
-    {
       "group": "Overall",
       "pages": ["sdks/overview"]
     },
@@ -201,11 +166,6 @@
       "group": "SDKs",
       "pages": ["sdks/python", "sdks/node", "sdks/go", "sdks/rust"],
       "version": "v1"
-    },
-    {
-      "group": "SDKs",
-      "pages": ["v0/sdks/python", "v0/sdks/node", "v0/sdks/go", "v0/sdks/rust"],
-      "version": "v0"
     },
     {
       "group": "Scrape Endpoints",
@@ -255,17 +215,6 @@
         "api-reference/endpoint/credit-usage"
       ],
       "version": "v1"
-    },
-    {
-      "group": "Endpoints",
-      "pages": [
-        "v0/api-reference/endpoint/scrape",
-        "v0/api-reference/endpoint/search",
-        "v0/api-reference/endpoint/crawl",
-        "v0/api-reference/endpoint/status",
-        "v0/api-reference/endpoint/crawl-cancel"
-      ],
-      "version": "v0"
     }
   ],
   "footerSocials": {
