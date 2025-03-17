@@ -148,7 +148,7 @@
         },
         {
           "group": "Deep Research API",
-          "icon": "brain-circuit",
+          "icon": "telescope",
           "pages": [
             "features/alpha/deep-research"
           ]
