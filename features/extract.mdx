@@ -25,6 +25,9 @@ import CheckExtractJobPython from "/snippets/v1/extract/status/python.mdx";
 import ExtractStatusPending from "/snippets/v1/extract/status/pending.mdx";
 import ExtractStatusAsync from "/snippets/v1/extract/async-response/async.mdx";
 import ExtractStatusDone from "/snippets/v1/extract/status/completed.mdx";
+import ExtractWithoutURLsPython from "/snippets/v1/extract/without-urls/python.mdx";
+import ExtractWithoutURLsJS from "/snippets/v1/extract/without-urls/js.mdx";
+import ExtractWithoutURLsCURL from "/snippets/v1/extract/without-urls/curl.mdx";
 
 ## Introducing `/extract` (Open Beta)
 
@@ -135,6 +138,20 @@ Here's an example that extracts information about dash cams, enriching the resul
 <ExtractWebSearchOutput />
 
 The response includes additional context gathered from related pages, providing more comprehensive and accurate information.
+
+
+## Extracting without URLs
+
+The `/extract` endpoint now supports extracting structured data using a prompt without needing specific URLs. This is useful for research or when exact URLs are unknown. Currently in Alpha.
+
+<CodeGroup>
+
+<ExtractWithoutURLsPython />
+<ExtractWithoutURLsJS />
+<ExtractWithoutURLsCURL />
+
+</CodeGroup>
+
 
 ## Known Limitations (Beta)
 
