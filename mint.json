@@ -143,7 +143,13 @@
           "icon": "text",
           "pages": [
             "features/alpha/llmstxt",
-            "features/alpha/llmstxt-npx",
+            "features/alpha/llmstxt-npx"
+          ]
+        },
+        {
+          "group": "Deep Research API",
+          "icon": "brain-circuit",
+          "pages": [
             "features/alpha/deep-research"
           ]
         }
