@@ -1999,6 +1999,11 @@
                       "type": "string",
                       "description": "Query selector to find the element by",
                       "example": "#load-more-button"
+                    },
+                    "all": {
+                      "type": "boolean",
+                      "description": "Clicks all elements matched by the selector, not just the first one. Does not throw an error if no elements match the selector.",
+                      "default": false
                     }
                   },
                   "required": ["type", "selector"]
