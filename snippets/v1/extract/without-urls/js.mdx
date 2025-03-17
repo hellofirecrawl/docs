@@ -6,7 +6,7 @@ const schema = z.object({
   company_mission: z.string(),
 });
 
-const scrapeResult = await app.extract({
+const scrapeResult = await app.extract([], {
   prompt: "Extract the company mission from Firecrawl's website.",
   schema: schema
 });
