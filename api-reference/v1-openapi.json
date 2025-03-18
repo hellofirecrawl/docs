@@ -2529,7 +2529,7 @@
           },
           "status": {
             "type": "string",
-            "enum": ["completed", "pending", "failed", "cancelled"],
+            "enum": ["completed", "processing", "failed", "cancelled"],
             "description": "The current status of the extract job"
           },
           "expiresAt": {
