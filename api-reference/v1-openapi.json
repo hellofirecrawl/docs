@@ -165,12 +165,7 @@
                             "description": "Type of events that should be sent to the webhook URL. (default: all)",
                             "items": {
                               "type": "string",
-                              "enum": [
-                                "completed",
-                                "page",
-                                "failed",
-                                "started"
-                              ]
+                              "enum": ["completed", "page", "failed", "started"]
                             }
                           }
                         },
@@ -810,12 +805,7 @@
                         "description": "Type of events that should be sent to the webhook URL. (default: all)",
                         "items": {
                           "type": "string",
-                          "enum": [
-                            "completed",
-                            "page",
-                            "failed",
-                            "started"
-                          ]
+                          "enum": ["completed", "page", "failed", "started"]
                         }
                       }
                     },
@@ -1061,7 +1051,7 @@
                     "default": false
                   },
                   "ignoreSitemap": {
-                    "type": "boolean", 
+                    "type": "boolean",
                     "description": "When true, sitemap.xml files will be ignored during website scanning",
                     "default": false
                   },
@@ -1170,7 +1160,7 @@
     "/deep-research": {
       "post": {
         "summary": "Start a deep research operation on a query",
-        "operationId": "startDeepResearch", 
+        "operationId": "startDeepResearch",
         "tags": ["Research"],
         "security": [
           {
@@ -1208,6 +1198,40 @@
                     "maximum": 1000,
                     "default": 20,
                     "description": "Maximum number of URLs to analyze"
+                  },
+                  "analysisPrompt": {
+                    "type": "string",
+                    "description": "The prompt to use for the final analysis. Useful to format the final analysis markdown in a specific way."
+                  },
+                  "systemPrompt": {
+                    "type": "string",
+                    "description": "The system prompt to use for the research agent. Useful to steer the research agent to a specific direction."
+                  },
+                  "formats": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": ["markdown", "json"],
+                      "default": ["markdown"]
+                    }
+                  },
+                  "jsonOptions": {
+                    "type": "object",
+                    "description": "Options for JSON output",
+                    "properties": {
+                      "schema": {
+                        "type": "object",
+                        "description": "The schema to use for the JSON output"
+                      },
+                      "systemPrompt": {
+                        "type": "string",
+                        "description": "The system prompt to use for the JSON output"
+                      },
+                      "prompt": {
+                        "type": "string",
+                        "description": "The prompt to use for the JSON output"
+                      }
+                    }
                   }
                 },
                 "required": ["query"]
@@ -1298,6 +1322,11 @@
                       "properties": {
                         "finalAnalysis": {
                           "type": "string"
+                        },
+                        "json": {
+                          "type": "object",
+                          "description": "Displayed when using JSON format",
+                          "nullable": true
                         },
                         "activities": {
                           "type": "array",
@@ -1535,7 +1564,7 @@
                           "enum": [
                             "markdown",
                             "html",
-                            "rawHtml", 
+                            "rawHtml",
                             "links",
                             "screenshot",
                             "screenshot@fullPage",
@@ -1575,7 +1604,7 @@
                             "description": "Title from search result"
                           },
                           "description": {
-                            "type": "string", 
+                            "type": "string",
                             "description": "Description from search result"
                           },
                           "url": {
