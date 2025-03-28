@@ -2209,6 +2209,34 @@
                       "type": "string",
                       "format": "url"
                     }
+                  },
+                  "scrapes": {
+                    "type": "array",
+                    "description": "Scrape contents, in the same order as the scrape actions provided.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "html": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "javascriptReturns": {
+                    "type": "array",
+                    "description": "JavaScript return values, in the same order as the executeJavascript actions provided.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "value": {}
+                      }
+                    }
                   }
                 }
               },
