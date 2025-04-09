@@ -1527,7 +1527,7 @@
                     "type": "integer",
                     "description": "Maximum number of results to return",
                     "default": 5,
-                    "maximum": 10,
+                    "maximum": 50,
                     "minimum": 1
                   },
                   "tbs": {
