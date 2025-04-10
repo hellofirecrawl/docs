@@ -132,6 +132,14 @@
           "pages": [
             "features/alpha/deep-research"
           ]
+        },
+        {
+          "group": "Agent API",
+          "icon": "robot",
+          "pages": [
+            "features/alpha/agent-scrape",
+            "features/alpha/agent-extract"
+          ]
         }
       ],
       "version": "v1"
