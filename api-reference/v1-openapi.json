@@ -1065,6 +1065,11 @@
                     "description": "When true, the sources used to extract the data will be included in the response as `sources` key",
                     "default": false
                   },
+                  "agent": {
+                    "type": "boolean",
+                    "description": "When true, an AI agent will handle the scraping process instead of a simple page fetch. The agent can navigate through websites, handle pagination, click buttons, fill forms, and follow links to find the requested information. This is particularly useful for extracting data from dynamic websites or sites requiring specific navigation patterns.",
+                    "default": false
+                  },
                   "scrapeOptions": {
                     "$ref": "#/components/schemas/ScrapeOptions"
                   }
@@ -1968,6 +1973,11 @@
               "prompt": {
                 "type": "string",
                 "description": "The prompt to use for the extraction without a schema (Optional)"
+              },
+              "agent": {
+                "type": "boolean",
+                "description": "When enabled, an AI agent will handle the scraping process instead of a simple page fetch. The agent can navigate through websites, handle pagination, click buttons, fill forms, and follow links to find the requested information. This is particularly useful for extracting data from dynamic websites or sites requiring specific navigation patterns. IMPORTANT: The response will contain ONLY the content from the final page the agent visited, not the content from intermediate pages during navigation (for that, check /extract).",
+                "default": false
               }
             }
           },
@@ -2160,6 +2170,16 @@
             "type": "string",
             "enum": ["basic", "stealth"],
             "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
+          },
+          "agent": {
+            "type": "object",
+            "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
+              }
+            }
           }
         }
       },
