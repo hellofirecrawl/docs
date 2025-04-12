@@ -1066,9 +1066,18 @@
                     "default": false
                   },
                   "agent": {
-                    "type": "boolean",
-                    "description": "When true, an AI agent will handle the scraping process instead of a simple page fetch. The agent can navigate through websites, handle pagination, click buttons, fill forms, and follow links to find the requested information. This is particularly useful for extracting data from dynamic websites or sites requiring specific navigation patterns.",
-                    "default": false
+                    "type": "object",
+                    "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the agent to use. If not provided, the default agent will be used which is 'FIRE-1'."
+                      },
+                      "prompt": {
+                        "type": "string",
+                        "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
+                      }
+                    }
                   },
                   "scrapeOptions": {
                     "$ref": "#/components/schemas/ScrapeOptions"
@@ -1975,10 +1984,19 @@
                 "description": "The prompt to use for the extraction without a schema (Optional)"
               },
               "agent": {
-                "type": "boolean",
-                "description": "When enabled, an AI agent will handle the scraping process instead of a simple page fetch. The agent can navigate through websites, handle pagination, click buttons, fill forms, and follow links to find the requested information. This is particularly useful for extracting data from dynamic websites or sites requiring specific navigation patterns. IMPORTANT: The response will contain ONLY the content from the final page the agent visited, not the content from intermediate pages during navigation (for that, check /extract).",
-                "default": false
+            "type": "object",
+            "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the agent to use. If not provided, the default agent will be used which is 'FIRE-1'."
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
               }
+            }
+          }
             }
           },
           "actions": {
@@ -2175,6 +2193,10 @@
             "type": "object",
             "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
             "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the agent to use. If not provided, the default agent will be used which is 'FIRE-1'."
+              },
               "prompt": {
                 "type": "string",
                 "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
