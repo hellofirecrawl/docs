@@ -106,7 +106,8 @@
           "pages": [
             "features/scrape",
             "features/batch-scrape",
-            "features/llm-extract"
+            "features/llm-extract",
+            "features/change-tracking"
           ]
         },
         "features/crawl",
