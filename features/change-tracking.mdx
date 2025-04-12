@@ -363,3 +363,7 @@ if result['changeTracking']['changeStatus'] == 'changed':
     print('Content changes:')
     print(result['changeTracking']['diff']['text'])
 ```
+
+## Billing
+
+The change tracking feature is currently in beta. Using the basic change tracking functionality and `git-diff` mode has no additional cost. However, if you use the `json` mode for structured data comparison, the page scrape will cost 5 credits per page.
