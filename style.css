@@ -1,0 +1,192 @@
+/* Code block container styling - Apply border and rounding here */
+.not-prose,
+[class*="bg-codeblock"],
+[class*="bg-[#0F1117]"] {
+  background-color: #ffffff !important; /* White background needed */
+  border: 1px solid #e0e0e0 !important; /* The single gray border */
+  border-radius: 8px !important; /* Rounded corners for the container */
+  padding: 0 !important; /* No padding here, handled by children */
+  color: #333333 !important; /* Default text color */
+  box-shadow: none !important;
+  overflow: hidden; /* Crucial to clip children to rounded corners */
+  position: relative;
+}
+
+/* Styling for the Tab Bar container */
+.not-prose .flex[role="tablist"] {
+  background-color: #ffffff !important; /* White background */
+  border: none !important; /* No border */
+  border-bottom: 1px solid #e0e0e0 !important; /* Separator border */
+  /* Use inherited top rounding from parent via overflow:hidden */
+  border-radius: 0 !important; /* Remove specific rounding */
+  padding: 0 0.5rem !important; /* Padding for tabs inside */
+  margin-bottom: 0 !important;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: relative; /* Needed for button positioning/z-index */
+}
+
+/* Styling for the code display area (<pre>) */
+.not-prose pre {
+  background-color: #ffffff !important; /* White background */
+  color: #333333 !important;
+  border: none !important; /* No border here */
+  border-radius: 0 !important; /* No rounding here */
+  padding: 1rem !important; /* Padding inside the code area */
+  margin: 0 !important;
+  box-shadow: none !important;
+  overflow-x: auto;
+  display: block;
+  line-height: 1.5;
+  /* Ensure pre fills the bottom part if container has rounding */
+  /* This might not be necessary with overflow:hidden on parent */
+  /* border-bottom-left-radius: 8px; */
+  /* border-bottom-right-radius: 8px; */
+}
+
+/* Styling for inline code (<code> not in <pre>) */
+.not-prose > code,
+p > code,
+li > code,
+td > code {
+  background-color: transparent !important; /* Use transparent background */
+  color: #e97318 !important; /* Use accent color for text */
+  padding: 0.15em 0.3em !important; /* Slightly adjust padding */
+  border-radius: 4px !important;
+  margin: 0 0.1em !important;
+  display: inline !important;
+  font-size: 0.9em !important; /* Match surrounding text size more closely */
+  border: none !important;
+  box-shadow: none !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* Ensure monospace font */
+}
+
+/* Override dark theme styles - Make container white */
+.dark\:bg-codeblock,
+.bg-black\/40,
+.dark\:ring-gray-800\/50 {
+  background-color: #ffffff !important; /* Ensure white background */
+  border: 1px solid #e0e0e0 !important; /* Apply the same border */
+  ring-width: 0 !important;
+}
+
+/* --- Syntax Highlighting Token Styling --- */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #787878;
+}
+
+.token.punctuation {
+  color: #4d4d4d;
+}
+
+.token.punctuation.string {
+  color: #757575;
+}
+
+.token.property,
+.token.tag .token.punctuation,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted,
+.token.keyword,
+.token.selector,
+.token.attr-name,
+.token.builtin {
+  color: #e97318;
+}
+
+.token.tag .token.tag {
+  color: #c84040;
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.inserted {
+  /* Removed .token.class-name from here */
+  color: #757575;
+}
+
+/* NEW: Specific color for class names based on theme */
+.token.class-name {
+  color: #B36D00 !important; /* From theme's entity.name */
+}
+
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #4d4d4d;
+}
+
+.token.atrule {
+  color: #e97318;
+}
+
+.token.function {
+  color: #c47000;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #4d4d4d;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* --- Tab Button Styling --- */
+[role="tablist"] button {
+  color: #4d4d4d !important;
+  background: transparent !important;
+  border: none !important;
+  /* Orange border will sit 'on top' of the tab bar's gray border */
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  padding: 0 1rem !important; /* Adjusted padding */
+  margin: 0 2px 0 0 !important; /* Remove negative margin */
+  font-weight: 500 !important;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 1; /* Buttons sit above tab bar border */
+}
+
+[role="tablist"] button[aria-selected="true"] {
+  color: #333333 !important;
+  background: transparent !important;
+  border-bottom: 2px solid #e97318 !important;
+  font-weight: 600 !important;
+  z-index: 2; /* Active button border sits above inactive ones */
+}
+
+/* --- Copy Button SVG Styling --- */
+/* Increase specificity targeting the structure from HTML */
+.not-prose .flex[role="tablist"] .flex-auto .group button svg,
+.not-prose .flex[role="tablist"] .flex-auto .group button svg path {
+  fill: #757575 !important; /* Medium gray for visibility */
+}
+
+.not-prose .flex[role="tablist"] .flex-auto .group button:hover svg,
+.not-prose .flex[role="tablist"] .flex-auto .group button:hover svg path {
+  fill: #4d4d4d !important; /* Darker gray on hover */
+}
