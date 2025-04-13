@@ -195,8 +195,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "light": "/logo/logo.png",
+    "dark": "/logo/logo.png",
     "href": "https://firecrawl.dev"
   },
   "navbar": {
