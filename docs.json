@@ -46,7 +46,7 @@
                     "pages": [
                       "features/crawl",
                       "features/llm-extract",
-                      "features/change-tracking"
+                      "features/change-tracking-crawl"
                     ]
                   },
                   "features/map",
