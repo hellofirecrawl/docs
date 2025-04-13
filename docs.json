@@ -45,8 +45,8 @@
                     "icon": "spider",
                     "pages": [
                       "features/crawl",
-                      "features/change-tracking",
-                      "features/llm-extract"
+                      "features/llm-extract",
+                      "features/change-tracking"
                     ]
                   },
                   "features/map",
