@@ -2319,8 +2319,8 @@
                   },
                   "visibility": {
                     "type": "string",
-                    "enum": ["visible", "invisible"],
-                    "description": "The visibility of the current page/URL. 'visible' means the URL was discovered through an organic route (links or sitemap), 'invisible' means the URL was discovered through memory from previous crawls."
+                    "enum": ["visible", "hidden"],
+                    "description": "The visibility of the current page/URL. 'visible' means the URL was discovered through an organic route (links or sitemap), 'hidden' means the URL was discovered through memory from previous crawls."
                   },
                   "diff": {
                     "type": "string",
