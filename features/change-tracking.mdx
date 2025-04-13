@@ -52,6 +52,19 @@ console.log(result.changeTracking.visibility); // 'visible' or 'hidden'
 console.log(result.changeTracking.previousScrapeAt); // ISO timestamp of previous scrape
 ```
 
+Example Response:
+```json
+{
+  "url": "https://firecrawl.dev",
+  "markdown": "# AI Agents for great customer experiences\n\nChatbots that delight your users...",
+  "changeTracking": {
+    "previousScrapeAt": "2025-04-10T12:00:00Z",
+    "changeStatus": "changed",
+    "visibility": "visible"
+  }
+}
+```
+
 ### Advanced Options
 
 You can configure change tracking with additional options:
@@ -84,6 +97,29 @@ if (result.changeTracking.json) {
   console.log(result.changeTracking.json.title.current); // Current title
 }
 ```
+
+### Git-Diff Results Example:
+
+```
+ **April, 13 2025**
+ 
+-**05:55:05 PM**
++**05:58:57 PM**
+
+...
+```
+
+### JSON Comparison Results Example:
+
+```json
+{
+  "time": { 
+    "previous": "2025-04-13T17:54:32Z", 
+    "current": "2025-04-13T17:55:05Z" 
+  }
+}
+```
+
 
 ### TypeScript Interface
 

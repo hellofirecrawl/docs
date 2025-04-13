@@ -20,29 +20,47 @@ const result = await app.crawl('https://example.com', {
     formats: ['markdown', 'changeTracking']
   }
 });
-
-// Each page in the results will include change tracking data
-result.pages.forEach(page => {
-  console.log(page.url);
-  console.log(page.changeTracking.changeStatus); // 'new', 'same', 'changed', or 'removed'
-  console.log(page.changeTracking.visibility); // 'visible' or 'hidden'
-});
 ```
 
 ```python
 # Python
 app = FirecrawlApp(api_key='your-api-key')
-result = app.crawl('https://example.com', {
+result = app.crawl('https://firecrawl.dev', {
     'scrapeOptions': {
         'formats': ['markdown', 'changeTracking']
     }
 })
+```
 
-# Each page in the results will include change tracking data
-for page in result['pages']:
-    print(page['url'])
-    print(page['changeTracking']['changeStatus'])  # 'new', 'same', 'changed', or 'removed'
-    print(page['changeTracking']['visibility'])  # 'visible' or 'hidden'
+```json
+{
+  "success": true,
+  "status": "completed",
+  "completed": 2,
+  "total": 2,
+  "creditsUsed": 2,
+  "expiresAt": "2025-04-14T18:44:13.000Z",
+  "data": [
+    {
+      "markdown": "# Turn websites into LLM-ready data\n\nPower your AI apps with clean data crawled from any website...",
+      "metadata": {},
+      "changeTracking": {
+        "previousScrapeAt": "2025-04-10T12:00:00Z",
+        "changeStatus": "changed",
+        "visibility": "visible"
+      }
+    },
+    {
+      "markdown": "## Flexible Pricing\n\nStart for free, then scale as you grow...",
+      "metadata": {},
+      "changeTracking": {
+        "previousScrapeAt": "2025-04-10T12:00:00Z",
+        "changeStatus": "changed",
+        "visibility": "visible"
+      }
+    }
+  ]
+}
 ```
 
 ## Understanding Change Status
@@ -67,41 +85,7 @@ This is particularly useful for:
 - Monitoring site structure changes
 - Identifying content that should be re-linked or removed
 
-## Example: Monitoring Site Changes
-
-Here's a practical example that categorizes pages based on their status:
-
-```typescript
-const result = await app.crawl('https://example.com', {
-  scrapeOptions: {
-    formats: ['markdown', 'changeTracking']
-  }
-});
-
-const changes = {
-  new: [] as string[],
-  removed: [] as string[],
-  hidden: [] as string[],
-  modified: [] as string[]
-};
-
-result.pages.forEach(page => {
-  if (page.changeTracking.changeStatus === 'new') {
-    changes.new.push(page.url);
-  } else if (page.changeTracking.changeStatus === 'removed') {
-    changes.removed.push(page.url);
-  } else if (page.changeTracking.visibility === 'hidden') {
-    changes.hidden.push(page.url);
-  } else if (page.changeTracking.changeStatus === 'changed') {
-    changes.modified.push(page.url);
-  }
-});
-
-console.log('Site Changes:', changes);
-``` 
-
-
 ## Full Diff Support
 
-For detailed change tracking with diffs, you can use the same options as described in the [Change Tracking](/features/change-tracking) documentation:
+For detailed change tracking with diffs, you can use the same options as described in the [Change Tracking for Scrape](/features/change-tracking) documentation.
 
