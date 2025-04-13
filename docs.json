@@ -1,0 +1,231 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Firecrawl Docs",
+  "colors": {
+    "primary": "#000",
+    "light": "#fff",
+    "dark": "#000"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "versions": [
+      {
+        "version": "v1",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": [
+                  "introduction",
+                  "launch-week",
+                  "v1-welcome",
+                  "rate-limits",
+                  "integrations",
+                  "advanced-scraping-guide"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  {
+                    "group": "Scrape",
+                    "icon": "markdown",
+                    "pages": [
+                      "features/scrape",
+                      "features/batch-scrape",
+                      "features/llm-extract",
+                      "features/change-tracking"
+                    ]
+                  },
+                  "features/crawl",
+                  "features/map",
+                  "features/extract"
+                ]
+              },
+              {
+                "group": "Alpha Features",
+                "pages": [
+                  {
+                    "group": "LLMs.txt API",
+                    "icon": "text",
+                    "pages": [
+                      "features/alpha/llmstxt",
+                      "features/alpha/llmstxt-npx"
+                    ]
+                  },
+                  {
+                    "group": "Deep Research API",
+                    "icon": "telescope",
+                    "pages": [
+                      "features/alpha/deep-research"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Integrations",
+                "pages": [
+                  "integrations/langchain",
+                  "integrations/llamaindex",
+                  "integrations/crewai",
+                  "integrations/dify",
+                  "integrations/flowise",
+                  "integrations/langflow",
+                  "integrations/camelai",
+                  "integrations/sourcesyncai"
+                ]
+              },
+              {
+                "group": "Contributing",
+                "pages": [
+                  "contributing/open-source-or-cloud",
+                  "contributing/guide",
+                  "contributing/self-host"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "SDKs",
+            "groups": [
+              {
+                "group": "Overall",
+                "pages": [
+                  "sdks/overview"
+                ]
+              },
+              {
+                "group": "SDKs",
+                "pages": [
+                  "sdks/python",
+                  "sdks/node",
+                  "sdks/go",
+                  "sdks/rust"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Learn",
+            "href": "https://www.firecrawl.dev/blog/category/tutorials"
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Using the API",
+                "pages": [
+                  "api-reference/introduction"
+                ]
+              },
+              {
+                "group": "Scrape Endpoints",
+                "pages": [
+                  "api-reference/endpoint/scrape",
+                  "api-reference/endpoint/batch-scrape",
+                  "api-reference/endpoint/batch-scrape-get",
+                  "api-reference/endpoint/batch-scrape-get-errors"
+                ]
+              },
+              {
+                "group": "Crawl Endpoints",
+                "pages": [
+                  "api-reference/endpoint/crawl-post",
+                  "api-reference/endpoint/crawl-get",
+                  "api-reference/endpoint/crawl-delete",
+                  "api-reference/endpoint/crawl-get-errors"
+                ]
+              },
+              {
+                "group": "Map Endpoints",
+                "pages": [
+                  "api-reference/endpoint/map"
+                ]
+              },
+              {
+                "group": "Extract Endpoints",
+                "pages": [
+                  "api-reference/endpoint/extract",
+                  "api-reference/endpoint/extract-get"
+                ]
+              },
+              {
+                "group": "Search Endpoints",
+                "pages": [
+                  "api-reference/endpoint/search"
+                ]
+              },
+              {
+                "group": "Account Endpoints",
+                "pages": [
+                  "api-reference/endpoint/credit-usage"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Playground",
+          "href": "https://firecrawl.dev/playground",
+          "icon": "play"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://firecrawl.dev/blog",
+          "icon": "newspaper"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://discord.gg/gSmWdAkdwd",
+          "icon": "discord"
+        },
+        {
+          "anchor": "Changelog",
+          "href": "https://firecrawl.dev/changelog",
+          "icon": "list"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://firecrawl.dev"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Status",
+        "href": "https://firecrawl.betteruptime.com"
+      },
+      {
+        "label": "Support",
+        "href": "mailto:help@firecrawl.com"
+      }
+    ],
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/mendableai/firecrawl"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/firecrawl_dev",
+      "github": "https://github.com/mendableai/firecrawl",
+      "linkedin": "https://www.linkedin.com/company/firecrawl"
+    }
+  },
+  "redirects": [
+    {
+      "source": "features/extract-beta",
+      "destination": "features/extract"
+    }
+  ]
+}
