@@ -30,8 +30,7 @@ Using the `changeTracking` format, you can monitor changes on a website and rece
   - `removed`: This page was removed since the last scrape
 - `visibility`: The visibility of the current page/URL
   - `visible`: This page is visible, meaning that its URL was discovered through an organic route (through links on other visible pages or the sitemap)
-  - `hidden`: This page is not visible, meaning that its URL was discovered through memory from previous crawls of the same URL
-
+  - `hidden`: This page is not visible, meaning it is still available on the web, but no longer discoverable via the sitemap or crawling the site. We can only identify invisible links if they had been visible, and captured, during a previous crawl or scrape
 
 
 ## JavaScript SDK

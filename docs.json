@@ -40,7 +40,15 @@
                       "features/change-tracking"
                     ]
                   },
-                  "features/crawl",
+                  {
+                    "group": "Crawl",
+                    "icon": "spider",
+                    "pages": [
+                      "features/crawl",
+                      "features/change-tracking",
+                      "features/llm-extract"
+                    ]
+                  },
                   "features/map",
                   "features/extract"
                 ]
