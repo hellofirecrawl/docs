@@ -2193,9 +2193,9 @@
             "type": "object",
             "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
             "properties": {
-              "id": {
+              "model": {
                 "type": "string",
-                "description": "The ID of the agent to use. If not provided, the default agent will be used which is 'FIRE-1'."
+                "description": "The model to use. If not provided, the default model will be used which is 'FIRE-1'."
               },
               "prompt": {
                 "type": "string",
