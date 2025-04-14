@@ -18,7 +18,7 @@ To enable the FIRE-1 agent, you need to include the `agent` object within your A
 The `agent` object has the following properties:
 
 *   `model` (string, optional): Specifies the AI model to use. If not provided, it defaults to `FIRE-1`. Currently, `FIRE-1` is the only available model.
-*   `prompt` (string, required for `scrape` endpoint): Provides instructions for the AI agent, describing what content to look for and how to navigate the website (e.g., how to handle pagination, buttons to click, etc.).
+*   `prompt` (string, required for `scrape` endpoint): Provides instructions for the AI agent, describing what content to look for and how to navigate the website (e.g., how to handle pagination, buttons to click, etc.). In `/extract` it will use the prompt provided in the `prompt` parameter.
 
 ### Using FIRE-1 with the Scrape Endpoint
 
