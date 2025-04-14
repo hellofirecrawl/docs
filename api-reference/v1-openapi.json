@@ -1065,6 +1065,20 @@
                     "description": "When true, the sources used to extract the data will be included in the response as `sources` key",
                     "default": false
                   },
+                  "agent": {
+                    "type": "object",
+                    "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
+                    "properties": {
+                      "model": {
+                        "type": "string",
+                        "description": "The model to use. If not provided, the default model will be used which is 'FIRE-1'."
+                      },
+                      "prompt": {
+                        "type": "string",
+                        "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
+                      }
+                    }
+                  },
                   "scrapeOptions": {
                     "$ref": "#/components/schemas/ScrapeOptions"
                   }
@@ -1969,7 +1983,21 @@
               "prompt": {
                 "type": "string",
                 "description": "The prompt to use for the extraction without a schema (Optional)"
+              },
+              "agent": {
+            "type": "object",
+            "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
+            "properties": {
+              "model": {
+                "type": "string",
+                "description": "The model use. If not provided, the default model will be used which is 'FIRE-1'."
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
               }
+            }
+          }
             }
           },
           "actions": {
@@ -2161,6 +2189,20 @@
             "type": "string",
             "enum": ["basic", "stealth"],
             "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **stealth**: Stealth proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites.\n\nIf you do not specify a proxy, Firecrawl will automatically attempt to determine which one you need based on the target site."
+          },
+          "agent": {
+            "type": "object",
+            "description": "Configuration for the AI agent that will navigate and retrieve content from the website. The agent uses the provided prompt to understand what content to look for and how to navigate the site.",
+            "properties": {
+              "model": {
+                "type": "string",
+                "description": "The model to use. If not provided, the default model will be used which is 'FIRE-1'."
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
+              }
+            }
           },
           "changeTrackingOptions": {
             "type": "object",
