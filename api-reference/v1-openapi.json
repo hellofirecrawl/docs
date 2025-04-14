@@ -1918,7 +1918,8 @@
                 "links",
                 "screenshot",
                 "screenshot@fullPage",
-                "json"
+                "json",
+                "changeTracking"
               ]
             },
             "description": "Formats to include in the output.",
@@ -2202,6 +2203,25 @@
                 "description": "Instructions for the AI agent describing what content to find and how to navigate the website."
               }
             }
+          },
+          "changeTrackingOptions": {
+            "type": "object",
+            "description": "Options for change tracking (Beta). Only applicable when 'changeTracking' is included in formats. The 'markdown' format must also be specified when using change tracking.",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": ["git-diff", "json"],
+                "description": "The mode to use for change tracking. 'default' performs a basic comparison, 'git-diff' provides a detailed diff, and 'json' compares extracted JSON data."
+              },
+              "schema": {
+                "type": "object",
+                "description": "Schema for JSON extraction when using 'json' mode. Defines the structure of data to extract and compare."
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Prompt to use for change tracking when using 'json' mode. If not provided, the default prompt will be used."
+              }
+            }
           }
         }
       },
@@ -2322,6 +2342,39 @@
                 "type": "string",
                 "nullable": true,
                 "description": "Can be displayed when using LLM Extraction. Warning message will let you know any issues with the extraction."
+              },
+              "changeTracking": {
+                "type": "object",
+                "nullable": true,
+                "description": "Change tracking information if `changeTracking` is in `formats`. Only present when the `changeTracking` format is requested.",
+                "properties": {
+                  "previousScrapeAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "nullable": true,
+                    "description": "The timestamp of the previous scrape that the current page is being compared against. Null if no previous scrape exists."
+                  },
+                  "changeStatus": {
+                    "type": "string",
+                    "enum": ["new", "same", "changed", "removed"],
+                    "description": "The result of the comparison between the two page versions. 'new' means this page did not exist before, 'same' means content has not changed, 'changed' means content has changed, 'removed' means the page was removed."
+                  },
+                  "visibility": {
+                    "type": "string",
+                    "enum": ["visible", "hidden"],
+                    "description": "The visibility of the current page/URL. 'visible' means the URL was discovered through an organic route (links or sitemap), 'hidden' means the URL was discovered through memory from previous crawls."
+                  },
+                  "diff": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Git-style diff of changes when using 'git-diff' mode. Only present when the mode is set to 'git-diff'."
+                  },
+                  "json": {
+                    "type": "object",
+                    "nullable": true,
+                    "description": "JSON comparison results when using 'json' mode. Only present when the mode is set to 'json'. This will emit a list of all the keys and their values from the `previous` and `current` scrapes based on the type defined in the `schema`. Example [here](/features/change-tracking)"
+                  }
+                }
               }
             }
           }

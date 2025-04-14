@@ -6,6 +6,13 @@ icon: "code-changeTracking"
 og:description: "Firecrawl can track changes between the current page and a previous version, and tell you if it updated or not"
 ---
 
+# This document is outdated
+Here is the new version: [Change Tracking (New)](/features/change-tracking)
+
+---
+
+# Old version
+
 Using the new `changeTracking` format, you can monitor changes on a website.
 
 The `changeTracking` format returns the following fields in the response:
@@ -17,7 +24,7 @@ The `changeTracking` format returns the following fields in the response:
     - `removed`: This page was removed since the last scrape.
 - `visibility`: The visibility of the current page/URL.
     - `visible`: This page is visible, meaning that its URL was discovered through an organic route (through links on other visible pages or the sitemap).
-    - `invisible`: This page is not visible, meaning that its URL was discovered through memory from previous crawls of the same URL.
+    - `hidden`: This page is not visible, meaning that its URL was discovered through memory from previous crawls of the same URL.
 
 Some good to know facts:
 - The scrapes are always compared via their markdown response.
