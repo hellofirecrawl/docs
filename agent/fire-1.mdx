@@ -33,6 +33,7 @@ curl -X POST https://api.firecrawl.dev/v1/scrape \
       "url": "https://example.com/products?page=1",
       "formats": ["markdown"],
       "agent": {
+        "model": "FIRE-1",
         "prompt": "Navigate through the product listings by clicking the \'Next Page\' button until it is disabled. Scrape the content of each page visited."
       }
     }'
