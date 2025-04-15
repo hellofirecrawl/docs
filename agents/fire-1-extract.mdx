@@ -1,15 +1,20 @@
 ---
-title: 'FIRE-1 AI Agent'
+title: 'FIRE-1 Agent'
+sidebarTitle: 'FIRE-1'
 description: 'FIRE-1 is an AI agent that enables intelligent navigation and interaction with web pages'
 og:title: "FIRE-1 AI Agent | Firecrawl"
 og:description: "FIRE-1 is an AI agent that enables intelligent navigation and interaction with web pages"
+icon: "robot"
 ---
 
-## Overview
+FIRE-1 is an AI agent that enhances Firecrawl's scraping capabilities through intelligent web navigation and interaction. It can handle pagination, control browser actions, and navigate complex website structures to enable comprehensive data extraction beyond traditional scraping methods.
 
-FIRE-1 is the first AI Agent introduced in Firecrawl. It enhances the scraping capabilities by enabling intelligent navigation and interaction with web pages, such as handling pagination and controlling the browser. This allows for much more comprehensive data extraction compared to standard scraping methods.
+### What FIRE-1 Can Do:
 
-The FIRE-1 agent can be used with both the `scrape` and `extract` endpoints.
+- Navigate through paginated content automatically.
+- Interact with buttons, links, inputs, and dynamic elements.
+- Perform sophisticated extraction tasks across multiple pages.
+
 
 ## Enabling FIRE-1 Agent
 
@@ -78,3 +83,57 @@ curl -X POST https://api.firecrawl.dev/v1/extract \
 
 Here, the agent ensures all comments are loaded on the page by interacting with the "Load More Comments" button before the extraction process begins based on the provided schema and prompt.
 **Note:** The FIRE-1 agent provides powerful capabilities but might consume more credits depending on the complexity of the navigation instructions and the number of pages interacted with.
+
+
+### Meet FIRE-1: Intelligent Navigation and Interaction
+
+![FIRE-1 Agent Visualization](/launch-week/lw3-d2-3.webp)
+
+FIRE-1 brings a new level of intelligence to Firecrawl, enhancing your scraping tasks by navigating complex website structures, handling pagination, interacting with dynamic content, and more. This powerful AI agent ensures comprehensive data extraction beyond traditional scraping methods.
+
+### What FIRE-1 Can Do:
+
+- Navigate through paginated content automatically.
+- Interact with buttons, links, and dynamic elements.
+- Perform sophisticated extraction tasks across multiple pages.
+
+## How to Enable FIRE-1
+
+Activating FIRE-1 is straightforward. Simply include an `agent` object in your scrape or extract API request:
+
+```json
+"agent": {
+  "model": "FIRE-1",
+  "prompt": "Your detailed navigation instructions here."
+}
+```
+
+*Note:* The `prompt` field is required for scrape requests, instructing FIRE-1 precisely how to interact with the webpage.
+
+## Example Usage with Scrape Endpoint
+
+Here's a quick example using FIRE-1 with the scrape endpoint to paginate through product listings:
+
+```bash
+curl -X POST https://api.firecrawl.dev/v1/scrape \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -d '{
+    "url": "https://example.com/products?page=1",
+    "formats": ["markdown"],
+    "agent": {
+      "model": "FIRE-1",
+      "prompt": "Navigate through the product listings by clicking the \'Next Page\' button until disabled. Scrape each page."
+    }
+  }'
+```
+In this scenario, FIRE-1 intelligently navigates pagination and gathers all of the products.
+## Considerations
+- Using FIRE-1 may consume more credits based on task complexity and interaction depth.
+- Ensure your prompts clearly guide FIRE-1 to optimize results and efficiency.
+## Start Using FIRE-1 Today
+Experience the future of web scraping today:
+- **Try FIRE-1:** Integrate intelligent navigation into your scraping and extracting workflows.
+- **Explore the docs:** Learn more in our [comprehensive documentation](https://docs.firecrawl.dev/agents/fire-1).
+- **Need help?** Join our [Discord community](https://discord.gg/S7Enyh9Abh) or email [help@firecrawl.com](mailto:help@firecrawl.com).
+**Ready to leverage AI-powered scraping?** [Sign up for Firecrawl](https://firecrawl.dev/signup) and start with FIRE-1 today.
