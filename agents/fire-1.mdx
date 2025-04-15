@@ -1,0 +1,50 @@
+---
+title: 'FIRE-1 Agent'
+sidebarTitle: 'FIRE-1'
+description: 'AI agent that enables intelligent navigation and interaction with web pages'
+og:title: "FIRE-1 AI Agent | Firecrawl"
+og:description: "FIRE-1 is an AI agent that enables intelligent navigation and interaction with web pages"
+icon: "robot"
+---
+
+FIRE-1 is an AI agent that enhances Firecrawl's scraping capabilities. It can handle pagination, control browser actions, and navigate complex website structures to enable comprehensive data extraction beyond traditional scraping methods.
+
+### What FIRE-1 Can Do:
+
+- Navigate through paginated content automatically.
+- Interact with buttons, links, inputs, and dynamic elements.
+- Perform sophisticated extraction tasks across multiple pages.
+
+
+## How to Enable FIRE-1
+
+Activating FIRE-1 is straightforward. Simply include an `agent` object in your scrape or extract API request:
+
+```json
+"agent": {
+  "model": "FIRE-1",
+  "prompt": "Your detailed navigation instructions here."
+}
+```
+
+*Note:* The `prompt` field is required for scrape requests, instructing FIRE-1 precisely how to interact with the webpage.
+
+## Example Usage with Scrape Endpoint
+
+Here's a quick example using FIRE-1 with the scrape endpoint to get the companies on the consumer space from Y Combinator:
+
+```bash
+curl -X POST https://api.firecrawl.dev/v1/scrape \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -d '{
+    "url": "https://ycombinator.com/companies",
+    "formats": ["markdown"],
+    "agent": {
+      "model": "FIRE-1",
+      "prompt": "Get W22 companies on the consumer space by clicking the respective buttons"
+    }
+  }'
+```
+In this scenario, FIRE-1 intelligently clicks the W22 button, the Consumer space button and scrapes the companies.
+

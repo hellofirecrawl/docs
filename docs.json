@@ -54,6 +54,12 @@
                 ]
               },
               {
+                "group": "Agents",
+                "pages": [
+                    "agents/fire-1"
+                ]
+              },
+              {
                 "group": "Alpha Features",
                 "pages": [
                   {
