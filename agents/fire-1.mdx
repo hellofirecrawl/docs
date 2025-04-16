@@ -12,9 +12,10 @@ FIRE-1 is an AI agent that enhances Firecrawl's scraping capabilities. It can co
 
 
 
-### What FIRE-1 Can Do On Scrape:
+### What FIRE-1 Can Do:
 - Plan and take actions to uncover data
 - Interact with buttons, links, inputs, and dynamic elements.
+- Get mulitple pages of data that require pagination, multiple steps, etc.
 
 
 
@@ -29,7 +30,9 @@ Activating FIRE-1 is straightforward. Simply include an `agent` object in your s
 }
 ```
 
-*Note:* The `prompt` field is required for scrape requests, instructing FIRE-1 precisely how to interact with the webpage.
+*Note:* The `prompt` field is required for scrape requests, instructing FIRE-1 precisely how to interact with the webpage. For `/extract` it will use the prompt provided in the `prompt` parameter on the body of the request so you can omit the above `agent.prompt` field.
+
+
 
 ## Example Usage with Scrape Endpoint
 
@@ -50,6 +53,42 @@ curl -X POST https://api.firecrawl.dev/v1/scrape \
 ```
 In this scenario, FIRE-1 intelligently clicks the W22 button, the Consumer space button and scrapes the companies.
 
+
+### Using FIRE-1 with the Extract Endpoint
+
+Similarly, you can leverage the FIRE-1 agent with the `/v1/extract` endpoint for complex extraction tasks that require navigation across multiple pages or interaction with elements.
+
+**Example (cURL):**
+
+```bash
+curl -X POST https://api.firecrawl.dev/v1/extract \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "urls": ["https://example-forum.com/topic/123"],
+      "prompt": "Extract all user comments from this forum thread.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "author": {"type": "string"},
+                "comment_text": {"type": "string"}
+              },
+              "required": ["author", "comment_text"]
+            }
+          }
+        },
+        "required": ["comments"]
+      },
+      "agent": {
+        "model": "FIRE-1"
+      }
+    }'
+```
 
 > FIRE-1 is already live and available under preview.
 
