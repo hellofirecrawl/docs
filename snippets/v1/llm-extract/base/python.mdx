@@ -1,5 +1,5 @@
 ```python Python
-from firecrawl import FirecrawlApp, ExtractConfig
+from firecrawl import FirecrawlApp, JsonConfig
 from pydantic import BaseModel, Field
 
 # Initialize the FirecrawlApp with your API key
@@ -11,7 +11,7 @@ class ExtractSchema(BaseModel):
     is_open_source: bool
     is_in_yc: bool
 
-json_config = ExtractConfig(
+json_config = JsonConfig(
     extractionSchema=ExtractSchema.model_json_schema(),
     mode="llm-extraction",
     pageOptions={"onlyMainContent": True}
