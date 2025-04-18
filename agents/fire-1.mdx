@@ -7,10 +7,14 @@ og:description: "FIRE-1 is an AI agent that enables intelligent navigation and i
 icon: "robot"
 ---
 
+import ScrapeFire1Python from "/snippets/v1/scrape/agent-f1/python.mdx";
+import ScrapeFire1Node from "/snippets/v1/scrape/agent-f1/js.mdx";
+import ScrapeFire1CURL from "/snippets/v1/scrape/agent-f1/curl.mdx";
+import ExtractFire1Python from "/snippets/v1/extract/agent-f1/python.mdx";
+import ExtractFire1Node from "/snippets/v1/extract/agent-f1/js.mdx";
+import ExtractFire1CURL from "/snippets/v1/extract/agent-f1/curl.mdx";
+
 FIRE-1 is an AI agent that enhances Firecrawl's scraping capabilities. It can controls browser actions and navigates complex website structures to enable comprehensive data extraction beyond traditional scraping methods.
-
-
-
 
 ### What FIRE-1 Can Do:
 - Plan and take actions to uncover data
@@ -38,19 +42,14 @@ Activating FIRE-1 is straightforward. Simply include an `agent` object in your s
 
 Here's a quick example using FIRE-1 with the scrape endpoint to get the companies on the consumer space from Y Combinator:
 
-```bash
-curl -X POST https://api.firecrawl.dev/v1/scrape \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -d '{
-    "url": "https://ycombinator.com/companies",
-    "formats": ["markdown"],
-    "agent": {
-      "model": "FIRE-1",
-      "prompt": "Get W22 companies on the consumer space by clicking the respective buttons"
-    }
-  }'
-```
+<CodeGroup>
+
+<ScrapeFire1Python />
+<ScrapeFire1Node />
+<ScrapeFire1CURL />
+
+</CodeGroup>
+
 In this scenario, FIRE-1 intelligently clicks the W22 button, the Consumer space button and scrapes the companies.
 
 
@@ -58,37 +57,15 @@ In this scenario, FIRE-1 intelligently clicks the W22 button, the Consumer space
 
 Similarly, you can leverage the FIRE-1 agent with the `/v1/extract` endpoint for complex extraction tasks that require navigation across multiple pages or interaction with elements.
 
-**Example (cURL):**
+**Example:**
 
-```bash
-curl -X POST https://api.firecrawl.dev/v1/extract \
-    -H 'Content-Type: application/json' \
-    -H 'Authorization: Bearer YOUR_API_KEY' \
-    -d '{
-      "urls": ["https://example-forum.com/topic/123"],
-      "prompt": "Extract all user comments from this forum thread.",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "comments": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "author": {"type": "string"},
-                "comment_text": {"type": "string"}
-              },
-              "required": ["author", "comment_text"]
-            }
-          }
-        },
-        "required": ["comments"]
-      },
-      "agent": {
-        "model": "FIRE-1"
-      }
-    }'
-```
+<CodeGroup>
+
+<ExtractFire1Python />
+<ExtractFire1Node />
+<ExtractFire1CURL />
+
+</CodeGroup>
 
 > FIRE-1 is already live and available under preview.
 
