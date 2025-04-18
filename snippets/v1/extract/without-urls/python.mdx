@@ -16,4 +16,4 @@ if not scrape_result.success:
     raise Exception(f"Failed to scrape: {scrape_result.error}")
 
 # Print the extracted data
-print(scrape_result['data'])
+print(scrape_result.data)

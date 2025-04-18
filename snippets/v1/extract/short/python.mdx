@@ -16,8 +16,8 @@ prompt = 'Extract the company mission from the page.'
 scrape_result = app.extract(urls, prompt=prompt, schema=ExtractSchema.model_json_schema())
 
 # Check if the extraction was successful
-if not scrape_result['success']:
-    raise Exception(f"Failed to scrape: {scrape_result['error']}")
+if not scrape_result.success:
+    raise Exception(f"Failed to scrape: {scrape_result.error}")
 
 # Print the extracted data
-print(scrape_result['data'])
+print(scrape_result.data)
