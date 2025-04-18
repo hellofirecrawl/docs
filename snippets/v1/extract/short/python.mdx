@@ -13,10 +13,7 @@ urls = [
 prompt = 'Extract the company mission from the page.'
 
 # Perform the extraction
-scrape_result = app.extract(urls, {
-    'prompt': prompt,
-    'schema': ExtractSchema.model_json_schema(),
-})
+scrape_result = app.extract(urls, prompt=prompt, schema=ExtractSchema.model_json_schema())
 
 # Check if the extraction was successful
 if not scrape_result['success']:

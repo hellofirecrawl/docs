@@ -6,18 +6,16 @@ app = FirecrawlApp(api_key="fc-YOUR_API_KEY")
 # Scrape multiple websites:
 batch_scrape_result = app.batch_scrape_urls(
     ['https://docs.firecrawl.dev', 'https://docs.firecrawl.dev/sdks/overview'], 
-    {
-        'formats': ['extract'],
-        'extract': {
-            'prompt': 'Extract the title and description from the page.',
-            'schema': {
-                'type': 'object',
-                'properties': {
-                    'title': {'type': 'string'},
-                    'description': {'type': 'string'}
-                },
-                'required': ['title', 'description']
-            }
+    formats=['extract'],
+    extract={
+        'prompt': 'Extract the title and description from the page.',
+        'schema': {
+            'type': 'object',
+            'properties': {
+                'title': {'type': 'string'},
+                'description': {'type': 'string'}
+            },
+            'required': ['title', 'description']
         }
     }
 )
@@ -26,23 +24,21 @@ print(batch_scrape_result)
 # Or, you can use the asynchronous method:
 batch_scrape_job = app.async_batch_scrape_urls(
     ['https://docs.firecrawl.dev', 'https://docs.firecrawl.dev/sdks/overview'], 
-    {
-        'formats': ['extract'],
-        'extract': {
-            'prompt': 'Extract the title and description from the page.',
-            'schema': {
-                'type': 'object',
-                'properties': {
-                    'title': {'type': 'string'},
-                    'description': {'type': 'string'}
-                },
-                'required': ['title', 'description']
-            }
+    formats=['extract'],
+    extract={
+    'prompt': 'Extract the title and description from the page.',
+    'schema': {
+        'type': 'object',
+            'properties': {
+                'title': {'type': 'string'},
+                'description': {'type': 'string'}
+            },
+            'required': ['title', 'description']
         }
     }
 )
 print(batch_scrape_job)
 
 # (async) You can then use the job ID to check the status of the batch scrape:
-batch_scrape_status = app.check_batch_scrape_status(batch_scrape_job['id'])
+batch_scrape_status = app.check_batch_scrape_status(batch_scrape_job.id)
 print(batch_scrape_status)
