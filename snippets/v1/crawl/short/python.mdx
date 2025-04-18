@@ -1,10 +1,8 @@
 ```python Python
 crawl_status = app.crawl_url(
   'https://firecrawl.dev', 
-  params={
-    'limit': 100, 
-    'scrapeOptions': {'formats': ['markdown', 'html']}
-  }, 
+  limit=100, 
+  scrape_options={'formats': ['markdown', 'html']},
   poll_interval=30
 )
 print(crawl_status)

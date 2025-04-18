@@ -11,11 +11,6 @@ class ExtractSchema(BaseModel):
     is_open_source: bool
     is_in_yc: bool
 
-data = app.scrape_url('https://docs.firecrawl.dev/', {
-    'formats': ['json'],
-    'jsonOptions': {
-        'schema': ExtractSchema.model_json_schema(),
-    }
-})
-print(data["json"])
+data = app.scrape_url('https://docs.firecrawl.dev/', formats=['json'], json_options={'schema': ExtractSchema.model_json_schema()})
+print(data.json)
 ```
