@@ -23,7 +23,6 @@
                   "launch-week",
                   "v1-welcome",
                   "rate-limits",
-                  "integrations",
                   "advanced-scraping-guide"
                 ]
               },
@@ -79,19 +78,7 @@
                   }
                 ]
               },
-              {
-                "group": "Integrations",
-                "pages": [
-                  "integrations/langchain",
-                  "integrations/llamaindex",
-                  "integrations/crewai",
-                  "integrations/dify",
-                  "integrations/flowise",
-                  "integrations/langflow",
-                  "integrations/camelai",
-                  "integrations/sourcesyncai"
-                ]
-              },
+              
               {
                 "group": "Contributing",
                 "pages": [
@@ -125,6 +112,10 @@
           {
             "tab": "Learn",
             "href": "https://www.firecrawl.dev/blog/category/tutorials"
+          },
+          {
+            "tab": "Integrations",
+            "href": "https://www.firecrawl.dev/app"
           },
           {
             "tab": "API Reference",
