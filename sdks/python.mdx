@@ -16,6 +16,7 @@ import MapPythonShort from '/snippets/v1/map/short/python.mdx'
 import ExtractPythonShort from '/snippets/v1/extract/short/python.mdx'
 import ScrapeAndCrawlExamplePython from '/snippets/v1/scrape-and-crawl/python.mdx'
 import CrawlWebSocketPythonBase from '/snippets/v1/crawl-websocket/base/python.mdx'
+import AsyncPythonShort from '/snippets/v1/async/short/python.mdx'
 
 ## Installation
 
@@ -46,6 +47,8 @@ To crawl a website, use the `crawl_url` method. It takes the starting URL and op
 <CrawlPythonShort />
 
 ### Asynchronous Crawling
+
+<Tip>Looking for async operations? Check out the [Async Class](#async-class) section below.</Tip>
 
 To crawl a website asynchronously, use the `crawl_url_async` method. It returns the crawl `ID` which you can use to check the status of the crawl job. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
 
@@ -85,3 +88,9 @@ To crawl a website with WebSockets, use the `crawl_url_and_watch` method. It tak
 ## Error Handling
 
 The SDK handles errors returned by the Firecrawl API and raises appropriate exceptions. If an error occurs during a request, an exception will be raised with a descriptive error message.
+
+## Async Class
+
+For async operations, you can use the `AsyncFirecrawlApp` class. Its methods are the same as the `FirecrawlApp` class, but they don't block the main thread.
+
+<AsyncPythonShort />
