@@ -49,6 +49,7 @@
                     ]
                   },
                   "features/map",
+                  "features/search",
                   "features/extract"
                 ]
               },
@@ -59,7 +60,7 @@
                 ]
               },
               {
-                "group": "Alpha Features",
+                "group": "Alpha tools",
                 "pages": [
                   {
                     "group": "LLMs.txt API",

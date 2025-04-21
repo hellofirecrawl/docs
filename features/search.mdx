@@ -1,172 +1,290 @@
 ---
 title: "Search"
-description: "Make a serp request, and get all the content with a single API request"
-icon: "magnifying-glass"
+description: "Search the web and get full content from results"
 og:title: "Search | Firecrawl"
-og:description: "Make a serp request, and get all the content with a single API request"
+og:description: "Search the web and get full page content from results"
+icon: "magnifying-glass"
 ---
 
-## Searching the web and scraping the results with Firecrawl
+import InstallationPython from "/snippets/v1/installation/python.mdx";
+import InstallationNode from "/snippets/v1/installation/js.mdx";
+import InstallationGo from "/snippets/v1/installation/go.mdx";
+import InstallationRust from "/snippets/v1/installation/rust.mdx";
+import SearchPython from "/snippets/v1/search/base/python.mdx";
+import SearchNode from "/snippets/v1/search/base/js.mdx";
+import SearchCURL from "/snippets/v1/search/base/curl.mdx";
+import SearchContentPython from "/snippets/v1/search/content/python.mdx";
+import SearchContentNode from "/snippets/v1/search/content/js.mdx";
+import SearchContentCURL from "/snippets/v1/search/content/curl.mdx";
+import SearchLanguagePython from "/snippets/v1/search/language/python.mdx";
+import SearchLanguageNode from "/snippets/v1/search/language/js.mdx";
+import SearchLanguageCURL from "/snippets/v1/search/language/curl.mdx";
+import SearchTimePython from "/snippets/v1/search/time/python.mdx";
+import SearchTimeNode from "/snippets/v1/search/time/js.mdx";
+import SearchTimeCURL from "/snippets/v1/search/time/curl.mdx";
 
-Firecrawl integrates its SERP (Search Engine Results Page) API with its robust scraping infrastructure to provide a seamless search and scrape functionality through a single endpoint. Here's why:
+Firecrawl's search API allows you to perform web searches and optionally scrape the search results in one operation.
 
-1. **Unified Search Query:**
-   Users submit a search query via the SERP endpoint.
+- Choose specific output formats (markdown, HTML, links, screenshots)
+- Search the web with customizable parameters (language, country, etc.)
+- Optionally retrieve content from search results in various formats
+- Control the number of results and set timeouts
 
-2. **Automated Result Scraping:**
-   Firecrawl automatically processes the search results and utilizes its scraping capabilities to extract data from each result page.
+For details, see the [Search Endpoint API Reference](https://docs.firecrawl.dev/api-reference/endpoint/search).
 
-3. **Data Delivery:**
-   The scraped data from all result pages is compiled and delivered in a clean markdown - ready to use.
-
-This integration allows users to efficiently perform web searches and obtain comprehensive, scraped data from multiple sources with minimal effort.
-
-For more details, refer to the [Search Endpoint Documentation](https://docs.firecrawl.dev/api-reference/endpoint/search).
-
-## Search any query
+## Performing a Search with Firecrawl
 
 ### /search endpoint
 
-Used to search the web, get the most relevant results, scrape each page and return the markdown.
+Used to perform web searches and optionally retrieve content from the results.
 
-```bash
-curl -X POST https://api.firecrawl.dev/v0/search \
-    -H 'Content-Type: application/json' \
-    -H 'Authorization: Bearer YOUR_API_KEY' \
-    -d '{
-      "query": "firecrawl",
-      "pageOptions": {
-        "fetchPageContent": true // false for a fast serp api
-      }
-    }'
-```
+### Installation 
+
+<CodeGroup>
+
+  <InstallationPython />
+
+  <InstallationNode />
+
+  <InstallationGo />
+  
+  <InstallationRust />
+
+</CodeGroup>
+
+### Basic Usage
+
+<CodeGroup>
+
+  <SearchPython />
+
+  <SearchNode />
+  
+  <SearchCURL />
+
+</CodeGroup>
+
+### Response
+
+SDKs will return the data object directly. cURL will return the complete payload.
 
 ```json
 {
   "success": true,
   "data": [
     {
-      "url": "https://docs.firecrawl.dev",
-      "markdown": "# Markdown Content",
-      "provider": "web-scraper",
-      "metadata": {
-        "title": "Firecrawl | Scrape the web reliably for your LLMs",
-        "description": "AI for CX and Sales",
-        "language": null,
-        "sourceURL": "https://docs.firecrawl.dev/"
-      }
+      "title": "Firecrawl - The Ultimate Web Scraping API",
+      "description": "Firecrawl is a powerful web scraping API that turns any website into clean, structured data for AI and analysis.",
+      "url": "https://firecrawl.dev/"
+    },
+    {
+      "title": "Web Scraping with Firecrawl - A Complete Guide",
+      "description": "Learn how to use Firecrawl to extract data from websites effortlessly.",
+      "url": "https://firecrawl.dev/guides/web-scraping/"
+    },
+    {
+      "title": "Firecrawl Documentation - Getting Started",
+      "description": "Official documentation for the Firecrawl web scraping API.",
+      "url": "https://docs.firecrawl.dev/"
     }
+    // ... more results
   ]
 }
 ```
 
-### With Python SDK
+## Search with Content Scraping
 
-#### Installing Python SDK
+Search and retrieve content from the search results in one operation.
 
-```bash
-pip install firecrawl-py
+<CodeGroup>
+
+  <SearchContentPython />
+
+  <SearchContentNode />
+  
+  <SearchContentCURL />
+
+</CodeGroup>
+
+### Response with Scraped Content
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "title": "Firecrawl - The Ultimate Web Scraping API",
+      "description": "Firecrawl is a powerful web scraping API that turns any website into clean, structured data for AI and analysis.",
+      "url": "https://firecrawl.dev/",
+      "markdown": "# Firecrawl\n\nThe Ultimate Web Scraping API\n\n## Turn any website into clean, structured data\n\nFirecrawl makes it easy to extract data from websites for AI applications, market research, content aggregation, and more...",
+      "links": [
+        "https://firecrawl.dev/pricing",
+        "https://firecrawl.dev/docs",
+        "https://firecrawl.dev/guides",
+        // ... more links
+      ],
+      "metadata": {
+        "title": "Firecrawl - The Ultimate Web Scraping API",
+        "description": "Firecrawl is a powerful web scraping API that turns any website into clean, structured data for AI and analysis.",
+        "sourceURL": "https://firecrawl.dev/",
+        "statusCode": 200
+      }
+    },
+    // ... more results
+  ]
+}
 ```
 
-#### Search a query
+## Advanced Search Options
 
-```python
+Firecrawl's search API supports various parameters to customize your search:
+
+### Language and Country Customization
+
+<CodeGroup>
+
+  <SearchLanguagePython />
+
+  <SearchLanguageNode />
+  
+  <SearchLanguageCURL />
+
+</CodeGroup>
+
+### Time-Based Search
+
+Use the `tbs` parameter to filter results by time:
+
+<CodeGroup>
+
+  <SearchTimePython />
+
+  <SearchTimeNode />
+  
+  <SearchTimeCURL />
+
+</CodeGroup>
+
+Common `tbs` values:
+- `qdr:h` - Past hour
+- `qdr:d` - Past 24 hours
+- `qdr:w` - Past week
+- `qdr:m` - Past month
+- `qdr:y` - Past year
+
+### Custom Timeout
+
+Set a custom timeout for search operations:
+
+<CodeGroup>
+
+```python Python
 from firecrawl import FirecrawlApp
 
-app = FirecrawlApp(api_key="YOUR_API_KEY")
+# Initialize the client with your API key
+app = FirecrawlApp(api_key="fc-YOUR_API_KEY")
 
-result = app.search(query="What is firecrawl?")
+# Set a 30-second timeout
+search_result = app.search(
+    "complex search query",
+    limit=10,
+    timeout=30000  # 30 seconds in milliseconds
+)
 ```
 
-
-The response will be similar to the one shown in the curl command above.
-
-### With JavaScript SDK
-
-#### Installing JavaScript SDK
-
-```bash
-npm install @mendable/firecrawl-js
-```
-
-#### Search a query
-
-```javascript
+```js JavaScript
 import FirecrawlApp from '@mendable/firecrawl-js';
 
-// Initialize the FirecrawlApp with your API key
-const app = new FirecrawlApp({ apiKey: 'YOUR_API_KEY' });
+// Initialize the client with your API key
+const app = new FirecrawlApp({apiKey: "fc-YOUR_API_KEY"});
 
-// Perform a search
-const result = await app.search('What is firecrawl?');
+// Set a 30-second timeout
+app.search("complex search query", {
+  limit: 10,
+  timeout: 30000  // 30 seconds in milliseconds
+})
+.then(searchResult => {
+  // Process results
+  console.log(searchResult.data);
+});
 ```
 
-The response will be similar to the one shown in the curl command above.
-
-### With Go SDK
-
-#### Installing Go SDK
-
-```bash
-go get github.com/mendableai/firecrawl-go
+```bash cURL
+curl -X POST https://api.firecrawl.dev/v1/search \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer fc-YOUR_API_KEY" \
+  -d '{
+    "query": "complex search query",
+    "limit": 10,
+    "timeout": 30000
+  }'
 ```
 
-#### Search a query
+</CodeGroup>
 
-```go
-import (
-  "fmt"
-  "log"
+## Scraping Options
 
-  "github.com/mendableai/firecrawl-go"
+When scraping search results, you can specify multiple output formats:
+
+<CodeGroup>
+
+```python Python
+from firecrawl import FirecrawlApp
+
+# Initialize the client with your API key
+app = FirecrawlApp(api_key="fc-YOUR_API_KEY")
+
+# Get search results with multiple formats
+search_result = app.search(
+    "firecrawl features",
+    limit=3,
+    scrape_options={
+        "formats": ["markdown", "html", "links", "screenshot"]
+    }
 )
-
-func main() {
-  app, err := firecrawl.NewFirecrawlApp("YOUR_API_KEY")
-  if err != nil {
-      log.Fatalf("Failed to initialize FirecrawlApp: %v", err)
-  }
-
-  query := "What is firecrawl?"
-  searchResult, err := app.Search(query)
-  if err != nil {
-    log.Fatalf("Failed to search: %v", err)
-  }
-  fmt.Println(searchResult)
-}
 ```
 
-### With Rust SDK
+```js JavaScript
+import FirecrawlApp from '@mendable/firecrawl-js';
 
-#### Installing Rust SDK
+// Initialize the client with your API key
+const app = new FirecrawlApp({apiKey: "fc-YOUR_API_KEY"});
 
-Add the following to your `Cargo.toml`:
-```toml
-[dependencies]
-firecrawl = "^0.1"
-tokio = { version = "^1", features = ["full"] }
-serde = { version = "^1.0", features = ["derive"] }
-serde_json = "^1.0"
-uuid = { version = "^1.10", features = ["v4"] }
-
-[build-dependencies]
-tokio = { version = "1", features = ["full"] }
-```
-
-#### Search a query
-
-```rust
-async fn main() {
-  let api_key = "YOUR_API_KEY";
-  let api_url = "https://api.firecrawl.dev";
-  let app = FirecrawlApp::new(api_key, api_url).expect("Failed to initialize FirecrawlApp");
-
-  let query = "What is firecrawl?";
-  let search_result = app.search(query).await;
-
-  match search_result {
-    Ok(data) => println!("Search Result: {}", data),
-    Err(e) => eprintln!("Failed to search: {}", e),
+// Get search results with multiple formats
+app.search("firecrawl features", {
+  limit: 3,
+  scrapeOptions: {
+    formats: ["markdown", "html", "links", "screenshot"]
   }
-}
+})
+.then(searchResult => {
+  // Process results with various formats
+  console.log(searchResult.data);
+});
 ```
+
+```bash cURL
+curl -X POST https://api.firecrawl.dev/v1/search \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer fc-YOUR_API_KEY" \
+  -d '{
+    "query": "firecrawl features",
+    "limit": 3,
+    "scrapeOptions": {
+      "formats": ["markdown", "html", "links", "screenshot"]
+    }
+  }'
+```
+
+</CodeGroup>
+
+Available formats:
+- `markdown`: Clean, formatted markdown content
+- `html`: Processed HTML content
+- `rawHtml`: Unmodified HTML content
+- `links`: List of links found on the page
+- `screenshot`: Screenshot of the page
+- `screenshot@fullPage`: Full-page screenshot
+- `extract`: Structured data extraction
+
+For more details about format options, refer to the [Scrape Feature documentation](https://docs.firecrawl.dev/features/scrape).
