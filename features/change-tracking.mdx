@@ -176,14 +176,14 @@ To use change tracking in the Python SDK, include `'changeTracking'` in the form
 from firecrawl import FirecrawlApp
 
 app = FirecrawlApp(api_key='your-api-key')
-result = app.scrape_url('https://example.com', {
-    'formats': ['markdown', 'changeTracking']
-})
+result = app.scrape_url('https://example.com',
+    formats=['markdown', 'changeTracking']
+)
 
 # Access change tracking data
-print(result['changeTracking']['changeStatus'])  # 'new', 'same', 'changed', or 'removed'
-print(result['changeTracking']['visibility'])  # 'visible' or 'hidden'
-print(result['changeTracking']['previousScrapeAt'])  # ISO timestamp of previous scrape
+print("Change Status:", result.changeTracking.changeStatus)  # 'new', 'same', 'changed', or 'removed'
+print("Visibility:", result.changeTracking.visibility)  # 'visible' or 'hidden'
+print("Previous Scrape At:", result.changeTracking.previousScrapeAt)  # ISO timestamp of previous scrape
 ```
 
 ### Advanced Options
@@ -191,9 +191,9 @@ print(result['changeTracking']['previousScrapeAt'])  # ISO timestamp of previous
 You can configure change tracking with additional options:
 
 ```python
-result = app.scrape_url('https://example.com', {
-    'formats': ['markdown', 'changeTracking'],
-    'changeTrackingOptions': {
+result = app.scrape_url('https://example.com',
+    formats=['markdown', 'changeTracking'],
+    changeTrackingOptions={
         'modes': ['git-diff', 'json'],  # Enable specific change tracking modes
         'schema': {
             'type': 'object',
@@ -202,19 +202,19 @@ result = app.scrape_url('https://example.com', {
                 'content': {'type': 'string'}
             }
         },  # Schema for structured JSON comparison
-        'prompt': 'Custom prompt for extraction'  # Optional custom prompt
+        prompt='Custom prompt for extraction'  # Optional custom prompt
     }
-})
+)
 
 # Access git-diff format changes
-if 'diff' in result['changeTracking']:
-    print(result['changeTracking']['diff']['text'])  # Git-style diff text
-    print(result['changeTracking']['diff']['json'])  # Structured diff data
+if 'diff' in result.changeTracking:
+    print(result.changeTracking.diff.text)  # Git-style diff text
+    print(result.changeTracking.diff.json)  # Structured diff data
 
 # Access JSON comparison changes
-if 'json' in result['changeTracking']:
-    print(result['changeTracking']['json']['title']['previous'])  # Previous title
-    print(result['changeTracking']['json']['title']['current'])  # Current title
+if 'json' in result.changeTracking:
+    print(result.changeTracking.json.title.previous)  # Previous title
+    print(result.changeTracking.json.title.current)  # Current title
 ```
 
 ### Python Data Model
@@ -357,9 +357,9 @@ if (result.changeTracking.changeStatus === 'changed') {
 
 ```python
 # Python
-result = app.scrape_url('https://example.com/product', {
-    'formats': ['markdown', 'changeTracking'],
-    'changeTrackingOptions': {
+result = app.scrape_url('https://example.com/product',
+    formats=['markdown', 'changeTracking'],
+    changeTrackingOptions={
         'modes': ['json'],
         'schema': {
             'type': 'object',
@@ -369,10 +369,10 @@ result = app.scrape_url('https://example.com/product', {
             }
         }
     }
-})
+)
 
-if result['changeTracking']['changeStatus'] == 'changed':
-    print(f"Price changed from {result['changeTracking']['json']['price']['previous']} to {result['changeTracking']['json']['price']['current']}")
+if result.changeTracking.changeStatus == 'changed':
+    print(f"Price changed from {result.changeTracking.json.price.previous} to {result.changeTracking.json.price.current}")
 ```
 
 ### Monitoring Content Changes with Git-Diff
@@ -394,16 +394,16 @@ if (result.changeTracking.changeStatus === 'changed') {
 
 ```python
 # Python
-result = app.scrape_url('https://example.com/blog', {
-    'formats': ['markdown', 'changeTracking'],
-    'changeTrackingOptions': {
+result = app.scrape_url('https://example.com/blog',
+    formats=['markdown', 'changeTracking'],
+    changeTrackingOptions={
         'modes': ['git-diff']
     }
-})
+)
 
-if result['changeTracking']['changeStatus'] == 'changed':
+if result.changeTracking.changeStatus == 'changed':
     print('Content changes:')
-    print(result['changeTracking']['diff']['text'])
+    print(result.changeTracking.diff.text)
 ```
 
 ## Billing
