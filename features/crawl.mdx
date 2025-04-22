@@ -25,6 +25,10 @@ import CheckCrawlJobOutputCompleted from "/snippets/v1/crawl-status/base/output-
 import CrawlWebSocketPython from "/snippets/v1/crawl-websocket/base/python.mdx";
 import CrawlWebSocketNode from "/snippets/v1/crawl-websocket/base/js.mdx";
 import CrawlWebhookCURL from "/snippets/v1/crawl-webhook/base/curl.mdx";
+import PythonCrawlExample from "/snippets/v1/crawl/sdk-example/python.mdx";
+import NodeCrawlExample from "/snippets/v1/crawl/sdk-example/js.mdx";
+import PythonCrawlExampleResponse from "/snippets/v1/crawl/sdk-example/python-response.mdx";
+import NodeCrawlExampleResponse from "/snippets/v1/crawl/sdk-example/js-response.mdx";
 
 Firecrawl thoroughly crawls websites, ensuring comprehensive data extraction while bypassing any web blocker mechanisms. Here's how it works:
 
@@ -77,9 +81,11 @@ Used to crawl a URL and all accessible subpages. This submits a crawl job and re
 
 </CodeGroup>
 
-### Response
+### API Response
 
 If you're using cURL or `async crawl` functions on SDKs, this will return an `ID` where you can use to check the status of the crawl.
+
+<Note>If you're using the SDK, check the SDK response section [below](#sdk-response).</Note>
 
 <AsyncCrawlOutput />
 
@@ -116,6 +122,37 @@ The skip and next parameter are only relavent when hitting the api directly. If 
 <CodeGroup>
   <CheckCrawlJobOutputScraping />
   <CheckCrawlJobOutputCompleted />
+</CodeGroup>
+
+### SDK Response
+
+The SDK provides two ways to crawl URLs:
+
+1. **Synchronous Crawling** (`crawl_url`/`crawlUrl`):
+   - Waits for the crawl to complete and returns the full response
+   - Handles pagination automatically
+   - Recommended for most use cases
+
+<CodeGroup>
+  <PythonCrawlExample />
+  <NodeCrawlExample />
+</CodeGroup>
+
+The response includes the crawl status and all scraped data:
+
+<CodeGroup>
+  <PythonCrawlExampleResponse />
+  <NodeCrawlExampleResponse />
+</CodeGroup>
+
+2. **Asynchronous Crawling** (`async_crawl_url`/`asyncCrawlUrl`):
+   - Returns immediately with a crawl ID
+   - Allows manual status checking
+   - Useful for long-running crawls or custom polling logic
+
+<CodeGroup>
+  <AsyncCrawlPython />
+  <AsyncCrawlNode />
 </CodeGroup>
 
 ## Crawl WebSocket
