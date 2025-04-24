@@ -403,7 +403,7 @@ result = app.scrape_url('https://example.com/blog',
 
 if result.changeTracking.changeStatus == 'changed':
     print('Content changes:')
-    print(result.changeTracking.diff.text)
+    print(result.changeTracking.diff['text'])
 ```
 
 ## Billing
