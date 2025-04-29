@@ -173,7 +173,7 @@ interface ScrapeParams {
 To use change tracking in the Python SDK, include `'changeTracking'` in the formats list when scraping a URL:
 
 ```python
-from firecrawl import FirecrawlApp
+from firecrawl import FirecrawlApp, ChangeTrackingOptions
 
 app = FirecrawlApp(api_key='your-api-key')
 result = app.scrape_url('https://example.com',
@@ -193,9 +193,9 @@ You can configure change tracking with additional options:
 ```python
 result = app.scrape_url('https://example.com',
     formats=['markdown', 'changeTracking'],
-    changeTrackingOptions={
-        'modes': ['git-diff', 'json'],  # Enable specific change tracking modes
-        'schema': {
+    change_tracking_options=ChangeTrackingOptions(
+        modes=['git-diff', 'json'],  # Enable specific change tracking modes
+        schema={
             'type': 'object',
             'properties': {
                 'title': {'type': 'string'},
@@ -203,7 +203,7 @@ result = app.scrape_url('https://example.com',
             }
         },  # Schema for structured JSON comparison
         prompt='Custom prompt for extraction'  # Optional custom prompt
-    }
+    )
 )
 
 # Access git-diff format changes
