@@ -12,16 +12,16 @@ extract_job = app.async_extract([
 ], prompt="Extract the company mission and features from these pages.")
 
 # Get the status of the extraction job
-job_status = app.get_extract_status(extract_job.job_id)
+job_status = app.get_extract_status(extract_job.id)
 
 print(job_status)
 # Example output:
-# {
-#     "status": "completed",
-#     "progress": 100,
-#     "results": [{
-#         "url": "https://docs.firecrawl.dev",
-#         "data": { ... }
-#     }]
-# }
+# id=None
+# status='completed'
+# expiresAt=datetime.datetime(...)
+# success=True
+# data=[{ ... }]
+# error=None
+# warning=None
+# sources=None
 ```
